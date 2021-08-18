@@ -31,27 +31,23 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-┌─〔 %me 〕
-├ Hai, %name!
-│
-├ Tersisa *%limit Limit*
-├ Role *%role*
-├ Level *%level (%exp / %maxexp)* [%xp4levelup]
-├ %totalexp XP secara Total
-│ 
-├ Tanggal: *%week %weton, %date*
-├ Tanggal Islam: *%dateIslamic*
-├ Waktu: *%time*
-│
-├ Uptime: *%uptime (%muptime)*
-├ Database: %rtotalreg dari %totalreg
-├ Github:
-├ %github
-└────
+          *Haruno Bot*
+          \`\`\`Whatsapp Bot\`\`\`
+ 👋 *Hi %name*
+ 🌍 *Date* _%week, %date_
+    _%time_
+ 
+ *Limit :* %limit
+ *EXP :* %totalexp
+ *Level :* %level
+ *Role :* %role
+ 
+ 📚 *Database :* %rtotalreg dari %totalreg
+ ⏱️ *Uptime :* %uptime (%muptime)
 %readmore`.trimStart(),
-  header: '┌─〔 %category 〕',
-  body: '├ %cmd %islimit %isPremium',
-  footer: '└────\n',
+  header: '          \`\`\`%category\`\`\`\n',
+  body: '○🐋 *%cmd* %islimit %isPremium',
+  footer: '\n',
   after: `
 *%npmname@^%version*
 ${'```%npmdesc```'}
@@ -154,7 +150,7 @@ let handler = async (m, { conn, usedPrefix: _p }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     let q = m.quoted ? m.quoted : m
-    await conn.send2Button(m.chat, q.contextInfo == undefined ? text.trim() : 'ketik *.ephe* untuk matikan pesan sementara supaya tombol bisa digunakan', 'made with ❤️ by ariffb', 'PEMILIK BOT', '.owner', 'DONASI', '.donasi', { quoted: m })
+    await conn.send2Button(m.chat, q.contextInfo == undefined ? text.trim() : 'ketik *.ephe* untuk matikan pesan sementara supaya tombol bisa digunakan', 'Haruno', 'PEMILIK BOT', '.owner', 'DONASI', '.donasi', { quoted: m })
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
