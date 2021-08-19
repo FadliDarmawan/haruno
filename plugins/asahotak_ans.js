@@ -7,14 +7,14 @@ handler.before = async function (m) {
     this.asahotak = this.asahotak ? this.asahotak : {}
     if (!(id in this.asahotak)) return m.reply('Soal itu telah berakhir')
     if (/^nyerah$/i.test(m.text)) {
-        await this.sendButton(m.chat, `Jawabannya adalah ${JSON.parse(JSON.stringify(this.asahotak[id][1].jawaban))}`.trim(), '© stikerin', 'ASAH OTAK', '.asahotak').then(() => { delete this.asahotak[id] })
+        await this.sendButton(m.chat, `Jawabannya adalah ${JSON.parse(JSON.stringify(this.asahotak[id][1].jawaban))}`.trim(), '© Haruno', 'ASAH OTAK', '.asahotak').then(() => { delete this.asahotak[id] })
     }
     // if (m.quoted.id == this.asahotak[id][0].id) {
     let json = JSON.parse(JSON.stringify(this.asahotak[id][1]))
     if (['.ao', 'BANTUAN', ''].includes(m.text)) return !0
     if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         global.db.data.users[m.sender].exp += this.asahotak[id][2]
-        await this.sendButton(m.chat, `*Benar!* +${this.asahotak[id][2]} XP`, '© stikerin', 'ASAH OTAK', '.asahotak')
+        await this.sendButton(m.chat, `*Benar!* +${this.asahotak[id][2]} XP`, '© Haruno', 'ASAH OTAK', '.asahotak')
         clearTimeout(this.asahotak[id][3])
         delete this.asahotak[id]
     } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
