@@ -7,7 +7,7 @@ handler.before = async function (m) {
     this.tebakkata = this.tebakkata ? this.tebakkata : {}
     if (!(id in this.tebakkata)) return m.reply('Soal itu telah berakhir')
     if (/^nyerah$/i.test(m.text)) {
-        await this.sendButton(m.chat, `Jawabannya adalah ${JSON.parse(JSON.stringify(this.tebakkata[id][1].jawaban))}`.trim(), '© stikerin', 'TEBAK KATA', '.tebakkata').then(() => {
+        await this.sendButton(m.chat, `Jawabannya adalah ${JSON.parse(JSON.stringify(this.tebakkata[id][1].jawaban))}`.trim(), '© Haruno', 'TEBAK KATA', '.tebakkata').then(() => {
             delete this.tebakkata[id]
             throw 0
         })
@@ -17,7 +17,7 @@ handler.before = async function (m) {
     if (['.teka', 'BANTUAN', ''].includes(m.text)) return !0
     if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         global.db.data.users[m.sender].exp += this.tebakkata[id][2]
-        await this.sendButton(m.chat, `*Benar!* +${this.tebakkata[id][2]} XP`, '© stikerin', 'TEBAK KATA', '.tebakkata')
+        await this.sendButton(m.chat, `*Benar!* +${this.tebakkata[id][2]} XP`, '© Haruno', 'TEBAK KATA', '.tebakkata')
         clearTimeout(this.tebakkata[id][3])
         delete this.tebakkata[id]
     } else if (similarity(m.text.toLowerCase(), json.jawaban.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
