@@ -3,7 +3,7 @@ let handler = function (m) {
   let { chat, fromMe, id, isBaileys } = m.quoted
   if (!fromMe) throw false
   if (/Stikerin Broadcast/i.test(m.quoted.text)) throw 'Tidak bisa menghapus pesan broadcast!'
-  if (!isBaileys) throw 'Pesan tersebut bukan dikirim oleh bot!'
+  if (!isBaileys) throw 'Pesan tersebut bukan dikirim oleh bot!, pesan tersebut di kirim oleh owner'
   this.deleteMessage(chat, {
     fromMe,
     id,
