@@ -18,10 +18,10 @@ Ketik ${usedPrefix}teli untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.tebaklirik[id] = [
-        await conn.send2Button(m.chat, caption, '© stikerin', 'BANTUAN', `.teli`, 'NYERAH', 'nyerah'),
+        await conn.send2Button(m.chat, caption, '© Haruno', 'BANTUAN', `.teli`, 'NYERAH', 'nyerah'),
         json, poin,
         setTimeout(async () => {
-            if (conn.tebaklirik[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© stikerin', 'TEBAK LIRIK', `${usedPrefix}tebaklirik`)
+            if (conn.tebaklirik[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.jawaban}*`, '© Haruno', 'TEBAK LIRIK', `${usedPrefix}tebaklirik`)
             delete conn.tebaklirik[id]
         }, timeout)
     ]
