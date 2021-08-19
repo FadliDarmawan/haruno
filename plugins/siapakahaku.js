@@ -21,10 +21,10 @@ Ketik ${usedPrefix}who untuk bantuan
 Bonus: ${poin} XP
 `.trim()
     conn.siapakahaku[id] = [
-        await conn.send2Button(m.chat, caption, '© stikerin', 'BANTUAN', '.who', 'NYERAH', 'nyerah'),
+        await conn.send2Button(m.chat, caption, '© Haruno', 'BANTUAN', '.who', 'NYERAH', 'nyerah'),
         json, poin,
         setTimeout(async () => {
-            if (conn.siapakahaku[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.data.jawaban}*`, '© stikerin', 'SIAPAKAH AKU', '.siapaaku')
+            if (conn.siapakahaku[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.data.jawaban}*`, '© Haruno', 'SIAPAKAH AKU', '.siapaaku')
             delete conn.siapakahaku[id]
         }, timeout)
     ]
