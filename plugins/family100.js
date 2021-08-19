@@ -4,7 +4,7 @@ async function handler(m) {
     this.game = this.game ? this.game : {}
     let id = 'family100_' + m.chat
     if (id in this.game) {
-        this.sendButton(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', '© stikerin', 'NYERAH', 'nyerah', { quoted: this.game[id].msg })
+        this.sendButton(m.chat, 'Masih ada kuis yang belum terjawab di chat ini', '© Haruno', 'NYERAH', 'nyerah', { quoted: this.game[id].msg })
         throw false
     }
     let src = JSON.parse(fs.readFileSync(`./src/family.json`))
@@ -20,7 +20,7 @@ Terdapat *${json.jawaban.length}* jawaban${json.jawaban.find(v => v.includes(' '
     `.trim()
     this.game[id] = {
         id,
-        msg: await this.sendButton(m.chat, caption, '© stikerin', 'NYERAH', 'nyerah'),
+        msg: await this.sendButton(m.chat, caption, '© Haruno', 'NYERAH', 'nyerah'),
         ...json,
         terjawab: Array.from(json.jawaban, () => false),
         winScore,
