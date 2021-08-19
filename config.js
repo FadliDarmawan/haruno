@@ -16,7 +16,7 @@ global.APIs = { // API Prefix
   vhtear: 'https://api.vhtear.com',
   lolhum: 'https://api.lolhuman.xyz',
   fxc7: 'https://fxc7-api.herokuapp.com',
-  aqul: 'https://justaqul.xyz'
+  aqul: 'https://api.justaqul.xyz'
 
 }
 global.APIKeys = { // APIKey nya disini
@@ -30,7 +30,7 @@ global.APIKeys = { // APIKey nya disini
   'https://api.lolhuman.xyz': 'BandarBokep',
   'https://api.vhtear.com': 'sayahafiz',
   'https://fxc7-api.herokuapp.com': 'uN8rsK4g',
-  'https://justaqul.xyz': '5kbUqdG00OXelFYx'
+  'https://api.justaqul.xyz': '5kbUqdG00OXelFYx'
 }
 
 // Sticker WM
