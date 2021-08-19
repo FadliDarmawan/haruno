@@ -17,8 +17,6 @@ const defaultMenu = {
 │
 ├ Uptime: *%uptime (%muptime)*
 ├ Database: %rtotalreg dari %totalreg
-├ Github:
-├ %github
 └────
 %readmore`.trimStart(),
   header: '┌─〔 %category 〕',
@@ -130,8 +128,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   if (!args[0]) {
     conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
       "listMessage": {
-        "title": "Daftar Menu",
-        "description": "© stikerin",
+        "title": "Daftar Menu Haruno Bot",
+        "description": "© Haruno",
         "buttonText": "Klik Disini",
         "listType": "SINGLE_SELECT",
         "sections": [
@@ -371,7 +369,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2Button(m.chat, text.trim(), 'Haruno', 'PEMILIK BOT', '.owner', 'DONASI', '.donasi', { quoted: m })
+    await conn.send2Button(m.chat, text.trim(), '© Haruno', 'PEMILIK BOT', '.owner', 'SEWA', '.sewa', { quoted: m })
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
