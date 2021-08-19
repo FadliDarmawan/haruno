@@ -7,7 +7,7 @@ handler.before = async function (m) {
     this.tebaklirik = this.tebaklirik ? this.tebaklirik : {}
     if (!(id in this.tebaklirik)) return m.reply('Soal itu telah berakhir')
     if (/^nyerah$/i.test(m.text)) {
-        await this.sendButton(m.chat, `Jawabannya adalah ${JSON.parse(JSON.stringify(this.tebaklirik[id][1].jawaban))}`.trim(), '© stikerin', 'TEBAK LIRIK', '.tebaklirik').then(() => {
+        await this.sendButton(m.chat, `Jawabannya adalah ${JSON.parse(JSON.stringify(this.tebaklirik[id][1].jawaban))}`.trim(), '© Haruno', 'TEBAK LIRIK', '.tebaklirik').then(() => {
             delete this.tebaklirik[id]
             throw 0
         })
