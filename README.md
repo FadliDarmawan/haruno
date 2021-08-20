@@ -17,7 +17,7 @@ apt install nodejs -y
 apt install ffmpeg -y
 apt install imagemagick -y
 git clone https://github.com/FadliDarmawan/haruno
-cd wabot-aq
+cd haruno
 npm install
 npm start
 ```
