@@ -8,6 +8,20 @@
 
 [![Grup WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/LIX42RUhLi15MBXhfvrF6K)
 
+## FOR TERMUX/UBUNTU/SSH USER
+
+```bash
+apt update && apt upgrade
+apt install git -y
+apt install nodejs -y
+apt install ffmpeg -y
+apt install imagemagick -y
+git clone https://github.com/FadliDarmawan/haruno
+cd wabot-aq
+npm install
+npm start
+```
+
 ## UNTUK PENGGUNA WINDOWS/VPS/RDP
 
 * Unduh & Instal Git [`Klik Disini`](https://git-scm.com/downloads)
