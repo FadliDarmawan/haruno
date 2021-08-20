@@ -1,7 +1,7 @@
 let handler = m => m
 
 let levelling = require('../lib/levelling')
-const canvacord = require('canvacord')
+let fetch = require('node-fetch')
 handler.before = async function (m) {
         let user = global.db.data.users[m.sender]
         let users = Object.entries(global.db.data.users).map(([key, value]) => {
@@ -24,19 +24,10 @@ handler.before = async function (m) {
                 while (levelling.canLevelUp(user.level, user.exp, global.multiplier)) user.level++
 
                 if (before !== user.level) {
-                        let rank = await new canvacord.Rank()
-                                .setRank(usersLevel.indexOf(m.sender) + 1)
-                                .setAvatar(pp)
-                                .setLevel(user.level)
-                                .setCurrentXP(user.exp - min)
-                                .setRequiredXP(xp)
-                                .setProgressBar("#f2aa4c", "COLOR")
-                                .setUsername(this.getName(who))
-                                .setDiscriminator(discriminator);
-                        rank.build()
-                                .then(async data => {
-                                        await this.sendButtonImg(m.chat, `_*Level Up!*_\n_${before}_ -> _${user.level}_`.trim(), data, '© Haruno', 'DAILY', ',daily')
-                                })
+                        let rank = 'https://telegra.ph/file/a70ec1ca7e65ec12545df.jpg'
+                        {
+                                        await this.sendButtonImg(m.chat, `Level Up!\n_${before}_ -> ${user.level}`.trim(), await (await fetch(rank)).buffer(), '© Haruno', 'DAILY', ',daily')
+                                }
                 }
         }
 }
