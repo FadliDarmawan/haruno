@@ -1,8 +1,8 @@
 let yts = require('yt-search')
 let fetch = require('node-fetch')
 const { servers, yta, ytv } = require('../lib/y2mate')
-let handler = async (m, { conn, command, text, usedprefix, isPrems, isOwner }) => {
-  if (!text) throw 'Cari apa?'
+let handler = async (m, { conn, command, text, usedPrefix, isPrems, isOwner }) => {
+  if (!text) throw 'Masukkan judul sebagai parameter, contoh: ${usedPrefix} tantei wa mou shindeiru op'
   let chat = global.db.data.chats[m.chat]
   let results = await yts(text)
   let vid = results.all.find(video => video.seconds < 3600)
@@ -30,7 +30,7 @@ let handler = async (m, { conn, command, text, usedprefix, isPrems, isOwner }) =
 *Ukuran File Video:* ${yt2.filesizeF}
 *Server y2mate:* ${usedServer}
           `.trim(),
-    await (await fetch(thumb)).buffer(), '© Haruno', 'AUDIO', `${usedprefix}yta ${vid.url}`, 'VIDEO', `${usedprefix}yt ${vid.url}`)
+    await (await fetch(thumb)).buffer(), '© Haruno', 'AUDIO', `${usedPrefix}yta ${vid.url}`, 'VIDEO', `${usedPrefix}yt ${vid.url}`)
 }
 handler.help = ['play'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
@@ -39,4 +39,3 @@ handler.command = /^play$/i
 handler.exp = 0
 
 module.exports = handler
-
