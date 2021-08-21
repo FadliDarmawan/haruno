@@ -26,11 +26,11 @@ global.APIKeys = { // APIKey nya disini
   'https://pencarikode.xyz': 'APIKEY',
   'https://api.xteam.xyz': 'Syahrulidhamz30',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
-  'https://api.zeks.xyz': 'FVe0JFCdME58YSKmhoDWdRtyuJt',
-  'https://api.lolhuman.xyz': 'BandarBokep',
-  'https://api.vhtear.com': 'sayahafiz',
-  'https://fxc7-api.herokuapp.com': 'uN8rsK4g',
-  'https://api.justaqul.xyz': '5kbUqdG00OXelFYx'
+  'https://api.zeks.xyz': 'apikey lu',
+  'https://api.lolhuman.xyz': 'apikey lu',
+  'https://api.vhtear.com': 'apikey lu',
+  'https://fxc7-api.herokuapp.com': 'apikey lu',
+  'https://api.justaqul.xyz': 'apikey lu'
 }
 
 // Sticker WM
@@ -49,3 +49,5 @@ fs.watchFile(file, () => {
   delete require.cache[file]
   require(file)
 })
+
+// masukin apikey lu yang ada tulisan 'apikey lu' nya
