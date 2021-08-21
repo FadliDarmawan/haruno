@@ -23,7 +23,7 @@ const defaultMenu = {
   body: '├ %cmd %islimit %isPremium',
   footer: '└────\n',
   after: `
-*%npmname@^%version*
+*Haruno-Bot@^%version*
 ${'```%npmdesc```'}
 `,
 }
