@@ -31,7 +31,7 @@ npm start
 
 ```bash
 git clone https://github.com/FadliDarmawan/haruno
-cd stikerinbot
+cd haruno
 npm install
 npm update
 npm index
