@@ -29,7 +29,7 @@ OVO: 628112958665
         {title: 'Permanen', description: "Rp15.000\nSewa bot tanpa batasan waktu.", rowId:".permanen"},
         {title: '1 Bulan', description: "Rp10.000\nSewa bot selama 1 bulan.", rowId:".masuk"},
         {title: '1 Minggu', description: "Rp7.000\nSewa bot selama 1 minggu.", rowId:".masuk"},
-        {title: '1 Bulan', description: "GRATIS\nBot gratis 1 Hari.", rowId:".masuk"},
+        {title: 'Trial', description: "GRATIS\nBot gratis 3 Hari.", rowId:".masuk"},
         {title: 'OWNER', description: "Chat owner nya.", rowId:".owner"},
        ] }],
         listType: 1
