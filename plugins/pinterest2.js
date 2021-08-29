@@ -10,7 +10,7 @@ let handler = async(m, { conn, text, usedPrefix, command }) => {
 Pinterest!
 Query: ${text}
 `.trim()
-await conn.sendButtonImg(m.chat, itsuki, await (await fetch(json.image)).buffer(), '© Haruno', '🔎CARI LAGI', `.pinterest ${text}`, { thumbnail: Buffer.alloc(0) })
+await conn.sendButtonImg(m.chat, await (await fetch(json.image)).buffer(), itsuki, '© Haruno', '🔎CARI LAGI', `.pinterest ${text}`, { thumbnail: Buffer.alloc(0) })
 }
 handler.command = /^pinterest$/i
 handler.tags = ['internet']
