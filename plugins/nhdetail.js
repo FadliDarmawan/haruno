@@ -19,7 +19,7 @@ Uploaded: ${json.result.info.uploaded}
 
 Button tidak work untuk pesan sementara/wa mod silahkan pakai ${usedPrefix}nhpdf ${args[0]}
 `.trim()
-    await conn.sendButtonImg(m.chat, ayaka, await (await fetch(json.result.image[0])).buffer(), 'Haruno Bot Downloader', 'DOWNLOAD', `.nhd ${args[0]}`, { thumbnail: Buffer.alloc(0) })
+    await conn.sendButtonImg(m.chat, await (await fetch(json.result.image[0])).buffer(), ayaka, 'Haruno Bot Downloader', 'DOWNLOAD', `.nhd ${args[0]}`, { thumbnail: Buffer.alloc(0) })
 }
 handler.command = /^nh$/i
 handler.tags = ['nsfw']
