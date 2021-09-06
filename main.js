@@ -42,7 +42,6 @@ global.db = new Low(
 global.DATABASE = global.db // Backwards Compatibility
 
 global.conn = new WAConnection()
-conn.browserDescription = ["stikerinbot", "Desktop", '10.0']
 let authFile = `${opts._[0] || 'session'}.data.json`
 if (fs.existsSync(authFile)) conn.loadAuthInfo(authFile)
 if (opts['trace']) conn.logger.level = 'trace'
@@ -105,6 +104,7 @@ if (opts['test']) {
       stats: {},
       msgs: {},
       sticker: {},
+      settings: {},
       ...(global.db.data || {})
     }
     global.db.chain = _.chain(global.db.data)
@@ -126,7 +126,7 @@ global.reloadHandler = function () {
     conn.off('CB:action,,call', conn.onCall)
   }
   conn.welcome = 'Hai, @user!\nSelamat datang di grup @subject\n\n@desc'
-  conn.bye = '@user keluar'
+  conn.bye = 'Selamat tinggal @user'
   conn.spromote = '@user sekarang admin'
   conn.sdemote = '@user sekarang bukan admin'
   conn.handler = handler.handler
