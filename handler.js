@@ -47,6 +47,11 @@ module.exports = {
           if (!isNumber(user.pc)) user.pc = 0
           if (!isNumber(user.warning)) user.warning = 0
           if (!isNumber(user.joincount)) user.joincount = 0
+          if (!isNumber(user.primogem)) user.primogem = 0
+          if (!isNumber(user.mora)) user.mora = 0
+          if (!isNumber(user.cxp)) user.cxp = 0
+          if (!isNumber(user.axp)) user.axp = 0
+          if (!isNumber(user.joincount)) user.joincount = 0
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
@@ -65,6 +70,10 @@ module.exports = {
           pc: 0,
           warning: 0,
           joincount: 0,
+          primogem: 0,
+          mora: 0,
+          cxp: 0,
+          axp: 0,
         }
 
         let chat = global.db.data.chats[m.chat]
@@ -84,7 +93,6 @@ module.exports = {
           if (!isNumber(chat.expired)) chat.expired = 0
           if (!('antiBadword' in chat)) chat.antiBadword = true
           if (!('viewonce' in chat)) chat.viewonce = true
-          if (!isNumber(user.joincount)) user.joincount = 0
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
           welcome: false,
