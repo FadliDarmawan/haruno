@@ -51,7 +51,6 @@ module.exports = {
           if (!isNumber(user.mora)) user.mora = 0
           if (!isNumber(user.cxp)) user.cxp = 0
           if (!isNumber(user.axp)) user.axp = 0
-          if (!isNumber(user.joincount)) user.joincount = 0
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
