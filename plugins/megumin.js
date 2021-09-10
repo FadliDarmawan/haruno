@@ -1,10 +1,10 @@
 let fetch = require('node-fetch')
 let handler = async (m, { conn }) => {
   let res = await fetch('https://api.waifu.pics/sfw/megumin')
-  if (!res.ok) throw await `${res.status} ${res.statusText}`
+  if (!res.ok) throw eror
   let json = await res.json()
   if (!json.url) throw 'Eror!'
-  conn.sendFile(m.chat, json.url, '', '© Haruno', m, 0, { thumbnail: await (await fetch(json.url)).buffer() })
+  conn.sendFile(m.chat, json.url, '', watermark, m, 0, { thumbnail: await (await fetch(json.url)).buffer() })
 }
 handler.help = ['megumin']
 handler.tags = ['internet']

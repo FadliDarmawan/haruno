@@ -16,7 +16,6 @@ Artists: ${json.data.artist}
 Genre: ${json.data.genre}
 Album: ${json.data.album}
 Realese Date: ${json.data.relese_date}
-
 Note: Hasil dari api.zeks.xyz. Hasil bisa tidak akurat.
 ©Haruno
 `.trim()
@@ -26,4 +25,3 @@ handler.tags = ['internet']
 handler.help = ['judul <reply audio>']
 handler.command = /^judul$/i
 module.exports = handler
-//Haruno Bot
