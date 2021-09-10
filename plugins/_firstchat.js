@@ -8,19 +8,19 @@ handler.all = async function (m) {
     if (m.isGroup) return
     if (db.data.settings.groupOnly) return
     let user = global.db.data.users[m.sender]
-    if (new Date - user.pc < 43200000) return // setiap 12 jam
+    if (new Date - user.pc < 86400000) return // setiap 24 jam sekali
     await this.sendButton(m.chat, `
 Hai, ${ucapan()}
 
-${user.banned ? 'kamu dibanned' : 'Saya adalah Haruno, salah satu bot whatsapp\nIni adalah nomor bot, minta save tidak akan di respon.\nAda yang bisa saya bantu?'}
-`.trim(), '© Haruno', user.banned ? 'PEMILIK BOT' : 'MENU', user.banned ? ',owner' : ',?')
+${user.banned ? 'kamu dibanned' : 'Saya adalah Haruno, salah satu Bot Whatsapp. harap tidak spam/telpon/minta save ke nomor ini. Ada yang bisa saya bantu?'}
+`.trim(), watermark, user.banned ? 'Pemilik Bot' : 'Menu', user.banned ? ',owner' : ',?', m)
     user.pc = new Date * 1
 }
 
 module.exports = handler
 function ucapan() {
     const time = moment.tz('Asia/Jakarta').format('HH')
-    res = "Buset malem malem chat"
+    res = "Selamat dinihari"
     if (time >= 4) {
         res = "Selamat pagi"
     }

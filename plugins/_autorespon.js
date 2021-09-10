@@ -6,7 +6,7 @@ handler.all = async function (m, { isBlocked }) {
     if (isBlocked) return
     if (m.isBaileys) return
     if (m.chat.endsWith('broadcast')) return
-    let setting = db.data.settings
+    let setting = db.data.settings[this.user.jid]
     let { isBanned } = db.data.chats[m.chat]
     let { banned } = db.data.users[m.sender]
 
@@ -14,12 +14,12 @@ handler.all = async function (m, { isBlocked }) {
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
             await this.send2Button(m.chat,
-                isBanned ? 'Haruno tidak aktif' : banned ? 'kamu dibanned' : 'Haruno disini',
-                '© Haruno',
-                isBanned ? 'UNBAN' : banned ? 'PEMILIK BOT' : 'MENU',
+                isBanned ? 'Haruno lagi tidur' : banned ? 'kamu dibanned' : 'Haruno disini',
+                watermark,
+                isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
                 isBanned ? '.unban' : banned ? '.owner' : '.?',
-                m.isGroup ? 'BAN' : isBanned ? 'UNBAN' : 'DONASI',
-                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi')
+                m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
+                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi', m)
         }
     } catch (e) {
         return
@@ -28,14 +28,13 @@ handler.all = async function (m, { isBlocked }) {
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
         this.sendButton(m.chat, `┌〔 Undang Bot ke Grup 〕
-├ 1 Hari / uji coba gratis
+├ 3 Hari / GRATIS 
+├ 7 Hari / Rp7.000
 ├ 30 Hari / Rp10.000
-├ Permanen / Rp15.000
-├ Premium / Rp20.000 (1 bulan)
 └────
 
-© Haruno
-`.trim(), '© Haruno', 'PEMILIK BOT', ',owner', { contextInfo: { mentionedJid: [global.owner[0] + '@s.whatsapp.net'] } })
+
+`.trim(), watermark, 'Pemilik Bot', ',owner', m)
     }
 
     // salam
@@ -65,7 +64,7 @@ handler.all = async function (m, { isBlocked }) {
     if (new Date() * 1 - setting.status > 1000) {
         let _uptime = process.uptime() * 1000
         let uptime = clockString(_uptime)
-        // await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | Haruno Bot oleh Fadli`).catch(_ => _)
+        // await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | Haruno bot oleh Fadli`).catch(_ => _) // disable jika kamu tidak suka dengan ini
         setting.status = new Date() * 1
     }
 
