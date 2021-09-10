@@ -2,7 +2,9 @@ let handler = async (m, { args, usedPrefix, command }) => {
     let fa = `
 contoh:
 ${usedPrefix + command} 100
+
 artinya kamu bertaruh 100 XP.
+
 *JACKPOT:* taruhan kamu digandakan
 *Kurang beruntung:* +1 XP
 *Kalah:* taruhan kamu diambil`.trim()
@@ -53,10 +55,12 @@ artinya kamu bertaruh 100 XP.
     users.lastslot = new Date * 1
     return await conn.sendButton(m.chat,
         `*[ 🎰 | SLOTS ]*
+
 ${end}
+
 ${x[0]} ${y[0]} ${z[0]}
 ${x[1]} ${y[1]} ${z[1]}
-${x[2]} ${y[2]} ${z[2]}`.trim(), '© stikerin', `Slot ${args[0]}`, `.slot ${args[0]}`, m)
+${x[2]} ${y[2]} ${z[2]}`.trim(), watermark, `Slot ${args[0]}`, `.slot ${args[0]}`, m)
 }
 handler.help = ['slot <angka>']
 handler.tags = ['game']
@@ -74,4 +78,4 @@ function msToTime(duration) {
     seconds = (seconds < 10) ? "0" + seconds : seconds
 
     return minutes + " menit " + seconds + " detik"
-} 
+}

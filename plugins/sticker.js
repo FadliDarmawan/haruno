@@ -26,7 +26,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (stiker) conn.sendMessage(m.chat, stiker, MessageType.sticker, {
       quoted: m
     })
-    else throw 'Conversion failed'
+    else throw 'Error, coba reply foto/pastikan mime benar'
   }
 }
 handler.help = ['stiker (caption|reply media)', 'stiker <url>', 'stikergif (caption|reply media)', 'stikergif <url>']
