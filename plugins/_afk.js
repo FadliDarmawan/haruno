@@ -2,7 +2,7 @@ let handler = m => m
 handler.before = m => {
   let user = global.db.data.users[m.sender]
   if (user.afk > -1) {
-    await conn.send2Button(m.chat, `
+    conn.send2Button(m.chat, `
 Kamu berhenti AFK${user.afkReason ? ' setelah ' + user.afkReason : ''}
 Selama ${clockString(new Date - user.afk)}
 `.trim(), watermark, 'MENU', '.menu', 'DASHBOARD', '.dashboard', m)
