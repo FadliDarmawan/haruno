@@ -4,7 +4,7 @@ handler.before = async function (m) {
 
     if (m.isGroup && db.data.chats[m.chat].expired != 0) {
         if (new Date() * 1 >= db.data.chats[m.chat].expired) {
-            this.sendFile(m.chat, await(await fetch(image)).buffer(), '', `waktu *${this.user.name}* di grup sudah habis, Sayonara`, null).then(() => {
+            this.sendFile(m.chat, image, '', `waktu *${this.user.name}* di grup sudah habis, Sayonara`, null).then(() => {
                 this.sendContact(m.chat, owner[0], this.getName(owner[0] + '@s.whatsapp.net')).then(() => {
                     this.groupLeave(m.chat).then(() => {
                         db.data.chats[m.chat].expired = 0
