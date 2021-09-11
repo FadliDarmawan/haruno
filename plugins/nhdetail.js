@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async(m, { conn, args, usedPrefix, command}) => {
-    if (!args[0]) throw `Masukkan kode, berikut: ${usedPrefix + command} 367983`
+    if (!args[0]) throw `Masukkan kode, berikut: ${usedPrefix + command} 304307`
     let res = await fetch(global.API('lolhum', `/api/nhentai/${args[0]}`, {}, 'apikey'))
     if (!res.ok) throw await res.text()
     let json = await res.json()
@@ -19,10 +19,10 @@ Uploaded: ${json.result.info.uploaded}
 
 Button tidak work untuk pesan sementara/wa mod silahkan pakai ${usedPrefix}nhpdf ${args[0]}
 `.trim()
-    await conn.sendButtonImg(m.chat, await (await fetch(json.result.image[0])).buffer(), ayaka, 'Haruno Bot Downloader', 'DOWNLOAD', `.nhd ${args[0]}`, { thumbnail: Buffer.alloc(0) })
+    conn.sendButtonImg(m.chat, await (await fetch(json.result.image[0])).buffer(), ayaka, watermark, 'DOWNLOAD', `.nhd ${args[0]}`, m)
 }
 handler.command = /^nh$/i
-handler.tags = ['nsfw']
+handler.tags = ['internet']
 handler.help = ['nh <code>']
 handler.nsfw = true
 module.exports = handler
