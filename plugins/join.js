@@ -22,4 +22,6 @@ handler.command = /^join$/i
 
 handler.premium = false
 
+handler.owner = true
+
 module.exports = handler
