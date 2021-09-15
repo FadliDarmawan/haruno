@@ -26,8 +26,10 @@ npm start
 
 ## UNTUK REPLIT
 
-```npm i
 ```
+npm i
+```
+* Lalu start
 
 ## UNTUK PENGGUNA WINDOWS/VPS/RDP
 
