@@ -1,12 +1,12 @@
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 
 let handler = async (m, { conn, text, usedPrefix, args }) => {
-    if (!args[0]) throw 'Masukkan jumlah hari'
-    let [_, code] = text.match(linkRegex) || []
+    if (!args[1]) throw 'Masukkan jumlah hari'
+    let [_, code] = args[0].match(linkRegex) || []
     if (!code) throw 'Link Salah'
     let res = await conn.acceptInvite(code)
     m.reply(`Berhasil join grup ${res.gid}`).then(() => {
-        var jumlahHari = 86400000 * `${args[0]}`
+        var jumlahHari = 86400000 * `${args[1]}`
         var now = new Date() * 1
         if (now < global.db.data.chats[res.gid].expired) global.db.data.chats[res.gid].expired += jumlahHari
         else global.db.data.chats[res.gid].expired = now + jumlahHari
