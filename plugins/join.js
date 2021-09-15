@@ -1,6 +1,7 @@
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 
 let handler = async (m, { conn, text, usedPrefix, args }) => {
+    if (!args[0]) throw 'Masukkan link group'
     if (!args[1]) throw 'Masukkan jumlah hari'
     let [_, code] = args[0].match(linkRegex) || []
     if (!code) throw 'Link Salah'
@@ -16,7 +17,7 @@ let handler = async (m, { conn, text, usedPrefix, args }) => {
     
 ketik *${usedPrefix}menu* untuk melihat daftar perintah`.trim(), watermark, 'Menu', `${usedPrefix}?`, 0, { contextInfo: { mentionedJid: [m.sender] } })
 }
-handler.help = ['join <chat.whatsapp.com>']
+handler.help = ['join <chat.whatsapp.com> <jumlah hari>']
 handler.tags = ['']
 
 handler.command = /^join$/i
