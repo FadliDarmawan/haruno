@@ -8,10 +8,11 @@ handler.all = async function (m, { isBotAdmin }) {
             content: m.msg,
             sender: m.sender
         }
-        await this.modifyChat(m.chat, 'clear', {
+        // await this.modifyChat(m.chat, 'clear', {
             includeStarred: false
         }).catch(console.log)
     }
 }
 
 module.exports = handler
+// kalau mau di enable silahkan, saya sih males chat ilang
