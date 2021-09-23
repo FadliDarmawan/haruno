@@ -20,8 +20,8 @@ apt install ffmpeg
 apt install imagemagick
 apt install nodejs
 apt install git
-git clone https://github.com/FadliDarmawan/natsukawa
-cd natsukawa
+git clone https://github.com/FadliDarmawan/haruno
+cd haruno
 npm i
 node . (option)
 ````
@@ -38,7 +38,7 @@ npm i
 node . (option)
 ```
 # Replit
-[![Run on Repl.it](https://repl.it/badge/github/FadliDarmawan/natsukawa)](https://repl.it/github/FadliDarmawan/natsukawa)
+[![Run on Repl.it](https://repl.it/badge/github/FadliDarmawan/natsukawa)](https://repl.it/github/FadliDarmawan/haruno)
 * Klik button
 * Buka console
 ```
@@ -46,7 +46,7 @@ npm i
 node . (option)
 ```
 # Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FadliDarmawan/natsukawa)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FadliDarmawan/haruno)
 
 *install buildpack
 * heroku/nodejs
