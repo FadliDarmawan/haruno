@@ -1,7 +1,7 @@
-<p align="center">
-	<img src="https://telegra.ph/file/c09a3d241eef1856b910c.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
+<p align="left">
+	<img src="https://telegra.ph/file/2a994c4949315bb7f51b8.jpg" width="35%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
-<h1 align="center">Haruno Bot</h1>
+<h1 align="left">Haruno Bot</h1>
 
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FadliDarmawan/haruno)
@@ -10,52 +10,50 @@
 
 [![Grup WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/LIX42RUhLi15MBXhfvrF6K)
 
-## UNTUK PENGGUNA TERMUX/UBUNTU/SSH
+# Haruno Bot
+Haruno bot adalah bot whatsapp hasil pe-nggarapan ulang dari ariffb25/stikerinbot yang sudah di edit agar bisa di jalankan di termux.
+Haruno bot juga dapat di jalankan di RPP/VPS/Windows, Heroku, Replit 
 
-```bash
-apt update && apt upgrade
-apt install git -y
-apt install nodejs -y
-apt install ffmpeg -y
-apt install imagemagick -y
-git clone https://github.com/FadliDarmawan/haruno
-cd haruno
-npm install
-npm start
+# Termux
 ```
-
-## UNTUK REPLIT
-
-```
+apt install ffmpeg
+apt install imagemagick
+apt install nodejs
+apt install git
+git clone https://github.com/FadliDarmawan/natsukawa
+cd natsukawa
 npm i
-```
-* Lalu start
+node . (option)
+````
 
-## UNTUK PENGGUNA WINDOWS/VPS/RDP
-
+# RDP/VPS/Windows
 * Unduh & Instal Git [`Klik Disini`](https://git-scm.com/downloads)
 * Unduh & Instal NodeJS [`Klik Disini`](https://nodejs.org/en/download)
 * Unduh & Instal FFmpeg [`Klik Disini`](https://ffmpeg.org/download.html) (**Jangan Lupa Tambahkan FFmpeg ke variabel lingkungan PATH**)
 * Unduh & Instal ImageMagick [`Klik Disini`](https://imagemagick.org/script/download.php)
-
-```bash
-git clone https://github.com/FadliDarmawan/haruno
-cd haruno
-npm install
-npm update
-npm index
 ```
+git clone https://github.com/FadliDarmawan/natsukawa
+cd natsukawa
+npm i
+node . (option)
+```
+# Replit
+[![Run on Repl.it](https://repl.it/badge/github/FadliDarmawan/natsukawa)](https://repl.it/github/FadliDarmawan/natsukawa)
+* Klik button
+* Buka console
+```
+npm i
+node . (option)
+```
+# Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FadliDarmawan/natsukawa)
 
----------
-
-## UNTUK PENGGUNA HEROKU
-
-### Instal Buildpack
+*install buildpack
 * heroku/nodejs
 * https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
 * https://github.com/DuckyTeam/heroku-buildpack-imagemagick.git
 
----------
+# Option
 
 ## Arguments `node . [--options] [<session name>]`
 
