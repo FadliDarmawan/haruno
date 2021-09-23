@@ -12,7 +12,7 @@
 
 # Haruno Bot
 Haruno bot adalah bot whatsapp hasil pe-nggarapan ulang dari ariffb25/stikerinbot yang sudah di edit agar bisa di jalankan di termux.
-Haruno bot juga dapat di jalankan di RPP/VPS/Windows, Heroku, Replit 
+Haruno bot juga dapat di jalankan di RPP/VPS/Windows, Heroku, Replit.
 
 # Termux
 ```
