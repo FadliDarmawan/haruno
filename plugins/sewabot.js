@@ -26,15 +26,15 @@ OVO: 628112958665
         description: kamisato,
         sections:  [{title: "Silahkan di pilih", rows: [
         {title: 'Premium', description: "Rp20.000\nDapatkan fitur premium.", rowId:".premium"},
-        {title: 'Permanen', description: "Rp15.000\nSewa bot tanpa batasan waktu.", rowId:".permanen"},
+        {title: '2 Bulan', description: "Rp15.000\nSewa bot tanpa batasan waktu.", rowId:".masuk"},
         {title: '1 Bulan', description: "Rp10.000\nSewa bot selama 1 bulan.", rowId:".masuk"},
         {title: '1 Minggu', description: "Rp7.000\nSewa bot selama 1 minggu.", rowId:".masuk"},
-        {title: 'Trial', description: "GRATIS\nBot gratis 3 Hari.", rowId:".masuk"},
-        {title: 'OWNER', description: "Chat owner nya.", rowId:".owner"},
+        {title: 'Trial', description: "GRATIS\nBot gratis 3 Hari.", rowId:".join"},
+        {title: 'OWNER', description: "Chat owner nya jika ada perlu.", rowId:".owner"},
        ] }],
         listType: 1
        }
-    conn.sendMessage(m.chat, button, MessageType.listMessage)
+    conn.sendMessage(m.chat, button, MessageType.listMessage, { quoted: m })
 }
 handler.tags = ['main']
 handler.command = /^(sewa)$/i
