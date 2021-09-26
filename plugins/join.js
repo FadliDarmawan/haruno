@@ -17,10 +17,10 @@ let handler = async (m, { conn, text, usedPrefix, args }) => {
     
 ketik *${usedPrefix}menu* untuk melihat daftar perintah`.trim(), watermark, 'Menu', `${usedPrefix}?`, 0, { contextInfo: { mentionedJid: [m.sender] } })
 }
-handler.help = ['join <chat.whatsapp.com> <jumlah hari>']
+handler.help = ['masuk <chat.whatsapp.com> <jumlah hari>']
 handler.tags = ['']
 
-handler.command = /^join$/i
+handler.command = /^masuk$/i
 
 handler.premium = false
 
