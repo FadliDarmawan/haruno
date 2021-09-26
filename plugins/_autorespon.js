@@ -9,12 +9,13 @@ handler.all = async function (m, { isBlocked }) {
     let setting = db.data.settings[this.user.jid]
     let { isBanned } = db.data.chats[m.chat]
     let { banned } = db.data.users[m.sender]
+    let name = conn.user.name
 
     // ketika ditag
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
             await this.send2Button(m.chat,
-                isBanned ? 'Haruno lagi tidur' : banned ? 'kamu dibanned' : 'Haruno disini',
+                isBanned ? `${name} lagi tidur` : banned ? 'kamu dibanned' : `${name} disini`,
                 watermark,
                 isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
                 isBanned ? '.unban' : banned ? '.owner' : '.?',
@@ -27,14 +28,14 @@ handler.all = async function (m, { isBlocked }) {
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        this.sendButton(m.chat, `┌〔 Undang Bot ke Grup 〕
+        this.send3Button(m.chat, `┌〔 Undang Bot ke Grup 〕
 ├ 3 Hari / GRATIS 
 ├ 7 Hari / Rp7.000
 ├ 30 Hari / Rp10.000
 └────
 
 
-`.trim(), watermark, 'Pemilik Bot', ',owner', m)
+`.trim(), watermark, 'Pemilik Bot', ',owner', 'Cara memasukkan bot', '.how add', m)
     }
 
     // salam

@@ -2,7 +2,7 @@ let handler = m => m
 handler.before = m => {
   let user = global.db.data.users[m.sender]
   if (user.afk > -1) {
-    conn.send2ButtonImg(m.chat, await(await fetch(''https://telegra.ph/file/0cfac626be41ae8c17c7e.jpg)).buffer(),`
+    conn.send2ButtonImg(m.chat, await(await fetch(image)).buffer(),`
 Kamu berhenti AFK${user.afkReason ? ' setelah ' + user.afkReason : ''}
 Selama ${clockString(new Date - user.afk)}
 `.trim(), watermark, 'Menu', '.menu', 'Profile', '.my', m)
