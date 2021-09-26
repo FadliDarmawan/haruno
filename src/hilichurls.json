@@ -1,0 +1,59 @@
+[
+    {
+        "index": "1",
+        "name": "Normal Hilichurl",
+        "image": "https://telegra.ph/file/c3aee534d1d96d8cda7f5.jpg",
+        "axp": "5",
+        "cxp": "10",
+        "items": "Damaged Mask",
+        "primogem": "0",
+        "mora": "200",
+        "rate": "5"
+    },
+    {
+        "index": "02",
+        "name": "Unusual Hilichurl",
+        "image": "https://telegra.ph/file/c6b6d0edd15efb83220cd.png",
+        "axp": "18",
+        "cxp": "13",
+        "items": "",
+        "primogem": "0",
+        "mora": "233",
+        "rate": "5"
+    },
+    {
+        "index": "03",
+        "name": "Hilichurl Berserker",
+        "element": "Pyro",
+        "image": "https://telegra.ph/file/35f196241afe486be87f5.png",
+        "axp": "5",
+        "cxp": "10",
+        "items": "Damaged Mask",
+        "primogem": "0",
+        "mora": "200",
+        "rate": "5"
+    },
+    {
+        "index": "04",
+        "name": "Blazing Axe Mitachurl",
+        "element": "Pyro",
+        "image": "https://telegra.ph/file/95652591989097e5612c9.png",
+        "axp": "15",
+        "cxp": "15",
+        "items": "Heavy Horn",
+        "primogem": "0",
+        "mora": "233",
+        "rate": "10"
+    },
+    {
+        "index": "05",
+        "name": "Enemy Hilichurl Cryo Grenadier",
+        "element": "Cryo",
+        "image": "https://telegra.ph/file/3b24c8227c66206ae225b.png",
+        "axp": "5",
+        "cxp": "10",
+        "primogem": "0",
+        "mora": "200",
+        "rate": "5"
+    }
+]
