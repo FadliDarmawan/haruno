@@ -1,21 +1,27 @@
 let fetch = require('node-fetch')
-let handler = async (m, { conn, args, usedPrefix, command }) => {
+let handler = async(m, { conn, text, usedPrefix, command }) => {
+    if(!text) throw `Masukkan URL yang valid, contoh: ${usedPrefix + command}https://vt.tiktok.com/ZSwWCk5o/`
+    m.reply(wait)
+    let res = await fetch(global.API('lolhum', '/api/tiktok', { url: text }, 'apikey'))
+    if (!res.ok) throw await res.text()
+    if (!res.ok) m.reply(error)
+    let json = await res.json()
+    let wm = global.watermark
+    let caption = `
+Video Description
+${json.result.titile}
+${json.result.keywords}
+${json.result.description}
 
-  if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://vt.tiktok.com/yqyjPX/`
-  if (!args[0].match(/tiktok/gi)) throw `url salah`
-
-  let res = await fetch(API('hardianto', '/api/download/tiktok', { url: args[0] }, 'apikey'))
-  if (!res.ok) throw eror
-  let json = await res.json()
-  // if (!json.status) throw json        
-  await m.reply(wait)
-  await conn.sendFile(m.chat, json.nowm, '', `${json.caption}\n\n© Haruno`, m)
-
+Author Description
+Username: ${json.result.author.username}
+Nickname: ${json.result.author.nickname}
+${wm}
+`.trim()
+    conn.sendFile(m.chat, `${json.result.link}`, 'Tiktok.mp4', caption, m)
 }
-handler.help = ['tiktok'].map(v => v + ' <url>')
+handler.help = ['tiktok <url>']
 handler.tags = ['downloader']
-handler.command = /^(tiktok)$/i
-
-handler.limit = true
-
+handler.command = /^tiktok$/i
 module.exports = handler
+// Haruno
