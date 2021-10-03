@@ -16,7 +16,7 @@ contoh: ${usedPrefix + command} how
 `.trim()
     if (!args[0]) await conn.sendButtonLoc(m.chat, await(await fetch(image)).buffer(), tulisan, watermark, 'Menu', '.menu', m)
     let json = JSON.parse(JSON.stringify(global.panduan))
-    let { search, deskripsi, judul } = json.find(v => v.search == args[1])
+    let { search, deskripsi, judul } = json.find(v => v.search == args[0])
         return conn.send3ButtonImg(m.chat, await(await fetch(gambar)).buffer(), `No. ${index} ${judul}
 ${deskripsi}
 
