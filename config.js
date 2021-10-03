@@ -1,6 +1,6 @@
 let fs = require('fs')
-global.owner = ['628112958665','628998512588','6283175998566'] // Letakan nomor kamu disini
-global.mods = [] // Moderator?
+global.owner = ['628112958665', '6288215569001','628998512588', '6285693602003'] // Letakan nomor kamu disini
+global.mods = [''] // Moderator?
 global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
 global.APIs = { // API Prefix
   // nama: 'https://website'
@@ -24,13 +24,13 @@ global.APIKeys = { // APIKey nya disini
   'https://hardianto-chan.herokuapp.com': 'hardianto',
   'https://neoxr-api.herokuapp.com': 'yntkts',
   'https://pencarikode.xyz': 'APIKEY',
-  'https://api.xteam.xyz': 'apikey lu',
+  'https://api.xteam.xyz': 'HIRO',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
-  'https://api.zeks.xyz': 'apikey lu',
-  'https://api.lolhuman.xyz': 'apikey lu',
-  'https://api.vhtear.com': 'apikey lu',
-  'https://fxc7-api.herokuapp.com': 'apikey lu',
-  'https://api.justaqul.xyz': 'apikey lu'
+  'https://api.zeks.xyz': 'FVe0JFCdME58YSKmhoDWdRtyuJt',
+  'https://api.lolhuman.xyz': 'WajibPatunganKontol!!',
+  'https://api.vhtear.com': 'sayahafiz',
+  'https://fxc7-api.herokuapp.com': 'uN8rsK4g',
+  'https://api.justaqul.xyz': '5kbUqdG00OXelFYx'
 }
 
 // Sticker WM
@@ -53,5 +53,3 @@ fs.watchFile(file, () => {
   delete require.cache[file]
   require(file)
 })
-
-// masukin apikey lu yang ada tulisan 'apikey lu' nya
