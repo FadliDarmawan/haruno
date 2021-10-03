@@ -13,7 +13,7 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
         pp = await conn.getProfilePicture(m.chat)
     } catch (e) {
     } finally {
-        let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiLink, expired, descUpdate, stiker } = global.db.data.chats[m.chat]
+        let { isBanned, welcome, detect, sWelcome, sBye, sPromote, sDemote, antiLink, expired, descUpdate, stiker, privatelink } = global.db.data.chats[m.chat]
         const groupAdmins = getGroupAdmins(participants)
         let listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.split`@`[0]}`).join('\n')
 
@@ -46,6 +46,7 @@ ${descUpdate ? '✅' : '❌'} Deskprisi
 ${detect ? '✅' : '❌'} Detect
 ${stiker ? '✅' : '❌'} Stiker
 ${welcome ? '✅' : '❌'} Welcome
+${privatelink ? '✅' : '❌'} Privatelink
 
 *Pengaturan Pesan Bot:*
 Welcome: ${sWelcome}

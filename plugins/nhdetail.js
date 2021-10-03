@@ -19,7 +19,7 @@ Uploaded: ${json.result.info.uploaded}
 
 Button tidak work untuk pesan sementara/wa mod silahkan pakai ${usedPrefix}nhpdf ${args[0]}
 `.trim()
-    conn.sendButtonImg(m.chat, await (await fetch(json.result.image[0])).buffer(), ayaka, watermark, 'DOWNLOAD', `.nhd ${args[0]}`, m)
+    conn.sendButtonImg(m.chat, await (await fetch(json.result.image[0])).buffer(), ayaka, watermark, 'Download', `.nhd ${args[0]}`, m)
 }
 handler.command = /^nh$/i
 handler.tags = ['internet']

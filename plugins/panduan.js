@@ -1,6 +1,7 @@
 let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 let handler = async(m, { conn, usedPrefix, args, command }) => {
+    let name = conn.getName(m.sender)
     let tulisan = `
 Halo ${name}, ${ucapan()} selamat datang di menu panduan Haruno Bot. di menu ini kalian bisa mendapatkan panduan soal bot whatsapp.
 ┌〔 List Panduan 〕
@@ -8,22 +9,23 @@ Halo ${name}, ${ucapan()} selamat datang di menu panduan Haruno Bot. di menu ini
 ├ owner
 ├ add
 ├ berlangganan
+├ bot
 └────
 Penggunaan: ${usedPrefix + command} list panduan
 contoh: ${usedPrefix + command} how
 `.trim()
     if (!args[0]) await conn.sendButtonLoc(m.chat, await(await fetch(image)).buffer(), tulisan, watermark, 'Menu', '.menu', m)
     let json = JSON.parse(JSON.stringify(global.panduan))
-    let { index, latin, arabic, translation_id, translation_en } = json.find(v => v.search == args[0].replace(/[^0-9]/g, ''))
+    let { search, deskripsi, judul } = json.find(v => v.search == args[1])
         return conn.send3ButtonImg(m.chat, await(await fetch(gambar)).buffer(), `No. ${index} ${judul}
 ${deskripsi}
 
 Query: ${search}
-`.trim(), watermark, 'Perlu bantuan lain?', '.owner', 'Menu', '.?', 'Rules', '.rules', m)
+`.trim(), watermark, 'Owner', '.owner', 'Menu', '.?', 'Rules', '.rules', m)
 }
 handler.tags = ['main']
 handler.help = ['panduan']
-handler.command = /^panduan$/i
+handler.command = /^(panduan|how)$/i
 module.exports = handler
 function ucapan() {
     const time = moment.tz('Asia/Jakarta').format('HH')
@@ -58,12 +60,19 @@ global.panduan = [
     {
         "index": "3",
         "search": "add",
-        "deskripsi": "Cara menambahkan bot ke dalam group. silahkan baca pada menu sewa dengan mengetikkan *.sewa*. Haruno bot memberlakukan trial gratis 3 hari. Setelah 3 hari maka bot akan keluar dari group. ada opsi 1 minggu, 1 bulan dan 2 bulan.",
+        "deskripsi": "Cara menambahkan bot ke dalam group. silahkan baca pada menu sewa dengan mengetikkan *.sewa*. Haruno bot memberlakukan trial gratis 3 hari. Setelah 3 hari maka bot akan keluar dari group. ada opsi 1 minggu, 1 bulan dan 2 bulan berlangganan.",
         "judul": "Cara menambahkan bot ke group",
     },
     {
         "index": "4",
         "search": "berlangganan",
-        "deskripsi": "Layanan berlangganan Haruno Bot adalah dengan menyewa bot dalam jumlah waktu ke dalam group. Untukm list harga/layanan silahkan baca pada *.sewa*"
+        "deskripsi": "Layanan berlangganan Haruno Bot adalah dengan menyewa bot dalam jumlah waktu ke dalam group. Untukm list harga/layanan silahkan baca pada *.sewa*",
+        "judul": "Berlangganan"
+    },
+    {
+        "index": "5",
+        "search": "bot",
+        "deskripsi": "Bot adalah sebuah program komputer yang dijalankan di lingkungan. Bot Whatsapp adalah program komputer yang di-aplikasikan di whatsapp. Bot whatsapp diharapkan dapat membantu beberapa aktifitas maupun sekedar untuk senang senang.",
+        "judul": "Apa itu bot whatsapp"
     }
 ]
