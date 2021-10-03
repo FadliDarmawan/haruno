@@ -51,7 +51,6 @@ module.exports = {
           if (!isNumber(user.mora)) user.mora = 0
           if (!isNumber(user.cxp)) user.cxp = 0
           if (!isNumber(user.axp)) user.axp = 0
-          if (!isNumber(user.health)) user.health = 100
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
@@ -74,7 +73,6 @@ module.exports = {
           mora: 0,
           cxp: 0,
           axp: 0,
-          health: 100,
         }
 
         let chat = global.db.data.chats[m.chat]
@@ -94,6 +92,7 @@ module.exports = {
           if (!isNumber(chat.expired)) chat.expired = 0
           if (!('antiBadword' in chat)) chat.antiBadword = true
           if (!('viewonce' in chat)) chat.viewonce = true
+          if (!('privatelink' in chat)) chat.privatelink = false
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
           welcome: false,
@@ -109,6 +108,7 @@ module.exports = {
           expired: 0,
           antiBadword: true,
           viewonce: true,
+          privatelink: false,
         }
 
         let settings = global.db.data.settings[this.user.jid]
@@ -453,7 +453,7 @@ ketik *.on delete* untuk mematikan pesan ini
     }
     user.call += 1
     await this.reply(from, `Jika kamu menelepon lebih dari 2, kamu akan diblokir.\n\n${user.call} / 2`, null)
-    if (user.call == 5) {
+    if (user.call == 2) {
       await this.blockUser(from, 'add')
       user.call = 0
     }
