@@ -23,7 +23,7 @@ ketik *#astagfirullah* atau *#maaf* untuk mengurangi warning
             user.banned = true
             if (m.isGroup) {
                 if (isBotAdmin) {
-                    this.groupSettingChange(m.chat, GroupSettingChange.messageSend, true)
+                    // this.groupSettingChange(m.chat, GroupSettingChange.messageSend, true)
                 }
             }
         }

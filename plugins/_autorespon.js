@@ -28,7 +28,7 @@ handler.all = async function (m, { isBlocked }) {
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        this.send3Button(m.chat, `┌〔 Undang Bot ke Grup 〕
+        this.send2Button(m.chat, `┌〔 Undang Bot ke Grup 〕
 ├ 3 Hari / GRATIS 
 ├ 7 Hari / Rp7.000
 ├ 30 Hari / Rp10.000

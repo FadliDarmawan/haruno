@@ -14,5 +14,5 @@ handler.all = async function (m, { isBotAdmin }) {
     }
 }
 
-handler.disable = true
+handler.disabled = true
 module.exports = handler

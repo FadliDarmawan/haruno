@@ -32,6 +32,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.detect = isEnable
       break
+    case 'privatelink':
+      if (!m.isGroup) {
+        if (!isOwner) {
+          global.dfail('group', m, conn)
+          throw false
+        }
+      } else if (!(isAdmin || isOwner)) {
+        global.dfail('admin', m, conn)
+        throw false
+      }
+      chat.privatelink = isEnable
+      break
     case 'desc':
       if (!m.isGroup) {
         if (!isOwner) {
@@ -236,6 +248,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
 ├ stiker
 ├ simi
 ├ welcome
+├ privatelink
 └────
 contoh:
 ${usedPrefix}on welcome
