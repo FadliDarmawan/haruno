@@ -1,5 +1,5 @@
 let fs = require('fs')
-global.owner = ['628112958665', '6288215569001','628998512588', '6285693602003'] // Letakan nomor kamu disini
+global.owner = ['628112958665', '6288215569001','628998512588', '6283175998566', '6285693602003', '6283153189868'] // Letakan nomor kamu disini
 global.mods = [''] // Moderator?
 global.prems = JSON.parse(fs.readFileSync('./src/premium.json')) // Pengguna premium tidak memerlukan limit
 global.APIs = { // API Prefix
@@ -27,10 +27,11 @@ global.APIKeys = { // APIKey nya disini
   'https://api.xteam.xyz': 'HIRO',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'FVe0JFCdME58YSKmhoDWdRtyuJt',
-  'https://api.lolhuman.xyz': 'WajibPatunganKontol!!',
+  'https://api.lolhuman.xyz': '929b48b9aa5a91abed8526cd',
   'https://api.vhtear.com': 'sayahafiz',
   'https://fxc7-api.herokuapp.com': 'uN8rsK4g',
-  'https://api.justaqul.xyz': '5kbUqdG00OXelFYx'
+  'https://api.justaqul.xyz': '5kbUqdG00OXelFYx',
+  'http://zekais-api.herokuapp.com': 'grqgD6pU'
 }
 
 // Sticker WM
@@ -41,7 +42,10 @@ global.wait = '「 ⏱️ 」Harap tunggu...'
 global.eror = '「❗」Server ERROR!'
 global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
 global.watermark = '© Haruno' //change the watermark (beberapa harus manual)
-global.image = 'https://telegra.ph/file/1893a59e90a39b1f593c7.jpg' //change the image
+global.image = 'https://telegra.ph/file/63560c3d19d6bcce228f5.jpg' //change the image
+global.thumbfoto = 'https://telegra.ph/file/39bbded9693c9338069fd.jpg'
+global.sumberurl = 'https://youtu.be/0YF8vecQWYs'
+global.deskripsiurl = 'Harunobot adalah salah satu bot whatapp.'
 
 global.multiplier = 59 // Semakin tinggi, semakin sulit naik level
 
