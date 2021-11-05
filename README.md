@@ -3,6 +3,7 @@
 </p>
 <h1 align="left">Haruno Bot</h1>
 
+Note: Untuk sementara repo ini belum mendapatkan update dari versi Haruno terbaru. Silahkan tunggu hingga repo ini menerima beberapa update.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FadliDarmawan/haruno)
 
