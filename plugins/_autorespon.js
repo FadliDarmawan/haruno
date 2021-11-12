@@ -28,14 +28,15 @@ handler.all = async function (m, { isBlocked }) {
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        this.send2Button(m.chat, `┌〔 Undang Bot ke Grup 〕
+        conn.send3Button(m.chat, `┌〔 Undang Bot ke Grup 〕
 ├ 3 Hari / GRATIS 
 ├ 7 Hari / Rp7.000
 ├ 30 Hari / Rp10.000
+├ 2 Bulan / Rp15.000
 └────
 
-
-`.trim(), watermark, 'Pemilik Bot', ',owner', 'Cara memasukkan bot', '.how add', m)
+Silahkan ketik .sewa untuk mendapatkan informasi lebih lanjut.
+`.trim(), watermark, 'Pemilik Bot', ',owner', 'Cara memasukkan bot', '.how add', 'Sewa', '.sewa',m)
     }
 
     // salam
@@ -55,20 +56,23 @@ handler.all = async function (m, { isBlocked }) {
                 year: 'numeric'
             })
             await global.db.write()
-            this.reply(global.owner[0] + '@s.whatsapp.net', `Database: ${date}`, null)
-            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./database.json'), 'database.json', '', 0, 0, { mimetype: 'application/json' })
             setting.backupDB = new Date() * 1
+            this.reply(global.owner[0] + '@s.whatsapp.net', `Database, Premium, Event: ${date}`, null)
+            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./database.json'), 'database.json', '', 0, 0, { mimetype: 'application/json' })
+            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./src/premium.json'), 'premium.json', '', 0, 0, { mimetype: 'application/json' })
+            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./src/event.json'), 'event.json', '', 0, 0, { mimetype: 'application/json' })
         }
     }
 
     // update status
-    if (new Date() * 1 - setting.status > 1000) {
-        let _uptime = process.uptime() * 1000
-        let uptime = clockString(_uptime)
-        // await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | Haruno bot oleh Fadli`).catch(_ => _) // disable jika kamu tidak suka dengan ini
-        setting.status = new Date() * 1
+    if (setting.statusupdate) {
+        if (new Date() * 1 - setting.status > 1000) {
+            let _uptime = process.uptime() * 1000
+            let uptime = clockString(_uptime)
+            await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | Haruno bot oleh Fadli`).catch(_ => _) 
+            setting.status = new Date() * 1
+        }
     }
-
 }
 
 module.exports = handler

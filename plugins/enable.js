@@ -178,6 +178,14 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       setting.antitroli = isEnable
       break
+    case 'publicjoin': 
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+        throw false
+      }
+      setting.publicjoin = isEnable
+      break
     case 'autoread':
       isAll = true
       if (!isOwner) {
@@ -201,6 +209,27 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         throw false
       }
       setting.antispam = isEnable
+      break
+    case 'autogetmsg': 
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+      }
+      setting.autogetmsg = isEnable
+      break
+    case 'status': 
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+      }
+      settings.status = isEnable
+      break
+    case 'antivirus':
+      isAll = true
+      if (!isOwner) {
+        global.dfail('owner', m, conn)
+      }
+      setting.antivirus = true
       break
     case 'anon':
       isAll = true
@@ -239,7 +268,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       break
     default:
       if (!/[01]/.test(command)) throw `
-┌〔 Daftar Opsi 〕${isOwner ? '\n├ anon\n├ antispam\n├ antitroli\n├ autoread\n├ backup\n├ clear\n├ grouponly\n├ jadibot\n├ nsfw\n├ public\n├ mycontact' : ''}
+┌〔 Daftar Opsi 〕${isOwner ? '\n├ anon\n├ antispam\n├ antitroli\n├ antivirus\n├ status\n├ autogetmsg\n├ publicjoin\n├ autoread\n├ backup\n├ clear\n├ grouponly\n├ jadibot\n├ nsfw\n├ public\n├ mycontact' : ''}
 ├ antilink
 ├ autolevelup
 ├ delete

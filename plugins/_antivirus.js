@@ -1,6 +1,7 @@
 let handler = m => m
 
 handler.all = async function (m, { isBotAdmin }) {
+    if (!db.data.settings[this.user.jid].antivirus) return // apakah antivirus aktif?
     // auto clear ketika terdapat pesan yang tidak dapat dilihat di wa desktop
     if (m.messageStubType === 68) {
         let log = {
@@ -14,5 +15,4 @@ handler.all = async function (m, { isBotAdmin }) {
     }
 }
 
-handler.disabled = true
 module.exports = handler

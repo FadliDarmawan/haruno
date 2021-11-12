@@ -1,6 +1,7 @@
 let handler = m => m
 
 handler.all = async function (m) {
+    if (!db.data.settings[this.user.jid].autogetmsg) return
     if (m.chat.endsWith('broadcast')) return
     if (db.data.chats[m.chat].isBanned) return
     if (db.data.users[m.sender].banned) return

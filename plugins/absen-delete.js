@@ -6,7 +6,7 @@ let handler = async (m, { conn, usedPrefix }) => {
         throw false
     }
     delete conn.absen[id]
-    m.reply(`Absen berhasil dihapus`)
+    m.reply(`Absen dihapus`)
 }
 handler.help = ['hapusabsen']
 handler.tags = ['absen']

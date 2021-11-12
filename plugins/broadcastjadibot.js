@@ -4,7 +4,7 @@ let handler = async (m, { conn, usedPrefix, text }) => {
   let cc = text ? m : m.quoted ? await m.getQuotedObj() : false || m
   let teks = text ? text : cc.text
   let content = conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : '〔 Haruno Broadcast 〕\n\n' + teks)
-  for (let id of users) { 
+  for (let id of users) {
     await delay(1500)
     await conn.copyNForward(id, content, true)
   }

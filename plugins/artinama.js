@@ -16,7 +16,7 @@ const artinama_api = [
 ]
 
 let handler = async (m, { text, usedPrefix, command }) => {
-  if (!text) throw `uhm.. namanya?\n\ncontoh:\n${usedPrefix + command} haruno`
+  if (!text) throw `uhm.. namanya?\n\ncontoh:\n${usedPrefix + command} ariffb`
   let result = ''
   for (let [origin, pathname, query, apikey, fn] of artinama_api) {
     try {

@@ -14,13 +14,13 @@ handler.all = async function (m, { isPrems }) {
 
     let url = m.text.split(/\n| /i)[0]
 
-    if (/^.*tiktok/i.test(m.text)) {
-        let res = await fetch(API('hardianto', '/api/download/tiktok', { url }, 'apikey'))
+    if (/^.*vt.tiktok.com/i.test(m.text)) {
+        let res = await fetch(global.API('lolhum', '/api/tiktok', { url }, 'apikey'))
         if (!res.ok) return m.reply(eror)
         let json = await res.json()
         await m.reply(wait)
         // m.reply(util.format(json))
-        await this.sendFile(m.chat, json.nowm, '', watermark, m)
+        await this.sendFile(m.chat, json.result.link, 'tiktok.mp4', watermark, m, 0)
     }
 
     if (/^.*cocofun/i.test(m.text)) {
@@ -75,7 +75,7 @@ handler.all = async function (m, { isPrems }) {
         }).catch(_ => _)
     }
 
-    if (/^https?:\/\/.*youtu/i.test(m.text)) {
+    if (/^https?:\/\/.*youtu.be/i.test(m.text)) {
         let results = await yts(url)
         let vid = results.all.find(video => video.seconds < 3600)
         if (!vid) return m.reply('Video/Audio Tidak ditemukan')
@@ -96,7 +96,9 @@ handler.all = async function (m, { isPrems }) {
         if (yt2 === false) return m.reply(eror)
         let { dl_link, thumb, title, filesize, filesizeF } = yt
         await this.send2ButtonLoc(m.chat, await (await fetch(thumb)).buffer(), `
-*Judul:* ${title}
+Youtube Downloader
+
+*Title:* ${title}
 *Ukuran File Audio:* ${filesizeF}
 *Ukuran File Video:* ${yt2.filesizeF}
 *Server y2mate:* ${usedServer}

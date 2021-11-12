@@ -2,9 +2,10 @@ let handler = m => m
 handler.before = m => {
   let user = global.db.data.users[m.sender]
   if (user.afk > -1) {
-    conn.send2Button(m.chat, `Kamu berhenti AFK${user.afkReason ? ' setelah ' + user.afkReason : ''}
+    conn.send2Button(m.chat, `
+Kamu berhenti AFK${user.afkReason ? ' setelah ' + user.afkReason : ''}
 Selama ${clockString(new Date - user.afk)}
-`.trim(), watermark, 'Menu', '.menu', 'Profile', '.my', m)
+`.trim(), watermark, 'Menu', '.?', 'AFK lagi...', `.afk ${user.afkReason  ? user.afkReason : ''}`, m)
     user.afk = -1
     user.afkReason = ''
   }
@@ -24,7 +25,7 @@ Selama ${clockString(new Date - afkTime)}
   return true
 }
 
-module.exports = handler
+module.exports = handler 
 
 function clockString(ms) {
   let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)

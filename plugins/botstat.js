@@ -1,5 +1,5 @@
 let handler = async (m, { conn }) => {
-    let { anon, anticall, antispam, antitroli, backup, jadibot, groupOnly, nsfw } = global.db.data.settings[conn.user.jid]
+    let { anon, anticall, antispam, antitroli, backup, jadibot, groupOnly, nsfw, statusupdate, autogetmsg, antivirus, publicjoin } = global.db.data.settings[conn.user.jid]
     const chats = conn.chats.all()
     const groups = chats.filter(v => v.jid.endsWith('g.us'))
     let totaljadibot = [...new Set([...global.conns.filter(conn => conn.user && conn.state !== 'close').map(conn => conn.user)])]
@@ -7,15 +7,7 @@ let handler = async (m, { conn }) => {
     let _uptime = process.uptime() * 1000
     let uptime = clockString(_uptime)
 
-    conn.send2ButtonLoc(m.chat, await(await fetch(image)).buffer, `
-┌─〔 Info Haruno Bot 〕
-├ Nama (Resmi): Haruno Bot Whatsapp
-├ Dipoperasikan sejak: 12 Juli 2021 (12 Februari 2021)
-├ Owner: Fadli
-├ Bahasa: Nodejs
-├ Run: Heroku
-└────
-
+    m.reply(`
 ┌─〔 Status 〕
 ├ Aktif selama ${uptime}
 ├ Baterai ${conn.battery != undefined ? `${conn.battery.value}% ${conn.battery.live ? '🔌 pengisian' : ''}` : 'tidak diketahui'}
@@ -37,8 +29,12 @@ let handler = async (m, { conn }) => {
 ├ ${groupOnly ? '✅' : '❌'} *Mode Grup*
 ├ ${jadibot ? '✅' : '❌'} *Jadi Bot*
 ├ ${nsfw ? '✅' : '❌'} *Mode Nsfw*
+├ ${statusupdate ? '✅' : '❌'} *Auto Update Stats (Bio)* 
+├ ${autogetmsg ? '✅' : '❌'} *Auto Get Message*
+├ ${publicjoin  ? '✅' : '❌'} *Public Join*
+├ ${antivirus  ? '✅' : '❌'} *Anti Virus*
 └────
-    `.trim(), watermark, 'Menu', '.?', 'Owner', '.owner')
+    `.trim())
 }
 handler.help = ['botstatus']
 handler.tags = ['info']
