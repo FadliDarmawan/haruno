@@ -19,6 +19,7 @@ try {
   low = require('./lib/lowdb')
 }
 const { Low, JSONFile } = low
+const mongoDB = require('./lib/mongoDB')
 
 const rl = Readline.createInterface(process.stdin, process.stdout)
 const WAConnection = simple.WAConnection(_WAConnection)
@@ -37,12 +38,14 @@ global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/!#$%+£¢€¥^°=
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
     new cloudDBAdapter(opts['db']) :
-    new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
+    /mongodb/.test(opts['db']) ?
+      new mongoDB(opts['db']) :
+      new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
 )
 global.DATABASE = global.db // Backwards Compatibility
 
 global.conn = new WAConnection()
-conn.version = [2, 2143, 3]
+conn.version = [2, 2140, 12]
 let authFile = `${opts._[0] || 'session'}.data.json`
 if (fs.existsSync(authFile)) conn.loadAuthInfo(authFile)
 if (opts['trace']) conn.logger.level = 'trace'
@@ -50,7 +53,7 @@ if (opts['debug']) conn.logger.level = 'debug'
 if (opts['big-qr'] || opts['server']) conn.on('qr', qr => generate(qr, { small: false }))
 if (!opts['test']) setInterval(async () => {
   await global.db.write()
-}, 60 * 1000) // Save every minute
+}, 10 * 1000) // Save every minute
 if (opts['server']) require('./server')(global.conn, PORT)
 
 if (opts['test']) {
@@ -127,7 +130,7 @@ global.reloadHandler = function () {
     conn.off('CB:action,,call', conn.onCall)
   }
   conn.welcome = 'Hai, @user!\nSelamat datang di grup @subject\n\n@desc'
-  conn.bye = 'Selamat tinggal @user'
+  conn.bye = '@user keluar'
   conn.spromote = '@user sekarang admin'
   conn.sdemote = '@user sekarang bukan admin'
   conn.handler = handler.handler
@@ -173,7 +176,6 @@ for (let filename of fs.readdirSync(pluginFolder).filter(pluginFilter)) {
     delete global.plugins[filename]
   }
 }
-console.log(Object.keys(global.plugins))
 global.reload = (_event, filename) => {
   if (pluginFilter(filename)) {
     let dir = path.join(pluginFolder, filename)
@@ -224,7 +226,6 @@ async function _quickTest() {
     ])
   }))
   let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm] = test
-  console.log(test)
   let s = global.support = {
     ffmpeg,
     ffprobe,

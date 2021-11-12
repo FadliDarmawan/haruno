@@ -132,6 +132,10 @@ module.exports = {
           if (!'jadibot' in settings) settings.groupOnly = false
           if (!'nsfw' in settings) settings.nsfw = true
           if (!isNumber(settings.status)) settings.status = 0
+          if (!'statusupdate' in settings) settings.statusupdate = false
+          if (!'antivirus' in settings) settings.antivirus = false
+          if (!'publicjoin' in settings) settings.publicjoin = false
+          if (!'autogetmsg' in settings) settings.autogetmsg = true
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
@@ -143,6 +147,10 @@ module.exports = {
           jadibot: false,
           nsfw: true,
           status: 0,
+          statusupdate: false,
+          antivirus: false,
+          publicjoin: false,
+          autogetmsg: true,
         }
       } catch (e) {
         console.error(e)
