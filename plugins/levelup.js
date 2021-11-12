@@ -1,10 +1,9 @@
-let fetch = require('node-fetch')
 let levelling = require('../lib/levelling')
+const canvacord = require('canvacord')
 
 let handler = async (m, { conn, usedPrefix }) => {
-  // let pp = './src/avatar_contact.png'
+  let pp = './src/avatar_contact.png'
   let who = m.sender
-  let name = conn.getName(m.sender)
   let discriminator = who.substring(9, 13)
   try {
     pp = await conn.getProfilePicture(who)
@@ -18,18 +17,36 @@ let handler = async (m, { conn, usedPrefix }) => {
     let usersLevel = sortedLevel.map(enumGetKey)
     let { min, xp, max } = levelling.xpRange(user.level, global.multiplier)
     if (!levelling.canLevelUp(user.level, user.exp, global.multiplier)) {
-      let rank = 'https://telegra.ph/file/135a4c46ce3a9ca498a4f.jpg'
-        {
-          await conn.sendButtonLoc(m.chat, await (await fetch(rank)).buffer(), `Level ${name} ${user.level} (${user.exp - min}/${xp})\nKurang ${max - user.exp} lagi!`.trim(), '© Haruno', 'Enable autolevelup', `${usedPrefix}on autolevelup`, m)
-        }
+      let rank = await new canvacord.Rank()
+        .setRank(usersLevel.indexOf(m.sender) + 1)
+        .setAvatar(pp)
+        .setLevel(user.level)
+        .setCurrentXP(user.exp - min)
+        .setRequiredXP(xp)
+        .setProgressBar("#f2aa4c", "COLOR")
+        .setUsername(conn.getName(who))
+        .setDiscriminator(discriminator)
+      rank.build()
+        .then(async data => {
+          await conn.sendButtonImg(m.chat, data, `@${who.split`@`[0]} Level *${user.level} (${user.exp - min}/${xp})*\nKurang *${max - user.exp}* lagi!`.trim(), watermark, 'Auto Level Up', `${usedPrefix}on autolevelup`, m, { thumbnail: data, height: 282, width: 934, contextInfo: { mentionedJid: [who]} })
+        })
     }
     let before = user.level * 1
     while (levelling.canLevelUp(user.level, user.exp, global.multiplier)) user.level++
     if (before !== user.level) {
-      let rank = 'https://telegra.ph/file/a70ec1ca7e65ec12545df.jpg'
-        {
-          await conn.sendButtonLoc(m.chat, await (await fetch(rank)).buffer(), `${name} Level Up!\n_${before}_ -> ${user.level}`.trim(), '© Haruno', 'AUTO LEVEL UP', `${usedPrefix}on autolevelup`, m)
-        }
+      let rank = await new canvacord.Rank()
+        .setRank(usersLevel.indexOf(m.sender) + 1)
+        .setAvatar(pp)
+        .setLevel(user.level)
+        .setCurrentXP(user.exp - min)
+        .setRequiredXP(xp)
+        .setProgressBar("#f2aa4c", "COLOR")
+        .setUsername(conn.getName(who))
+        .setDiscriminator(discriminator)
+      rank.build()
+        .then(async data => {
+          await conn.sendButtonImg(m.chat, data, `@${who.split`@`[0]} _*Level Up!*_\n_${before}_ -> _${user.level}_`.trim(), watermark, 'Auto Level Up', `${usedPrefix}on autolevelup`, m, { thumbnail: data, height: 282, width: 934, contextInfo: { mentionedJid: [who]} })
+        })
     }
   }
 }

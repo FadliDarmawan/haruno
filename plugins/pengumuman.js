@@ -1,7 +1,6 @@
 const { MessageType } = require('@adiwajshing/baileys')
 
 let handler = async (m, { conn, text, participants }) => {
-  if (db.data.chats[m.chat].hidetag) return
   let users = participants.map(u => u.jid)
   let q = m.quoted ? m.quoted : m
   let c = m.quoted ? m.quoted : m.msg

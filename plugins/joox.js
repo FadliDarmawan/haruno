@@ -16,7 +16,7 @@ Album: ${album}
 Ukuran File: ${filesize}
 Durasi: ${duration}
 
-© Haruno
+${watermark}
     `.trim()
 
     conn.sendFile(m.chat, img_url, 'eror.jpg', pesan, m, 0, { thumbnail: await (await fetch(img_url)).buffer() })

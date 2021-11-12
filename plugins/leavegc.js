@@ -24,7 +24,7 @@ handler.help = ['gc', 'gcall', 'group'].map(v => 'leave' + v)
 handler.tags = ['group']
 handler.command = /^leaveg(c|ro?up)(all|semua)?$/i
 
-handler.disable = true //aktifkan jika mau
+handler.disabled = true
 
 handler.rowner = true
 
