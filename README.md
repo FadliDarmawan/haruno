@@ -16,6 +16,7 @@ Haruno bot adalah bot whatsapp hasil pe-nggarapan ulang dari ariffb25/stikerinbo
 Haruno bot juga dapat di jalankan di RPP/VPS/Windows, Heroku, Replit.
 
 # Termux
+NOTE: Untuk termux silahkan hilangkan fitur fitur yang menggunakan canvas dan wsf, kemungkinan mongoDB juga tidak bisa dipakai.
 ```
 apt install ffmpeg
 apt install imagemagick
