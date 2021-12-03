@@ -8,6 +8,7 @@ const isNumber = x => typeof x === 'number' && !isNaN(x)
 const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, ms))
 module.exports = {
   async handler(chatUpdate) {
+    if (global.db.data == null) await global.loadDatabase()
     // console.log(chatUpdate)
     if (!chatUpdate.hasNewMessage) return
     if (!chatUpdate.messages && !chatUpdate.count) return
@@ -132,7 +133,7 @@ module.exports = {
           if (!'jadibot' in settings) settings.groupOnly = false
           if (!'nsfw' in settings) settings.nsfw = true
           if (!isNumber(settings.status)) settings.status = 0
-          if (!'statusupdate' in settings) settings.statusupdate = false
+          if (!'statusUpdate' in settings) settings.statusUpdate = false
           if (!'antivirus' in settings) settings.antivirus = false
           if (!'publicjoin' in settings) settings.publicjoin = false
           if (!'autogetmsg' in settings) settings.autogetmsg = true
@@ -147,7 +148,7 @@ module.exports = {
           jadibot: false,
           nsfw: true,
           status: 0,
-          statusupdate: false,
+          statusUpdate: false,
           antivirus: false,
           publicjoin: false,
           autogetmsg: true,
@@ -184,7 +185,8 @@ module.exports = {
       let isOwner = isROwner || m.fromMe
       let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-      if (!isPrems && !m.isGroup && global.db.data.settings.groupOnly) return
+      let isBeta = isROwner || global.beta.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+      if (!isPrems && !isBeta && !m.isGroup && global.db.data.settings.groupOnly) return
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}
       let participants = m.isGroup ? groupMetadata.participants : [] || []
       let user = m.isGroup ? participants.find(u => u.jid == m.sender) : {} // User Data
@@ -224,6 +226,7 @@ module.exports = {
           isAdmin,
           isBotAdmin,
           isPrems,
+          isBeta,
           chatUpdate,
           isBlocked,
         })) continue
@@ -273,6 +276,10 @@ module.exports = {
           }
           if (plugin.premium && !isPrems) { // Premium
             fail('premium', m, this)
+            continue
+          }
+          if (plugin.beta && !isBeta) { // Beta
+            fail('beta', m, this)
             continue
           }
           if (plugin.group && !m.isGroup) { // Hanya grup
@@ -328,6 +335,7 @@ module.exports = {
             isAdmin,
             isBotAdmin,
             isPrems,
+            isBeta,
             chatUpdate,
             isBlocked,
           }
@@ -410,21 +418,27 @@ module.exports = {
             for (let user of participants) {
               // let pp = './src/avatar_contact.png'
               let pp = 'https://telegra.ph/file/1866f0bf21f0c6cb3c33c.jpg'
+              let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
+              let poi = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
               try {
                 pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
               } catch (e) {
               } finally {
-                text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat datang, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
-                  (chat.sBye || this.bye || conn.bye || 'Sampai jumpa, @user!')).replace(/@user/g, '@' + user.split`@`[0])
-                let wel = `https://hardianto-chan.herokuapp.com/api/tools/welcomer2?name=${encodeURIComponent(this.getName(user))}&descriminator=${user.split(`@`)[0].substr(-5)}&totalmem=${encodeURIComponent(groupMetadata.participants.length)}&namegb=${encodeURIComponent(this.getName(jid))}&ppuser=${pp}&background=https://i.ibb.co/KhtRxwZ/dark.png&apikey=hardianto`
-                let lea = `https://hardianto-chan.herokuapp.com/api/tools/leave2?name=${encodeURIComponent(this.getName(user))}&descriminator=${user.split(`@`)[0].substr(-5)}&totalmem=${encodeURIComponent(groupMetadata.participants.length)}&namegb= ${encodeURIComponent(this.getName(jid))}&ppuser=${pp}&background=https://i.ibb.co/KhtRxwZ/dark.png&apikey=hardianto`
+                text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'ようこそ Youkuso, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
+                  (chat.sBye || this.bye || conn.bye || '左様なら Sayounara, @user!')).replace(/@user/g, '@' + user.split`@`[0])
+                let wel = `Welcome Message`
+                let lea = `Group Participant Leave`
   
-                this.sendFile(jid, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, {
-                  thumbnail: await (await fetch(action === 'add' ? wel : lea)).buffer(),
-                  contextInfo: {
-                    mentionedJid: [user]
+
+                this.reply(jid, text, 0, { thumbnail: kai, contextInfo: {
+                  mentionedJid: [user],
+                  externalAdReply: {
+                    mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+                    title: action === 'add' ? wel : lea,
+                    body: 'Haruno Bot',
+                    thumbnail: poi
                   }
-                })
+                }}) 
               }
             }
           }
@@ -493,6 +507,7 @@ global.dfail = (type, m, conn) => {
     owner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!_*.',
     mods: 'This command only can used by _*Moderator!*_\nPerintah ini hanya dapat digunakan oleh _*Moderator!*_',
     premium: 'This command only can used by _*Premium Users.*_\nPerintah ini hanya dapat digunakan oleh _*User Premium.*_',
+    beta: 'This command only can used by _*Beta Tester Users.*_\nPerintah ini hanya dapat digunakan oleh *_Beta Tester User/.*_',
     group: 'This command only can used in Group.\nPerintah ini hanya dapat digunakan di Group.',
     private: 'This command only can used in Private Chat.\nPerintah ini hanya dapat digunakan di Chat Pribadi.',
     admin: 'This command only can used by *Group Admin.*\nPerintah ini hanya dapat digunakan oleh *Admin Group.*',
