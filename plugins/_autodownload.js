@@ -4,6 +4,7 @@ const { servers, yta, ytv } = require('../lib/y2mate')
 const fetch = require('node-fetch')
 let yts = require('yt-search')
 let util = require('util')
+const xa = require('xfarr-api')
 let handler = m => m
 
 handler.all = async function (m, { isPrems }) {
@@ -15,12 +16,10 @@ handler.all = async function (m, { isPrems }) {
     let url = m.text.split(/\n| /i)[0]
 
     if (/^.*vt.tiktok.com/i.test(m.text)) {
-        let res = await fetch(global.API('lolhum', '/api/tiktok', { url }, 'apikey'))
-        if (!res.ok) return m.reply(eror)
+        let res = await fetch(global.API('rey', '/api/download/tiktok', { url: url }, 'apikey'))
+        if (!res.ok) m.reply(eror)
         let json = await res.json()
-        await m.reply(wait)
-        // m.reply(util.format(json))
-        await this.sendFile(m.chat, json.result.link, 'tiktok.mp4', watermark, m, 0)
+        await this.sendFile(m.chat, json.result.nowatermark, '', watermark, m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {

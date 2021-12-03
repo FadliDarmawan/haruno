@@ -1,12 +1,12 @@
 let fetch = require('node-fetch')
-let handler = async(m, { conn, usedPrefix, args, command }) => {
-    if(!args[0]) throw `Uhm... URL nya mana?\n\nMasukkan link tiktok yang valid.\nContoh: ${usedPrefix + command} https://vt.tiktok.com/ZSwWCk5o/`
-    let res = await fetch(global.API('lolhum', '/api/tiktok', { url: args[0]}, 'apikey'))
-    if (!res.ok) throw await res.text()
+let handler = async(m, { conn, usedPrefix, text, command }) => {
+    if (!text) throw `Harap masukkan URL sebagai parameter.\n\nContoh: ${usedPrefix + command} https://vt.tiktok.com/ZSeSCAN1W/`
+    let res = await fetch(global.API('rey', '/api/download/tiktok', { url: text }, 'apikey'))
+    if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()
-    await conn.sendFile(m.chat, json.result.link, 'video.mp4', watermark, m)
+    await conn.sendFile(m.chat, json.result.nowatermark, 'tiktok', watermark, m)
 }
 handler.command = /^tiktok$/i
 handler.tags = ['downloader']
-handler.help = ['tiktok <url>']
+handler.help = ['tiktok']
 module.exports = handler
