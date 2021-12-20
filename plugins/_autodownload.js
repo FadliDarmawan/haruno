@@ -1,10 +1,10 @@
 const { igdl, tiktok, twitter, pin } = require('../lib/scrape')
 const { facebook } = require('../lib/facebook')
 const { servers, yta, ytv } = require('../lib/y2mate')
+const xa = require('xfarr-api')
 const fetch = require('node-fetch')
 let yts = require('yt-search')
 let util = require('util')
-const xa = require('xfarr-api')
 let handler = m => m
 
 handler.all = async function (m, { isPrems }) {
@@ -16,10 +16,11 @@ handler.all = async function (m, { isPrems }) {
     let url = m.text.split(/\n| /i)[0]
 
     if (/^.*vt.tiktok.com/i.test(m.text)) {
-        let res = await fetch(global.API('rey', '/api/download/tiktok', { url: url }, 'apikey'))
-        if (!res.ok) m.reply(eror)
-        let json = await res.json()
-        await this.sendFile(m.chat, json.result.nowatermark, '', watermark, m)
+        xa.Tiktok(url)
+        .then(async data => { 
+            await conn.sendFile(m.chat, data.medias[2].url, 'tiktok.mp3', null, m)
+            await conn.sendFile(m.chat, data.medias[1].url, 'tiktok.mp4', watermark, m) 
+        })
     }
 
     if (/^.*cocofun/i.test(m.text)) {

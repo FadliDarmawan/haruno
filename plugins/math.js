@@ -1,28 +1,27 @@
 let handler = async (m, { conn, args, usedPrefix }) => {
   conn.math = conn.math ? conn.math : {}
-  if (args.length < 1) throw `
-    ┌─〔 Mode 〕
+  if (args.length < 1) return await conn.send2Button(m.chat, `
+┌─「 Mode 」
 ├ ${Object.keys(modes).join('\n├ ')}
-└────    
-contoh:
-${usedPrefix}math hard
-`.trim()
+└────
+contoh: ${usedPrefix}math hard
+`.trim(), watermark, 'Easy', '.math easy', 'Medium', '.math medium', m)
   let mode = args[0].toLowerCase()
-  if (!(mode in modes)) throw `
-    ┌─〔 Mode 〕
+  if (!(mode in modes)) return await conn.send2Button(m.chat, `
+┌─「 Mode 」
 ├ ${Object.keys(modes).join('\n├ ')}
-└────    
-contoh:
-${usedPrefix}math hard
-`.trim()
+└────
+contoh: ${usedPrefix}math hard
+`.trim(), watermark, 'Hard', '.math hard', 'Extreme', '.math extreme', m)
+
   let id = m.chat
-  if (id in conn.math) return conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.math[id][0])
+  if (id in conn.math) return conn.reply(m.chat, 'belum dijawab!', conn.math[id][0])
   let math = genMath(mode)
   conn.math[id] = [
-    await conn.reply(m.chat, `Berapa hasil dari *${math.str}*?\n\nTimeout: ${(math.time / 1000).toFixed(2)} detik\nBonus Jawaban Benar: ${math.bonus} XP`, m),
+    await conn.reply(m.chat, `apa hasil dari *${math.str}*?\n\nwaktu: ${(math.time / 1000).toFixed(2)} detik\nbonus jawaban benar: ${math.bonus} XP`, m),
     math, 4,
     setTimeout(async () => {
-      if (conn.math[id]) await this.sendButton(m.chat, `Waktu habis!\nJawabannya adalah ${math.result}`, '', `${math.mode.toUpperCase()}`, `.math ${math.mode}`, conn.math[id][0])
+      if (conn.math[id]) await conn.sendButton(m.chat, `waktu habis!\njawabannya *${math.result}*`, wm, 'lagi', `.math ${args[0]}`, conn.math[id][0])
       delete conn.math[id]
     }, math.time)
   ]
@@ -39,7 +38,7 @@ let modes = {
   medium: [-40, 40, -20, 20, '*/+-', 40000, 150],
   hard: [-100, 100, -70, 70, '*/+-', 60000, 350],
   extreme: [-999999, 999999, -999999, 999999, '*/', 99999, 9999],
-  impossible: [-99999999999, 99999999999, -99999999999, 999999999999, '*/', 30000, 35000],
+  impossible: [-99999999999, 99999999999, -99999999999, 999999999999, '*/', 35000, 35000],
   impossible2: [-999999999999999, 999999999999999, -999, 999, '/', 30000, 50000]
 }
 

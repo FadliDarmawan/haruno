@@ -6,7 +6,7 @@ let handler = async (m, { conn, command, usedPrefix }) => {
     await conn.sendButton(m.chat, json.result.text_id, watermark, 'Quotes Islami', usedPrefix + command, m)
 }
 handler.help = ['qislam']
-handler.tags = ['quotes']
+handler.tags = ['islamic']
 handler.command = /^(q(uotes?)?islami?)$/i
 
 module.exports = handler

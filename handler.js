@@ -31,93 +31,75 @@ module.exports = {
         if (user) {
           if (!isNumber(user.exp)) user.exp = 0
           if (!isNumber(user.limit)) user.limit = 10
-          if (!isNumber(user.lastclaim)) user.lastclaim = 0
           if (!('registered' in user)) user.registered = false
           if (!user.registered) {
             if (!('name' in user)) user.name = this.getName(m.sender)
-            if (!isNumber(user.age)) user.age = -1
+            if (!isNumber(user.nim)) user.age = -1
             if (!isNumber(user.regTime)) user.regTime = -1
           }
           if (!isNumber(user.afk)) user.afk = -1
           if (!('afkReason' in user)) user.afkReason = ''
-          if (!('banned' in user)) user.banned = false
-          if (!isNumber(user.level)) user.level = 0
-          if (!isNumber(user.call)) user.call = 0
-          if (!user.role) user.role = 'Bronze'
           if (!('autolevelup' in user)) user.autolevelup = false
-          if (!isNumber(user.pc)) user.pc = 0
-          if (!isNumber(user.warning)) user.warning = 0
-          if (!isNumber(user.joincount)) user.joincount = 0
-          if (!isNumber(user.primogem)) user.primogem = 0
-          if (!isNumber(user.mora)) user.mora = 0
-          if (!isNumber(user.cxp)) user.cxp = 0
-          if (!isNumber(user.axp)) user.axp = 0
-          if (!isNumber(user.health)) user.health = 100
-          if (!isNumber(user.resin)) user.resin = 160
-          if (!('pokemon' in user)) user.pokemon = ''
+          if (!('banned' in user)) user.banned = false
+          if (!('level' in user)) user.level = 0
+          if (!('premium' in user)) user.premium = false
+          if (!isNumber(user.premiumTime)) user.premiumTime = 0
+          if (!('role' in user)) user.role = ''
+          if (!('joincount' in user)) user.joincount = 0
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
-          lastclaim: 0,
           registered: false,
           name: this.getName(m.sender),
           age: -1,
           regTime: -1,
           afk: -1,
           afkReason: '',
+          autolevelup: false,
           banned: false,
           level: 0,
-          call: 0,
-          role: 'Bronze',
-          autolevelup: false,
-          pc: 0,
-          warning: 0,
+          premium: false,
+          premiumTime: 0,
+          role: '',
           joincount: 0,
-          primogem: 0,
-          mora: 0,
-          cxp: 0,
-          axp: 0,
-          health: 100,
-          pokemon: '',
-          resin: 160,
         }
 
         let chat = global.db.data.chats[m.chat]
         if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
         if (chat) {
           if (!('isBanned' in chat)) chat.isBanned = false
-          if (!('welcome' in chat)) chat.welcome = false
-          if (!('detect' in chat)) chat.detect = false
+          if (!('welcome' in chat)) chat.welcome = true
+          if (!('detect' in chat)) chat.detect = true
           if (!('sWelcome' in chat)) chat.sWelcome = ''
           if (!('sBye' in chat)) chat.sBye = ''
           if (!('sPromote' in chat)) chat.sPromote = ''
           if (!('sDemote' in chat)) chat.sDemote = ''
-          if (!('descUpdate' in chat)) chat.descUpdate = true
-          if (!('stiker' in chat)) chat.stiker = false
+          if (!('antiLink' in chat)) chat.antiLink = true
+          if (!('autoread' in chat)) chat.autoread = false
+          if (!('broadcast' in chat)) chat.broadcast = true
           if (!('delete' in chat)) chat.delete = true
-          if (!('antiLink' in chat)) chat.antiLink = false
+          if (!('desc' in chat)) chat.desc = true
+          if (!('getmsg' in chat)) chat.getmsg = false
           if (!isNumber(chat.expired)) chat.expired = 0
-          if (!('antiBadword' in chat)) chat.antiBadword = true
+          if (!('stiker' in chat)) chat.stiker = false
           if (!('viewonce' in chat)) chat.viewonce = true
-          if (!('privatelink' in chat)) chat.privatelink = false
-          if (!('nsfw' in chat)) chat.nsfw = false
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
-          welcome: false,
-          detect: false,
+          welcome: true,
+          detect: true,
           sWelcome: '',
           sBye: '',
           sPromote: '',
           sDemote: '',
-          descUpdate: true,
-          stiker: false,
+          antiLink: true,
+          autoread: false,
+          broadcast: true,
           delete: true,
-          antiLink: false,
+          desc: true,
+          getmsg: false,
           expired: 0,
-          antiBadword: true,
+          stiker: false,
           viewonce: true,
-          privatelink: false,
-          nsfw: false,
         }
 
         let settings = global.db.data.settings[this.user.jid]
@@ -127,31 +109,21 @@ module.exports = {
           if (!'anticall' in settings) settings.anticall = true
           if (!'antispam' in settings) settings.antispam = true
           if (!'antitroli' in settings) settings.antitroli = true
-          if (!'backup' in settings) settings.backup = true
-          if (!isNumber(settings.backupDB)) settings.backupDB = 0
-          if (!'groupOnly' in settings) settings.groupOnly = false
-          if (!'jadibot' in settings) settings.groupOnly = false
-          if (!'nsfw' in settings) settings.nsfw = true
-          if (!isNumber(settings.status)) settings.status = 0
-          if (!'statusUpdate' in settings) settings.statusUpdate = false
-          if (!'antivirus' in settings) settings.antivirus = false
-          if (!'publicjoin' in settings) settings.publicjoin = false
-          if (!'autogetmsg' in settings) settings.autogetmsg = true
+          if (!'group' in settings) settings.group = false
+          if (!'jadibot' in settings) settings.jadibot = false
+          if (!'private' in settings) settings.private = false
+          if (!'restrict' in settings) settings.restrict = false
+          if (!'self' in settings) settings.self = false
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
           antispam: true,
           antitroli: true,
-          backup: true,
-          backupDB: 0,
-          groupOnly: false,
+          group: false,
           jadibot: false,
-          nsfw: true,
-          status: 0,
-          statusUpdate: false,
-          antivirus: false,
-          publicjoin: false,
-          autogetmsg: true,
+          private: false,
+          restrict: false,
+          self: false,
         }
       } catch (e) {
         console.error(e)
@@ -184,7 +156,7 @@ module.exports = {
       let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isOwner = isROwner || m.fromMe
       let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-      let isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+      let isPrems = isROwner || db.data.users[m.sender].premium
       let isBeta = isROwner || global.beta.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       if (!isPrems && !isBeta && !m.isGroup && global.db.data.settings.groupOnly) return
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}
@@ -503,7 +475,7 @@ ketik *.on delete* untuk mematikan pesan ini
 
 global.dfail = (type, m, conn) => {
   let msg = {
-    rowner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!_*.',
+    rowner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!*_.',
     owner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!_*.',
     mods: 'This command only can used by _*Moderator!*_\nPerintah ini hanya dapat digunakan oleh _*Moderator!*_',
     premium: 'This command only can used by _*Premium Users.*_\nPerintah ini hanya dapat digunakan oleh _*User Premium.*_',

@@ -29,10 +29,6 @@ let handler = async (m, { conn }) => {
 ├ ${groupOnly ? '✅' : '❌'} *Mode Grup*
 ├ ${jadibot ? '✅' : '❌'} *Jadi Bot*
 ├ ${nsfw ? '✅' : '❌'} *Mode Nsfw*
-├ ${statusupdate ? '✅' : '❌'} *Auto Update Stats (Bio)* 
-├ ${autogetmsg ? '✅' : '❌'} *Auto Get Message*
-├ ${publicjoin  ? '✅' : '❌'} *Public Join*
-├ ${antivirus  ? '✅' : '❌'} *Anti Virus*
 └────
     `.trim())
 }
