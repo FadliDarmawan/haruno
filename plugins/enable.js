@@ -21,6 +21,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'getmsg',
     'sticker',
     'viewonce',
+    'nsfw',
   ]
   let ow = [
     'anon',
@@ -29,6 +30,8 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'antitroli',
     'autoread',
     'broadcast',
+    'backup',
+    'statusUpdate',
     'gc',
     'jadibot',
     'mycontact',
@@ -63,6 +66,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         throw false
       }
       chat.detect = isEnable
+      break
+    case 'nsfw':
+      if (!m.isGroup) {
+        if (!isOwner) {
+          dfail('group', m, conn)
+          throw false
+        }
+      } else if (!(isAdmin || isOwner)) {
+        dfail('admin', m, conn)
+        throw false
+      }
+      chat.nsfw = isEnable
       break
     case 'desc':
       if (!m.isGroup) {
@@ -169,6 +184,22 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       break
 
     //owner
+    case 'backup':
+      isAll = true
+      if (!isROwner) {
+        dfail('rowner', m, conn)
+        throw false
+      }
+      set.backup = !isEnable 
+      break
+    case 'statusUpdate':
+      isAll = true
+      if (!isROwner) {
+        dfail('rowner', m, conn)
+        throw false
+      }
+      set.statusUpdate = !isEnable
+      break
     case 'public':
       isAll = true
       if (!isROwner) {

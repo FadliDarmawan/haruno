@@ -28,15 +28,27 @@ handler.all = async function (m, { isBlocked }) {
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        conn.send3Button(m.chat, `┌〔 Undang Bot ke Grup 〕
-├ 3 Hari / GRATIS 
-├ 7 Hari / Rp7.000
-├ 30 Hari / Rp10.000
-├ 2 Bulan / Rp15.000
-└────
+        await this.send3ButtonLoc(m.chat, await(await fetch(thumbfoto)).buffer(), `Undang ${conn.user.name} ke Group
 
-Silahkan ketik .sewa untuk mendapatkan informasi lebih lanjut.
-`.trim(), watermark, 'Pemilik Bot', ',owner', 'Cara memasukkan bot', '.how add', 'Sewa', '.sewa',m)
+*Trial Free*
+Masukkan bot secara gratis ke group selama *12 jam* setelah itu bot akan keluar dari group. Jika ingin memperpanjang silahkan kontak owner dan membayar paket yang ada.
+Untuk memasukkan bot secara gratis Trial ke group silahlan ketik *.join <link group>*
+Note: 1 orang hanya bisa memasukkan bot ke group sebanyak 1 kali.
+
+*1 Bulan/15.000*
+Masukkan bot secara berbayar selama 1 bulan ke dalam group.
+Silahkan kontak/hubungi owner jika mau mulai menyewa/berlangganan/ada yang mau di tanyakan.
+Pembayaran bisa melalui: Gopay, Dana, OVO, Pulsa (XL)
+
+*Premium users/25.000* 
+Menjadi users premium dan anda dapat menggunakan fitur dengan tanpa batasan (tanpa limit) dan beberapa akses fitur khusus user premium.
+
+Users premium dapat memasukkan bot ke dalam group sebanyak 3 kali, bot akan otomatis keluar dari group setelah 1 bulan(30 hari).
+
+Silahkan kontak/hubungi owner jika mau mulai menyewa/berlangganan/ada yang mau di tanyakan.
+Pembayaran bisa melalui: Gopay, Dana, OVO, Pulsa (XL)
+
+`, watermark, 'Owner', '.creator', 'Sewa', '.sewa', 'Join', '.join', m)
     }
 
     // salam
@@ -57,19 +69,17 @@ Silahkan ketik .sewa untuk mendapatkan informasi lebih lanjut.
             })
             await global.db.write()
             setting.backupDB = new Date() * 1
-            this.reply(global.owner[0] + '@s.whatsapp.net', `Database, Premium, Event: ${date}`, null)
+            this.reply(global.owner[0] + '@s.whatsapp.net', `Database: ${date}`, null)
             this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./database.json'), 'database.json', '', 0, 0, { mimetype: 'application/json' })
-            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./src/premium.json'), 'premium.json', '', 0, 0, { mimetype: 'application/json' })
-            this.sendFile(global.owner[0] + '@s.whatsapp.net', fs.readFileSync('./src/event.json'), 'event.json', '', 0, 0, { mimetype: 'application/json' })
         }
     }
 
     // update status
-    if (setting.statusupdate) {
+    if (setting.statusUpdate) {
         if (new Date() * 1 - setting.status > 1000) {
             let _uptime = process.uptime() * 1000
             let uptime = clockString(_uptime)
-            await this.setStatus(`Aktif selama ${uptime} | Mode: ${global.opts['self'] ? 'Private' : setting.groupOnly ? 'Hanya Grup' : 'Publik'} | Haruno bot oleh Fadli`).catch(_ => _) 
+            await this.setStatus(`Aktif selama ${uptime} | Mode: ${set.self ? 'Private' : set.group ? 'Hanya Grup' : 'Publik'} | Haruno by Fadli Darmawan`).catch(_ => _)
             setting.status = new Date() * 1
         }
     }

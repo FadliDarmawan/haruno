@@ -32,6 +32,7 @@ module.exports = {
           if (!isNumber(user.exp)) user.exp = 0
           if (!isNumber(user.limit)) user.limit = 10
           if (!('registered' in user)) user.registered = false
+          if (!isNumber(user.lastclaim)) user.lastclaim = 0
           if (!user.registered) {
             if (!('name' in user)) user.name = this.getName(m.sender)
             if (!isNumber(user.nim)) user.age = -1
@@ -45,11 +46,14 @@ module.exports = {
           if (!('premium' in user)) user.premium = false
           if (!isNumber(user.premiumTime)) user.premiumTime = 0
           if (!('role' in user)) user.role = ''
-          if (!('joincount' in user)) user.joincount = 0
+          if (!isNumber(user.joincount)) user.joincount = 0
+          if (!isNumber(user.call)) user.call = 0
+          if (!isNumber(user.pc)) user.pc = 0
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
           registered: false,
+          lastclaim: 0, 
           name: this.getName(m.sender),
           age: -1,
           regTime: -1,
@@ -62,6 +66,8 @@ module.exports = {
           premiumTime: 0,
           role: '',
           joincount: 0,
+          call: 0,
+          pc: 0,
         }
 
         let chat = global.db.data.chats[m.chat]
@@ -83,6 +89,7 @@ module.exports = {
           if (!isNumber(chat.expired)) chat.expired = 0
           if (!('stiker' in chat)) chat.stiker = false
           if (!('viewonce' in chat)) chat.viewonce = true
+          if (!('nsfw' in chat)) chat.nsfw = false
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
           welcome: true,
@@ -100,6 +107,7 @@ module.exports = {
           expired: 0,
           stiker: false,
           viewonce: true,
+          nsfw: true,
         }
 
         let settings = global.db.data.settings[this.user.jid]
@@ -107,6 +115,8 @@ module.exports = {
         if (settings) {
           if (!'anon' in settings) settings.anon = true
           if (!'anticall' in settings) settings.anticall = true
+          if (!'statusUpdate' in settings) settings.statusUpdate = false
+          if (!isNumber(settings.status)) settings.status = 0
           if (!'antispam' in settings) settings.antispam = true
           if (!'antitroli' in settings) settings.antitroli = true
           if (!'group' in settings) settings.group = false
@@ -114,6 +124,8 @@ module.exports = {
           if (!'private' in settings) settings.private = false
           if (!'restrict' in settings) settings.restrict = false
           if (!'self' in settings) settings.self = false
+          if (!'backup' in settings) settings.backup = true
+          if (!isNumber(settings.backupDB)) settings.backupDB = 0
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
@@ -124,6 +136,10 @@ module.exports = {
           private: false,
           restrict: false,
           self: false,
+          backup: true,
+          backupDB: 0,
+          statusUpdate: false,
+          status: 0,
         }
       } catch (e) {
         console.error(e)
@@ -461,7 +477,7 @@ ketik *.on delete* untuk mematikan pesan ini
     }
   },
   async GroupUpdate({ jid, desc, descId, descTime, descOwner, announce }) {
-    if (!db.data.chats[jid].descUpdate) return
+    if (!db.data.chats[jid].desc) return
     if (!desc) return
     let caption = `
     @${descOwner.split`@`[0]} telah mengubah deskripsi grup.
