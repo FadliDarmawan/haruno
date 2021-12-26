@@ -50,6 +50,7 @@ module.exports = {
           if (!isNumber(user.call)) user.call = 0
           if (!isNumber(user.pc)) user.pc = 0
           if (!isNumber(user.reward)) user.reward = 0
+          if (!isNumber(user.warning)) user.warnimg = 0
           if (!isNumber(user.dailyReward)) user.dailyReward = 0
         } else global.db.data.users[m.sender] = {
           exp: 0,
@@ -72,6 +73,7 @@ module.exports = {
           pc: 0,
           reward: 0,
           dailyReward: 0, 
+          warning: 0,
         }
 
         let chat = global.db.data.chats[m.chat]
@@ -87,7 +89,7 @@ module.exports = {
           if (!('antiLink' in chat)) chat.antiLink = true
           if (!('autoread' in chat)) chat.autoread = false
           if (!('broadcast' in chat)) chat.broadcast = true
-          if (!('antiBadword' in chat)) chat.antiBadword = false
+          if (!('badword' in chat)) chat.badword = false
           if (!('delete' in chat)) chat.delete = true
           if (!('desc' in chat)) chat.desc = true
           if (!('getmsg' in chat)) chat.getmsg = false
@@ -113,7 +115,7 @@ module.exports = {
           stiker: false,
           viewonce: true,
           nsfw: true,
-          antiBadword: false,
+          badword: false,
         }
 
         let settings = global.db.data.settings[this.user.jid]

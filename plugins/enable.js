@@ -22,6 +22,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'sticker',
     'viewonce',
     'nsfw',
+    'antibadword'
   ]
   let ow = [
     'anon',
@@ -54,6 +55,18 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         throw false
       }
       chat.welcome = isEnable
+      break
+    case 'antibadword':
+      if (!m.isGroup) {
+        if (!isOwner) {
+          dfail('group', m, conn)
+          throw false
+        }
+      } else if (!(isAdmin || isOwner)) {
+        dfail('admin', m, conn)
+        throw false
+      }
+      chat.badword = isEnable
       break
     case 'detect':
       if (!m.isGroup) {

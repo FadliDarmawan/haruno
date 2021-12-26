@@ -9,7 +9,7 @@ handler.before = function (m, { isOwner, isBotAdmin }) {
     let user = db.data.users[m.sender]
     let isBadword = badwordRegex.exec(m.text)
 
-    if (!chat.antiBadword && !chat.isBanned && isBadword) {
+    if (!chat.badword && !chat.isBanned && isBadword) {
         user.warning += 1
         this.send2Button(m.chat, `*Badword terdeteksi!*
 Warning: ${user.warning} / 5
