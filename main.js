@@ -4,7 +4,6 @@ const cloudDBAdapter = require('./lib/cloudDBAdapter')
 const { generate } = require('qrcode-terminal')
 const syntaxerror = require('syntax-error')
 const simple = require('./lib/simple')
-//  const logs = require('./lib/logs')
 const { promisify } = require('util')
 const yargs = require('yargs/yargs')
 const Readline = require('readline')
@@ -242,5 +241,5 @@ async function _quickTest() {
 }
 
 _quickTest()
-  .then(() => conn.logger.info('Quick Test Done'))
+  .then(() => conn.logger.info('Pengetesan Cepat Selesai'))
   .catch(console.error)

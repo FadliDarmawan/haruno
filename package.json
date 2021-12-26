@@ -1,10 +1,10 @@
 {
   "name": "harunobot",
-  "version": "2.3.0",
+  "version": "2.2.0",
   "description": "WhatsApp Bot Ringan",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node index.js --self",
     "test": "node test.js"
   },
   "repository": {
@@ -48,6 +48,7 @@
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.1",
     "node-gtts": "^2.0.2",
+    "node-tesseract-ocr": "^2.2.1",
     "node-webpmux": "^3.1.0",
     "qrcode": "^1.4.4",
     "qrcode-terminal": "^0.12.0",

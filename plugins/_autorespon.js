@@ -81,7 +81,7 @@ Pembayaran bisa melalui: Gopay, Dana, OVO, Pulsa (XL)
         if (new Date() * 1 - setting.status > 1000) {
             let _uptime = process.uptime() * 1000
             let uptime = clockString(_uptime)
-            await this.setStatus(`Aktif selama ${uptime} | Mode: ${set.self ? 'Private' : set.group ? 'Hanya Grup' : 'Publik'} | Haruno by Fadli Darmawan`).catch(_ => _)
+            await this.setStatus(`Aktif selama ${uptime} | Mode: ${settings.self ? 'Private' : settings.group ? 'Hanya Grup' : 'Publik'} | Haruno by Fadli Darmawan`).catch(_ => _)
             setting.status = new Date() * 1
         }
     }

@@ -1,4 +1,5 @@
 let cron = require('node-cron')
+let handler = m => m
 handler.all = async function (m) {
     cron.schedule('0 4 * * * ', () => {
         conn.reply(owner[0] + '@s.whatsapp.net', 'Daily Reward Point direset. Daily reward di reset setiap jam 4 pagi WIB (Asia/Jakarta time-zone)')
