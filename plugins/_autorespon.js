@@ -1,4 +1,5 @@
 let fs = require('fs')
+let fetch = require('node-fetch')
 let handler = m => m
 
 handler.all = async function (m, { isBlocked }) {
