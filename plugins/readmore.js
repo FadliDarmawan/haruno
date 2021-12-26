@@ -7,17 +7,6 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['readmore','spoiler'].map(v => v + ' <teks>|<teks>')
 handler.tags = ['tools']
 handler.command = /^(spoiler|hidetext|readmore|selengkapnya)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
 module.exports = handler
 
 const more = String.fromCharCode(8206)

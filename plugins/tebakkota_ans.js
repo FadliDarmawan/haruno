@@ -10,7 +10,8 @@ handler.before = async function (m) {
         let json = JSON.parse(JSON.stringify(this.tebakkota[id][1]))
         if (['.teko', 'Bantuan', ''].includes(m.text)) return !0
         if (m.text.toLowerCase() == json.jawaban.toLowerCase().trim()) {
-            global.db.data.users[m.sender].exp += this.tebakkota[id][2]
+            db.data.users[m.sender].exp += this.tebakkota[id][2]
+            db.data.users[m.sender].dailyReward += 1
             await this.sendButton(m.chat, `*Benar!* +${this.tebakkota[id][2]} XP`, watermark, 'Tebak Kota', '.tebakkota', m)
             clearTimeout(this.tebakkota[id][3])
             delete this.tebakkota[id]

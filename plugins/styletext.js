@@ -6,18 +6,6 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['style'].map(v => v + ' <text>')
 handler.tags = ['tools']
 handler.command = /^(style)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-handler.exp = 0
-
 module.exports = handler
 
 async function stylizeText(text) {

@@ -14,16 +14,6 @@ handler.help = ['buy<jumlah limit>', 'buy <jumlah limit>', 'buyall']
 handler.tags = ['xp']
 handler.command = /^buy([0-9]+)|buy|buyall$/i
 handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-handler.exp = 0
 
 module.exports = handler
 

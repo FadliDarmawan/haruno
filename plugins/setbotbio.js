@@ -1,6 +1,6 @@
 // NurNurz
-let handler = async (m, { conn, text }) => {
-  if (!text) throw `uhm.. teksnya mana?`
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `Harap masukan text!\n\nCotoh: ${usedPrefix + command} Haruno Bot`
   try {
     await conn.setStatus(text)
     m.reply('Berhasil!')

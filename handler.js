@@ -49,6 +49,8 @@ module.exports = {
           if (!isNumber(user.joincount)) user.joincount = 0
           if (!isNumber(user.call)) user.call = 0
           if (!isNumber(user.pc)) user.pc = 0
+          if (!isNumber(user.reward)) user.reward = 0
+          if (!isNumber(user.dailyReward)) user.dailyReward = 0
         } else global.db.data.users[m.sender] = {
           exp: 0,
           limit: 10,
@@ -68,6 +70,8 @@ module.exports = {
           joincount: 0,
           call: 0,
           pc: 0,
+          reward: 0,
+          dailyReward: 0, 
         }
 
         let chat = global.db.data.chats[m.chat]
@@ -171,10 +175,8 @@ module.exports = {
 
       let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isOwner = isROwner || m.fromMe
-      let isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isPrems = isROwner || db.data.users[m.sender].premium
-      let isBeta = isROwner || global.beta.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-      if (!isPrems && !isBeta && !m.isGroup && global.db.data.settings.groupOnly) return
+      if (!isPrems && !m.isGroup && global.db.data.settings.groupOnly) return
       let groupMetadata = m.isGroup ? this.chats.get(m.chat).metadata || await this.groupMetadata(m.chat) : {} || {}
       let participants = m.isGroup ? groupMetadata.participants : [] || []
       let user = m.isGroup ? participants.find(u => u.jid == m.sender) : {} // User Data
@@ -214,7 +216,6 @@ module.exports = {
           isAdmin,
           isBotAdmin,
           isPrems,
-          isBeta,
           chatUpdate,
           isBlocked,
         })) continue
@@ -258,16 +259,8 @@ module.exports = {
             fail('owner', m, this)
             continue
           }
-          if (plugin.mods && !isMods) { // Moderator
-            fail('mods', m, this)
-            continue
-          }
           if (plugin.premium && !isPrems) { // Premium
             fail('premium', m, this)
-            continue
-          }
-          if (plugin.beta && !isBeta) { // Beta
-            fail('beta', m, this)
             continue
           }
           if (plugin.group && !m.isGroup) { // Hanya grup
@@ -323,7 +316,6 @@ module.exports = {
             isAdmin,
             isBotAdmin,
             isPrems,
-            isBeta,
             chatUpdate,
             isBlocked,
           }
@@ -404,30 +396,21 @@ module.exports = {
           if (chat.welcome) {
             let groupMetadata = await this.groupMetadata(jid)
             for (let user of participants) {
-              // let pp = './src/avatar_contact.png'
-              let pp = 'https://telegra.ph/file/1866f0bf21f0c6cb3c33c.jpg'
               let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
               let poi = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
-              try {
-                pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
-              } catch (e) {
-              } finally {
-                text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'ようこそ Youkuso, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
+              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'ようこそ Youkuso, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
                   (chat.sBye || this.bye || conn.bye || '左様なら Sayounara, @user!')).replace(/@user/g, '@' + user.split`@`[0])
                 let wel = `Welcome Message`
                 let lea = `Group Participant Leave`
-  
-
                 this.reply(jid, text, 0, { thumbnail: kai, contextInfo: {
-                  mentionedJid: [user],
-                  externalAdReply: {
-                    mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
-                    title: action === 'add' ? wel : lea,
-                    body: 'Haruno Bot',
-                    thumbnail: poi
-                  }
-                }}) 
-              }
+                mentionedJid: [user],
+                externalAdReply: {
+                  mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+                  title: action === 'add' ? wel : lea,
+                  body: 'Haruno Bot',
+                  thumbnail: poi
+                }
+              }}) 
             }
           }
           break
@@ -450,30 +433,29 @@ module.exports = {
     await this.sendButton(m.key.remoteJid, `
 Terdeteksi @${m.participant.split`@`[0]} telah menghapus pesan
 ketik *.on delete* untuk mematikan pesan ini
-`.trim(), '', 'Matikan Antidelete', ',on delete', m.message, {
-      contextInfo: {
-        mentionedJid: [m.participant]
-      }
-    })
+`.trim(), watermark, 'Matikan Antidelete', ',on delete', m.message)
     this.copyNForward(m.key.remoteJid, m.message).catch(e => console.log(e, m))
   },
   async onCall(json) {
-    let { from } = json[2][0][1]
+    if (!db.data.settings[this.user.jid].anticall) return
+    let jid = json[2][0][1]['from']
+    let isOffer = json[2][0][2][0][0] == 'offer'
     let users = global.db.data.users
-    let user = users[from] || {}
+    let user = users[jid] || {}
     if (user.whitelist) return
-    if (!db.data.settings.anticall) return
-    switch (this.callWhitelistMode) {
-      case 'mycontact':
-        if (from in this.contacts && 'short' in this.contacts[from])
-          return
-        break
-    }
-    user.call += 1
-    await this.reply(from, `Jika kamu menelepon lebih dari 2, kamu akan diblokir.\n\n${user.call} / 2`, null)
-    if (user.call == 2) {
-      await this.blockUser(from, 'add')
-      user.call = 0
+    if (jid && isOffer) {
+      const tag = this.generateMessageTag()
+      const nodePayload = ['action', 'call', ['call', {
+        'from': this.user.jid,
+        'to': `${jid.split`@`[0]}@s.whatsapp.net`,
+        'id': tag
+      }, [['reject', {
+        'call-id': json[2][0][2][0][1]['call-id'],
+        'call-creator': `${jid.split`@`[0]}@s.whatsapp.net`,
+        'count': '0'
+      }, null]]]]
+      this.sendJSON(nodePayload, tag)
+      m.reply(`Kamu dibanned karena menelepon bot, owner : @${owner[0]}`)
     }
   },
   async GroupUpdate({ jid, desc, descId, descTime, descOwner, announce }) {
@@ -482,9 +464,8 @@ ketik *.on delete* untuk mematikan pesan ini
     let caption = `
     @${descOwner.split`@`[0]} telah mengubah deskripsi grup.
     ${desc}
-    ketik *.off desc* untuk mematikan pesan ini
         `.trim()
-    this.sendButton(jid, caption, watermark, 'Matikan Deskripsi', ',off desc', { contextInfo: { mentionedJid: this.parseMention(caption) } })
+    this.sendButton(jid, caption, watermark, 'Matikan', ',off desc')
 
   }
 }
@@ -493,9 +474,7 @@ global.dfail = (type, m, conn) => {
   let msg = {
     rowner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!*_.',
     owner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!_*.',
-    mods: 'This command only can used by _*Moderator!*_\nPerintah ini hanya dapat digunakan oleh _*Moderator!*_',
     premium: 'This command only can used by _*Premium Users.*_\nPerintah ini hanya dapat digunakan oleh _*User Premium.*_',
-    beta: 'This command only can used by _*Beta Tester Users.*_\nPerintah ini hanya dapat digunakan oleh *_Beta Tester User/.*_',
     group: 'This command only can used in Group.\nPerintah ini hanya dapat digunakan di Group.',
     private: 'This command only can used in Private Chat.\nPerintah ini hanya dapat digunakan di Chat Pribadi.',
     admin: 'This command only can used by *Group Admin.*\nPerintah ini hanya dapat digunakan oleh *Admin Group.*',
@@ -511,7 +490,7 @@ let chalk = require('chalk')
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
   fs.unwatchFile(file)
-  console.log(chalk.redBright("Update 'handler.js'"))
+  console.log(chalk.redBright("Memperbarui 'handler.js'"))
   delete require.cache[file]
   if (global.reloadHandler) console.log(global.reloadHandler())
 })

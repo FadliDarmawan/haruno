@@ -6,16 +6,5 @@ let handler = async (m, { conn, text }) => {
 handler.help = ['', 'code'].map(v => 'qr' + v + ' <teks>')
 handler.tags = ['tools']
 handler.command = /^qr(code)?$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
 module.exports = handler
 

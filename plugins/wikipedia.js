@@ -31,11 +31,11 @@ async function wikipedia(querry) {
     return notFond
   }
 }
-let handler = async (m, { conn, text }) => {
-  if (!text) throw `uhm.. cari apa?\n\ncontoh:\n.wiki nodejs`
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+  if (!text) throw `Harap masukkan query!\n\nContoh: ${usedPrefix + command} nodejs`
   wikipedia(`${text}`).then(res => {
     m.reply(res.result.isi)
-  }).catch(() => { m.reply('Tidak Ditemukan') })
+  }).catch(() => { m.reply(`${text} tidak ditemukan!`) })
 }
 handler.help = ['wikipedia <pencarian>']
 handler.tags = ['internet']

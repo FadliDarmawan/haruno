@@ -1,8 +1,8 @@
 const fetch = require('node-fetch')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `uhm.. judul nya apa?\n\ncontoh:\n${usedPrefix + command} akad`
-    if (isUrl(text)) throw `uhm.. judul kak bukan pake url\n\ncontoh:\n${usedPrefix + command} akad`
+    if (!text) throw `Harap masukkan judul lagu!\n\nContoh:\n${usedPrefix + command} yanagi nagi one's hope`
+    if (isUrl(text)) throw `Parameter harus berupa judul, bukan URL!\n\nContoh: ${usedPrefix + command} yanagi nagi one's hope`
 
     let res = await fetch(global.API('pencarikode', '/download/joox', { search: text }, 'apikey'))
     if (!res.ok) throw await `${res.status} ${res.statusText}`

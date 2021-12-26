@@ -1,6 +1,6 @@
 let handler = async (m, { conn, command, usedPrefix, text, isROwner }) => {
     let which = command.replace(/get/i, '')
-    if (!text) throw `uhm.. teksnya mana?${usedPrefix + command} test`
+    if (!text) throw `Harap masukkan query sebagai parameter!\n\nContoh: ${usedPrefix + command} tiananmen`
     let msgs = global.db.data.msgs
     if (!(text in msgs)) return await conn.sendButton(m.chat, `'${text}' tidak terdaftar!`, watermark, 'daftar semua pesan', '.listall', m)
     if (msgs[text].locked) if (!isROwner) {

@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-    if (!text) throw `uhm.. kotanya?\n\ncontoh:\n${usedPrefix + command} Lamongan`
+    if (!text) throw `Harap asukkan nama kota!\n\nContoh: ${usedPrefix + command} Yogyakarta`
     let res = await fetch(global.API('xteam', '/kodepos', { q: text }, 'APIKEY'))
     if (!res.ok) throw await `${res.status} ${res.statusText}`
     let json = await res.json()

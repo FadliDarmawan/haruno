@@ -1,6 +1,6 @@
 let yts = require('yt-search')
 let handler = async (m, { text, usedPrefix, command }) => {
-  if (!text) throw `contoh:\n${usedPrefix + command} belajar nodejs`
+  if (!text) throw `Harap masukkan query yang ingin dicari!\n\nContoh: ${usedPrefix + command} video protes tiananmen square 1989`
   let results = await yts(text)
   let teks = results.all.map(v => {
     switch (v.type) {

@@ -1,6 +1,6 @@
 // NurNurz
-let handler = async (m, { conn, text }) => {
-  if (!text) throw `uhm.. teksnya mana?`
+let handler = async (m, { conn, text, usedPrefix, args }) => {
+  if (!text) throw `Harap masukkan text!\n\nContoh: ${usedPrefix + command} Haruno Bot`
   try {
     await conn.updateProfileName(text)
     m.reply('Berhasil!')

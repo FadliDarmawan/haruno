@@ -1,7 +1,7 @@
 let handler = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `uhm.. cari apa?\n\ncontoh:\n${usedPrefix + command} mabar`
+    if (!text) throw `Masukkan query sebagai parameter!\n\nContoh: ${usedPrefix + command} grup pecinta Xi Jinping`
     let res = await carigroup(text, 'name')
-    if (!res.length) throw 'Group tidak ditemukan ¯\_(ツ)_/¯'
+    if (!res.length) throw 'Group tidak ditemukan!'
     let teks = res.map(res => res.subject + '\n' + res.link).join('\n\n')
     m.reply(teks)
 }

@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async (m, { text, command, usedPrefix }) => {
-    if (!text) throw `uhm.. teksnya mana?\n\ncontoh:\n${usedPrefix + command} membaca`
+    if (!text) throw `Harap masukkan kata sebagai parameter!\n\nContoh: ${usedPrefix + command} membaca`
     let res = await fetch(global.API('pencarikode', '/kbbi', { kata: text }, 'APIKEY'))
     if (!res.ok) throw eror
     let json = await res.json()

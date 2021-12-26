@@ -10,16 +10,5 @@ handler.help = ['update']
 handler.tags = ['host']
 handler.command = /^update$/i
 handler.owner = true
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-handler.exp = 0
-
 module.exports = handler
 

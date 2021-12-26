@@ -1,6 +1,6 @@
 let handler = async (m, { command, usedPrefix, text }) => {
     let which = command.replace(/get/i, '')
-    if (!text) throw `uhm.. teksnya mana?\n\ncontoh:\n${usedPrefix + command} test`
+    if (!text) throw `Harap masukkan query sebagai parameter!\n\nContoh: ${usedPrefix + command} tiananmen`
     let msgs = global.db.data.msgs
     if (!text in msgs) throw `'${text}' tidak terdaftar!`
     delete msgs[text]

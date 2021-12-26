@@ -12,16 +12,7 @@ let handler = async (m, { conn, args }) => {
 handler.help = ['here', 'online']
 handler.tags = ['group']
 handler.command = /^(here|(list)?online)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
+handler.owner = true
 handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
 module.exports = handler
 

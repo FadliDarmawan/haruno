@@ -11,18 +11,6 @@ let handler = async (m, { conn, usedPrefix, isPrems }) => {
 handler.help = ['daily', 'claim']
 handler.tags = ['xp']
 handler.command = /^(daily|claim)$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-handler.exp = 0
-
 module.exports = handler
 
 function msToTime(duration) {

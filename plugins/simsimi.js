@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async (m, { text, usedPrefix, command }) => {
-  if (!text) throw `uhm.. teksnya mana?\n\ncontoh:\n${usedPrefix + command} hai`
+  if (!text) throw `Masukkan text biar bisa chat sama simsimi!\n\nContoh:\n${usedPrefix + command} hai`
   let res = await fetch(global.API('pencarikode', '/api/simsimii', { text: encodeURIComponent(text) }, 'apikey'))
   if (!res.ok) throw eror
   let json = await res.json()

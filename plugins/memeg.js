@@ -1,7 +1,7 @@
 const uploadFile = require('../lib/uploadFile')
 const uploadImage = require('../lib/uploadImage')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
-  if (!text) throw `uhm.. teksnya mana?\n\n${usedPrefix + command} <teks atas>|<teks bawah>`
+  if (!text) throw `Harap masukkan text!\n\nContoh: ${usedPrefix + command} <teks atas>|<teks bawah>`
   let [t1, t2] = text.split`|`
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''

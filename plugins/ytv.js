@@ -1,8 +1,8 @@
 let limit = 30
 let fetch = require('node-fetch')
 const { servers, ytv } = require('../lib/y2mate')
-let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) => {
-  if (!args || !args[0]) throw 'uhm... urlnya mana?'
+let handler = async (m, { conn, usedPrefix, command, args, isPrems, isOwner, usedPrefix, command }) => {
+  if (!args || !args[0]) throw `Harap masukkan URL Youtube yang ingin di download!\n\nContoh: ${usedPrefix + args} https://youtu.be/zyJJlPSeEpo`
   let chat = global.db.data.chats[m.chat]
   let server = (args[1] || servers[0]).toLowerCase()
   try {
@@ -26,17 +26,6 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
 handler.help = ['mp4', 'v', ''].map(v => 'yt' + v + ` <url> [server: ${servers.join(', ')}]`)
 handler.tags = ['downloader']
 handler.command = /^yt(v|mp4)?$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-handler.exp = 0
 handler.limit = true
 
 module.exports = handler

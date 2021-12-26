@@ -29,16 +29,5 @@ let handler = async (m, { conn }) => {
 handler.help = ['toimg']
 handler.tags = ['sticker']
 handler.command = /^toimg$/i
-handler.owner = false
-handler.mods = false
-handler.premium = false
-handler.group = false
-handler.private = false
-
-handler.admin = false
-handler.botAdmin = false
-
-handler.fail = null
-
 module.exports = handler
 

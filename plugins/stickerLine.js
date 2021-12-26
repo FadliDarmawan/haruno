@@ -4,7 +4,7 @@ const { sticker } = require('../lib/sticker')
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 
-    if (!args[0]) throw `uhm.. url nya mana?\n\ncontoh:\n${usedPrefix + command} https://store.line.me/stickershop/product/8149770`
+    if (!args[0]) throw `Harap masukkan URL yang ingin di konversi!\n\nContoh: ${usedPrefix + command} https://store.line.me/stickershop/product/8149770`
     if (!args[0].match(/(https:\/\/store.line.me\/stickershop\/product\/.*)/gi)) throw `url salah`
 
     let res = await fetch(global.API('zeks', '/api/linesticker', { link: args[0] }, 'apikey'))

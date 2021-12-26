@@ -31,7 +31,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'autoread',
     'broadcast',
     'backup',
-    'statusUpdate',
+    'statusupdate',
     'gc',
     'jadibot',
     'mycontact',
@@ -192,7 +192,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       set.backup = !isEnable 
       break
-    case 'statusUpdate':
+    case 'statusupdate':
       isAll = true
       if (!isROwner) {
         dfail('rowner', m, conn)
