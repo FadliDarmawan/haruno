@@ -1,6 +1,6 @@
 let handler = async (m, { conn, isOwner }) => {
-    let chats = Object.entries(global.db.data.chats).filter(chat => chat[1].isBanned)
-    let users = Object.entries(global.db.data.users).filter(user => user[1].banned)
+    let chats = Object.entries(db.data.chats).filter(chat => chat[1].isBanned)
+    let users = Object.entries(db.data.users).filter(user => user[1].banned)
     let caption = `
 ┌〔 Daftar Chat Terbanned 〕
 ├ Total : ${chats.length} Chat${chats ? '\n' + chats.map(([jid], i) => `

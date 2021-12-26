@@ -31,14 +31,16 @@ handler.all = async function (m, { isBlocked }) {
         await this.send3ButtonLoc(m.chat, await(await fetch(thumbfoto)).buffer(), `Undang ${conn.user.name} ke Group
 
 *Trial Free*
-Masukkan bot secara gratis ke group selama *12 jam* setelah itu bot akan keluar dari group. Jika ingin memperpanjang silahkan kontak owner dan membayar paket yang ada.
-Untuk memasukkan bot secara gratis Trial ke group silahlan ketik *.join <link group>*
+Ketik *.join <link gc>* dan bot akan masuk ke group. setelah 12 jam trial bot akan keluar.
 Note: 1 orang hanya bisa memasukkan bot ke group sebanyak 1 kali.
 
 *1 Bulan/15.000*
-Masukkan bot secara berbayar selama 1 bulan ke dalam group.
-Silahkan kontak/hubungi owner jika mau mulai menyewa/berlangganan/ada yang mau di tanyakan.
+Hubungi owner jika ingin berlangganan/bertanya/membayar
 Pembayaran bisa melalui: Gopay, Dana, OVO, Pulsa (XL)
+
+*Permanen/20.000*
+Hubungi owner jika ingin berlangganan/bertanya/membayar
+Note: tergantung slot
 
 *Premium users/25.000* 
 Menjadi users premium dan anda dapat menggunakan fitur dengan tanpa batasan (tanpa limit) dan beberapa akses fitur khusus user premium.

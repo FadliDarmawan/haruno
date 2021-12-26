@@ -1,6 +1,6 @@
-const { igdl, tiktok, twitter, pin } = require('../lib/scrape')
+const { igdl, twitter, pin } = require('../lib/scrape')
 const { facebook } = require('../lib/facebook')
-const { servers, yta, ytv } = require('../lib/y2mate')
+const { ytIdRegex, servers, yta, ytv } = require('../lib/y2mate')
 const xa = require('xfarr-api')
 const fetch = require('node-fetch')
 let yts = require('yt-search')
