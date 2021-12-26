@@ -1,5 +1,5 @@
 let levelling = require('../lib/levelling')
-// const canvacord = require('canvacord')
+let fetch = require('node-fetch')
 
 let handler = async (m, { conn, usedPrefix }) => {
   let pp = './src/avatar_contact.png'
