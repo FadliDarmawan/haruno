@@ -13,7 +13,7 @@ handler.before = async function (m) {
       db.data.users[m.sender].dailyReward += math.daily
       clearTimeout(this.math[id][3])
       delete this.math[id]
-      await this.sendButton(m.chat, benar + ` +${math.bonus} XP, Bonus +${math.daily} Daiy Reward`, watermark, `lagi`, `.math ${math.mode}`, m)
+      await this.sendButton(m.chat, benar + ` +${math.bonus} XP`, watermark, `lagi`, `.math ${math.mode}`, m)
     } else {
       if (--this.math[id][2] == 0) {
         clearTimeout(this.math[id][3])
