@@ -10,9 +10,10 @@ handler.before = async function (m) {
     let math = JSON.parse(JSON.stringify(this.math[id][1]))
     if (m.text == math.result) {
       db.data.users[m.sender].exp += math.bonus
+      db.data.users[m.sender].dailyReward += math.daily
       clearTimeout(this.math[id][3])
       delete this.math[id]
-      await this.sendButton(m.chat, benar + ` +${math.bonus} XP`, watermark, `lagi`, `.math ${math.mode}`, m)
+      await this.sendButton(m.chat, benar + ` +${math.bonus} XP, Bonus +${math.daily}`, watermark, `lagi`, `.math ${math.mode}`, m)
     } else {
       if (--this.math[id][2] == 0) {
         clearTimeout(this.math[id][3])

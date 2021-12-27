@@ -11,7 +11,7 @@ handler.all = async function (m) {
     let user = global.db.data.users[m.sender]
     let name = conn.user.name
     if (new Date - user.pc < 86400000) return // setiap 24 jam sekali
-    await conn.sendButtonLoc(m.chat, await(await fetch(thumbfoto)).buffer(), `
+    await conn.send2ButtonLoc(m.chat, await(await fetch(thumbfoto)).buffer(), `
 *Hi ${name}, ${ucapan()}*
 Saya adalah Haruno Bot salah satu bot WhatsApp.
 
@@ -20,7 +20,7 @@ Silahkan baca rules dan mematuhi rules demi kenyamanan kita bersama.
 Terimakasih
 
 Jika ada kendala silahkan hubungi owner.
-`)
+`.trim(), watermark, 'Menu', '.?', 'Rules', '.rules')
     user.pc = new Date * 1
 }
 
