@@ -18,7 +18,7 @@ contoh: ${usedPrefix}math hard
   if (id in conn.math) return conn.reply(m.chat, 'belum dijawab!', conn.math[id][0])
   let math = genMath(mode)
   conn.math[id] = [
-    await conn.reply(m.chat, `apa hasil dari *${math.str}*?\n\nwaktu: ${(math.time / 1000).toFixed(2)} detik\nbonus jawaban benar: ${math.bonus} XP, Bonus +${math.daily}`, m),
+    await conn.reply(m.chat, `apa hasil dari *${math.str}*?\n\nwaktu: ${(math.time / 1000).toFixed(2)} detik\nbonus jawaban benar: ${math.bonus} XP, Bonus +${math.daily} Daily Reward`, m),
     math, 4,
     setTimeout(async () => {
       if (conn.math[id]) await conn.sendButton(m.chat, `waktu habis!\njawabannya *${math.result}*`, wm, 'lagi', `.math ${args[0]}`, conn.math[id][0])
@@ -61,8 +61,8 @@ function genMath(mode) {
     mode,
     time,
     bonus,
-    daily,
-    result
+    result,
+    daily
   }
 }
 
