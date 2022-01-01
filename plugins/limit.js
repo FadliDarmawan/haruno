@@ -20,16 +20,15 @@ Joincount: *${user.joincount}*
       pp = await uploadImage(await (await fetch(await this.getProfilePicture(who))).buffer())
     } catch (e) {
     } finally {
-      await conn.reply(jid, caption, m, { thumbnail: kai, contextInfo: {
+      await conn.reply(m.chat, caption, m, { thumbnail: kai, contextInfo: {
         externalAdReply: {
           mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
           title: user.name,
           body: 'Haruno Bot',
           thumbnail: pp
         }
-      }})
-    m.reply(`*${user.limit}* Limit\n*${user.exp}* XP\nLevel *${user.level}*\nRole *${user.role}*`)
-}
+    }})
+  }
 }
 handler.help = ['my [@user]']
 handler.tags = ['xp']
