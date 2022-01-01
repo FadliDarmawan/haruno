@@ -1,4 +1,4 @@
-const uploadImage = require('./lib/uploadImage')
+const uploadImage = require('./lib/uploadImage.js')
 let fetch = require('node-fetch')
 
 let handler = async (m) => {
