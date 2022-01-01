@@ -14,12 +14,8 @@ Role: *${user.role}*
 Daily Reward: *${user.dailyReward}*
 Joincount: *${user.joincount}*
 `.trim()
-    let pp = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
     let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
-    try {
-      pp = await uploadImage(await (await fetch(await this.getProfilePicture(who))).buffer())
-    } catch (e) {
-    } finally {
+    let pp = await conn.getProfilePicture(who).catch(_ => 'https://telegra.ph/file/39bbded9693c9338069fd.jpg')
       await conn.reply(m.chat, caption, m, { thumbnail: kai, contextInfo: {
         externalAdReply: {
           mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
@@ -28,7 +24,7 @@ Joincount: *${user.joincount}*
           thumbnail: pp
         }
     }})
-  }
+  
 }
 handler.help = ['my [@user]']
 handler.tags = ['xp']
