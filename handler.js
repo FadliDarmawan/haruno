@@ -400,7 +400,7 @@ module.exports = {
           if (chat.welcome) {
             let groupMetadata = await this.groupMetadata(jid)
             for (let user of participants) {
-              let pp = 'https://telegra.ph/file/39bbded9693c9338069fd.jpg'
+              let pp = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
               let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
               try {
                 pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())

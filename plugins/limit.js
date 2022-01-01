@@ -14,7 +14,7 @@ Role: *${user.role}*
 Daily Reward: *${user.dailyReward}*
 Joincount: *${user.joincount}*
 `.trim()
-    let pp = 'https://telegra.ph/file/39bbded9693c9338069fd.jpg'
+    let pp = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
     let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
     try {
       pp = await uploadImage(await (await fetch(await this.getProfilePicture(who))).buffer())
