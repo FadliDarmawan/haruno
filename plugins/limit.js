@@ -15,12 +15,11 @@ Daily Reward: *${user.dailyReward}*
 Joincount: *${user.joincount}*
 `.trim()
     let pp = 'https://telegra.ph/file/39bbded9693c9338069fd.jpg'
-    let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
     try {
       pp = await uploadImage(await (await fetch(await this.getProfilePicture(who))).buffer())
     } catch (e) {
     } finally {
-      await conn.reply(m.chat, caption, m, { thumbnail: kai, contextInfo: {
+      await conn.reply(m.chat, caption, m, { contextInfo: {
         externalAdReply: {
           mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
           title: user.name,

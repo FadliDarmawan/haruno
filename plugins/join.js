@@ -1,8 +1,8 @@
 let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let fetch = require('node-fetch')
 
-let handler = async (m, { conn, args, usedPrefix, isPrems, isOwner}) => {
-    if (!args[0]) throw `Link nya mana?`
+let handler = async (m, { conn, args, usedPrefix, isPrems, isOwner }) => {
+    if (!args[0]) throw `Harap masukkan link group yang ingin dimasukkan bot nya.\n\nContoh: *${usedPrefix + command} https://chat.whatsapp.com/TIANANMEN1989`
     let [_, code] = args[0].match(linkRegex) || []
     let user = db.data.users[m.sender]
     if (!code) throw 'Link Salah'
@@ -15,8 +15,8 @@ let handler = async (m, { conn, args, usedPrefix, isPrems, isOwner}) => {
             var now = new Date() * 1
             if (now < global.db.data.chats[res.gid].expired) global.db.data.chats[res.gid].expired += jumlahHari
             else global.db.data.chats[res.gid].expired = now + jumlahHari
-                m.reply(`Berhasil join grup ${res.gid}\nBot akan keluar secara otomatis setelah: ${msToDate(global.db.data.chats[res.gid].expired - now)}.\nToken joincount mu: ${user.joincount}/1`)
-                this.reply(global.owner[0] + '@s.whatsapp.net', `@${m.sender.split`@`[0]} telah menambahkan ${conn.user.name} ke ${res.gid}, bot akan keluar dalam waktu: ${msToDate(global.db.data.chats[res.gid].expired - now)}`, 0,  { contextInfo: { mentionedJid: [m.sender]}})
+                await m.reply(`Berhasil join grup ${res.gid}\nBot akan keluar secara otomatis setelah: ${msToDate(global.db.data.chats[res.gid].expired - now)}.\nToken joincount mu: ${user.joincount}/1`)
+                await conn.reply(global.owner[0] + '@s.whatsapp.net', `@${m.sender.split`@`[0]} telah menambahkan ${conn.user.name} ke ${res.gid}, bot akan keluar dalam waktu: ${msToDate(global.db.data.chats[res.gid].expired - now)}`, 0,  { contextInfo: { mentionedJid: [m.sender]}})
                 await conn.sendButtonLoc(res.gid, await(await fetch(thumbfoto)).buffer(), `${conn.user.name} adalah bot whatsapp yang dibangun dengan Nodejs, ${conn.user.name} diundang oleh @${m.sender.split(`@`)[0]}\n\nKetik ${usedPrefix}menu untuk melihat daftar perintah\nBot akan keluar secara otomatis setelah ${msToDate(global.db.data.chats[res.gid].expired - now)}`.trim(), watermark, 'Menu', `${usedPrefix}?`, null, { contextInfo: { mentionedJid: [m.sender] } })
         })
     } else if (!isOwner) {
@@ -28,8 +28,8 @@ let handler = async (m, { conn, args, usedPrefix, isPrems, isOwner}) => {
             var now = new Date() * 1
             if (now < global.db.data.chats[res.gid].expired) global.db.data.chats[res.gid].expired += jumlahHari
             else global.db.data.chats[res.gid].expired = now + jumlahHari
-                m.reply(`Berhasil join grup ${res.gid}\nBot akan keluar secara otomatis setelah: ${msToDate(global.db.data.chats[res.gid].expired - now)}.\nToken joincount mu: ${user.joincount}/3`)
-                this.reply(global.owner[0] + '@s.whatsapp.net', `@${m.sender.split`@`[0]} telah menambahkan ${conn.user.name} ke ${res.gid}, bot akan keluar dalam waktu: ${msToDate(global.db.data.chats[res.gid].expired - now)}`, 0,  { contextInfo: { mentionedJid: [m.sender]}})
+                await m.reply(`Berhasil join grup ${res.gid}\nBot akan keluar secara otomatis setelah: ${msToDate(global.db.data.chats[res.gid].expired - now)}.\nToken joincount mu: ${user.joincount}/3`)
+                await conn.reply(global.owner[0] + '@s.whatsapp.net', `@${m.sender.split`@`[0]} telah menambahkan ${conn.user.name} ke ${res.gid}, bot akan keluar dalam waktu: ${msToDate(global.db.data.chats[res.gid].expired - now)}`, 0,  { contextInfo: { mentionedJid: [m.sender]}})
                 await conn.sendButtonLoc(res.gid, await(await fetch(thumbfoto)).buffer(), `${conn.user.name} adalah bot whatsapp yang dibangun dengan Nodejs, ${conn.user.name} diundang oleh @${m.sender.split(`@`)[0]}\n\nKetik ${usedPrefix}menu untuk melihat daftar perintah\nBot akan keluar secara otomatis setelah ${msToDate(global.db.data.chats[res.gid].expired - now)}`.trim(), watermark, 'Menu', `${usedPrefix}?`, null, { contextInfo: { mentionedJid: [m.sender] } })
         })
     } else if (isOwner) {
