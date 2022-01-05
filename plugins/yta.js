@@ -1,4 +1,4 @@
-let limit = 30
+let limit = 50
 const { servers, yta } = require('../lib/y2mate')
 let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) => {
   if (!args || !args[0]) throw `Harap masukkan URL Youtube yang ingin di download!\n\nContoh: ${usedPrefix + command} https://youtu.be/zyJJlPSeEpo`

@@ -1,3 +1,4 @@
+let fetch = require('node-fetch')
 let handler = m => m
 
 handler.before = async function (m) {
