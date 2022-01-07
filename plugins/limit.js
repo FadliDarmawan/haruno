@@ -19,7 +19,7 @@ Joincount: *${user.joincount}*
       pp = await ( await fetch(await this.getProfilePicture(user))).buffer()
     } catch (e) {
     } finally {
-      this.reply(m.chat, caption, m, { contextInfo: {
+      conn.reply(m.chat, caption, m, { contextInfo: {
         externalAdReply: {
           mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
           title: user.name,
