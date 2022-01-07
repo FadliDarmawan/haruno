@@ -2,6 +2,7 @@ const { igdl, twitter, pin } = require('../lib/scrape')
 const { facebook } = require('../lib/facebook')
 const { ytIdRegex, servers, yta, ytv } = require('../lib/y2mate')
 const xa = require('xfarr-api')
+const { fbdl } = require('../lib/fbdl')
 const fetch = require('node-fetch')
 let yts = require('yt-search')
 let util = require('util')
@@ -33,12 +34,9 @@ handler.all = async function (m, { isPrems }) {
     }
 
     if (/^.*(fb.watch|facebook.com)/i.test(m.text)) {
-        let res = await fetch(API('neoxr', '/api/download/fb', { url }, 'apikey'))
-        if (!res.ok) return m.reply(eror)
-        let json = await res.json()
-        if (!json.status) return m.reply(util.format(json))
-        await m.reply(wait)
-        await conn.sendFile(m.chat, json.data.sd.url, '', `HD: ${json.data.hd.url}\nUkuran: ${json.data.hd.size}\n\n© Haruno`, m)
+        let v = await fbdl(url)
+        m.reply(wait)
+        await this.sendFile(m.chat, v.hasil.link_high, 'fb.mp4', watermark, m)
     }
 
     if (/^.*instagram.com\/(p|reel|tv)/i.test(m.text)) {
