@@ -16,7 +16,7 @@ Joincount: *${user.joincount}*
 `.trim()
     let pp = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
     try {
-      pp = await ( await fetch(await this.getProfilePicture(user))).buffer()
+      pp = await ( await fetch(await this.getProfilePicture(who))).buffer()
     } catch (e) {
     } finally {
       conn.reply(m.chat, caption, m, { contextInfo: {
