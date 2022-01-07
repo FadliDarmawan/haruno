@@ -1,5 +1,5 @@
 let fetch = require('node-fetch')
-const { fbdl } = require('../fbdl.js')
+const { fbdl } = require('../fbdl')
 let handler = async(m, { conn, usedPrefix, args, command }) => {
   if (!args[0]) throw `Masukkan URL Facebook yang ingin di download!\n\nContoh: ${usedPrefix + command} https://www.facebook.com/100009307660961/videos/2850837675236460/`
   let v = await fbdl(args[0])
