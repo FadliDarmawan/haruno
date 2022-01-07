@@ -14,9 +14,9 @@ Role: *${user.role}*
 Daily Reward: *${user.dailyReward}*
 Joincount: *${user.joincount}*
 `.trim()
-    let pp = 'https://telegra.ph/file/39bbded9693c9338069fd.jpg'
+    let pp = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
     try {
-      pp = await uploadImage(await (await fetch(await this.getProfilePicture(who))).buffer())
+      pp = await ( await fetch(await this.getProfilePicture(user))).buffer()
     } catch (e) {
     } finally {
       await conn.reply(m.chat, caption, m, { contextInfo: {
@@ -24,12 +24,12 @@ Joincount: *${user.joincount}*
           mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
           title: user.name,
           body: 'Haruno Bot',
-          thumbnail: await (await fetch(pp)).buffer()
+          thumbnail: pp
         }
     }})
   }
 }
-handler.help = ['my [@user]']
+handler.help = ['my [@62XXXX]']
 handler.tags = ['xp']
 handler.command = /^(my|limit)$/i
 module.exports = handler

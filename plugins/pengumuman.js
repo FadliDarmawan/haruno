@@ -24,7 +24,7 @@ let handler = async (m, { conn, text, participants }) => {
   )
   await conn.relayWAMessage(msg)
 }
-handler.help = ['hidetag'].map(v => v + ' [teks]')
+handler.help = ['hidetag'].map(v => v + ' <teks>')
 handler.tags = ['group']
 handler.command = /^(pengumuman|announce|hiddentag|hidetag)$/i
 

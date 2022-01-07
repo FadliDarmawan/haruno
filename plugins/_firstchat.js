@@ -19,6 +19,7 @@ Saya adalah Haruno Bot salah satu bot WhatsApp.
 Silahkan baca rules dan mematuhi rules demi kenyamanan kita bersama.
 Terimakasih
 
+*Bot bukan manusia, chat selain yang terdaftar di .menu tidak akan direspon!*
 Jika ada kendala silahkan hubungi owner.
 `.trim(), watermark, 'Menu', '.?', 'Rules', '.rules')
     user.pc = new Date * 1

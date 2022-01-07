@@ -134,6 +134,7 @@ module.exports = {
           if (!'self' in settings) settings.self = false
           if (!'backup' in settings) settings.backup = true
           if (!isNumber(settings.backupDB)) settings.backupDB = 0
+          if (!'trial' in settings) settings.trial = false
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
@@ -148,6 +149,7 @@ module.exports = {
           backupDB: 0,
           statusUpdate: false,
           status: 0,
+          trial: false,
         }
       } catch (e) {
         console.error(e)
@@ -403,7 +405,7 @@ module.exports = {
               let pp = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
               let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
               try {
-                pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
+                pp = await ( await fetch(await this.getProfilePicture(user))).buffer()
               } catch (e) {
               } finally {
               text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'ようこそ Youkuso, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc) :
@@ -464,7 +466,9 @@ ketik *.on delete* untuk mematikan pesan ini
         'count': '0'
       }, null]]]]
       this.sendJSON(nodePayload, tag)
-      m.reply(`Kamu dibanned karena menelepon bot, owner : @${owner[0]}`)
+      this.reply(jid, `Kamu dibanned karena menelpon nomor bot, Kontak owner untuk me-unban.\n\nOwner:\nwa.me/${owner[0]}\nwa.me/${owner[2]}\n${watermark}`, null)
+      user.banned = true
+      await this.blockUser(jid, 'add')
     }
   },
   async GroupUpdate({ jid, desc, descId, descTime, descOwner, announce }) {

@@ -38,5 +38,5 @@ await conn.reply(m.chat, 'Uploading...', m, { contextInfo: {
 }
 handler.tags = ['downoader']
 handler.command = /^(nh|nhentai|doujin)$/i
-handler.help = ['nhentai']
+handler.help = ['nhentai <kode>']
 module.exports = handler

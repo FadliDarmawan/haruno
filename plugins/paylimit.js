@@ -46,7 +46,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     m.reply(`(${-poin} Limit) + (${-pjk} Limit (Pajak 2%)) = ( ${-limit} Limit)`)
     conn.fakeReply(m.chat, `+${poin} Limit`, who, m.text)
 }
-handler.help = ['paylimit @user <jumlah>']
+handler.help = ['paylimit [@62XXXX] <jumlah>']
 handler.tags = ['xp']
 handler.command = /^payl(imit)?$/
 

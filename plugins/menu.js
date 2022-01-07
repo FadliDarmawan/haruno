@@ -14,6 +14,17 @@ const defaultMenu = {
   body: '├ %cmd %islimit %isPremium',
   footer: '└────\n',
   after: `
+Panduan Singkat
+<> adalah parameter query
+Contoh: .join <link gc> maka .join https://chat.whatsapp.com/
+
+[] adalah tag seseorang atau parameter nomor
+Contoh: .kick [@62XXXX] maka .kick @62XXXX
+
+(limit) atau (premium) adalah keterangan apakah fitur tersebut memerlukan limit/hanya untuk user premium.
+Penggunaan command tidak usah menggunakan ()
+
+Penggunaan tidak usah menggunakan <> atau []
 `,
 }
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
@@ -187,6 +198,10 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                 "title": "Syarat Ketentuan dan Peraturan",
                 "description": "Harap membaca Peraturan demi kenyamanan kita bersama",
                 "rowId": `${_p}rules`
+              },  {
+                "title": "Group Official Harunobot",
+                "description": "Gabung untuk mendapatkan informasi mengenai bot atau sekedar meramaikan",
+                "rowId": `${_p}harunoff`
               }],
               "title": "Informasi Bot"
             }, {
@@ -436,7 +451,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    await conn.send2ButtonLoc(m.chat, await (await fetch(thumbfoto)).buffer(), text.trim(), watermark, 'Pemilik Bot', `${_p}owner`, 'Donasi', `${_p}donasi`, m)
+    await conn.send3ButtonLoc(m.chat, await (await fetch(thumbfoto)).buffer(), text.trim(), watermark, 'Pemilik Bot', `${_p}owner`, 'Donasi', `${_p}donasi`, 'Group Official', '.harunoff',  m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e

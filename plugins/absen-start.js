@@ -11,7 +11,7 @@ let handler = async (m, { conn, usedPrefix, text }) => {
         text
     ]
 }
-handler.help = ['mulaiabsen [teks]']
+handler.help = ['mulaiabsen <teks>']
 handler.tags = ['absen']
 handler.command = /^(\+|start|mulai)absen$/i
 

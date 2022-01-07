@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     let json = await res.json()
     await conn.sendFile(m.chat, json.result, 'q.jpg', '', m, 0, { thumbnail: Buffer.alloc(0) })
 }
-handler.help = ['quotemaker2 <teks | wm>']
+handler.help = ['quotemaker2 <teks>|<wm>']
 handler.tags = ['nulis']
 handler.command = /^q(uote)?maker?2$/i
 handler.limit = true

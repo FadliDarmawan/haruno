@@ -8,7 +8,7 @@ let handler = async (m, { usedPrefix, command, text }) => {
     user.premiumTime = 0
     m.reply(`Berhasil menghapus *${user.name}* dari user premium menjadi user biasa.`)
 }
-handler.help = ['delprem [@user]']
+handler.help = ['delprem [@62XXXX]']
 handler.tags = ['owner']
 handler.command = /^(-|del)p(rem)?$/i
 

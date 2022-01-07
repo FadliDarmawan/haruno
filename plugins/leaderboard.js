@@ -32,7 +32,7 @@ ${sortedLevel.slice(0, len).map(({ jid, level }, i) => `├ ${i + 1}. ${particip
     }
   })
 }
-handler.help = ['leaderboard [jumlah user]', 'lb [jumlah user]']
+handler.help = ['leaderboard <jumlah user>', 'lb <jumlah user>']
 handler.tags = ['xp']
 handler.command = /^(leaderboard|lb)$/i
 handler.owner = false

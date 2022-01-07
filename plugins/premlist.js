@@ -11,7 +11,7 @@ let handler = async (m, { conn, args }) => {
       if (db.data.chats[m.chat].deletemedia) conn.deleteMessage(m.chat, key)
     }, db.data.chats[m.chat].deletemediaTime)
   }
-  handler.help = ['premlist [angka]']
+  handler.help = ['premlist <angka>']
   handler.tags = ['info']
   handler.command = /^(listprem|premlist)$/i
   

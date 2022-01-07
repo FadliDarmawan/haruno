@@ -36,7 +36,7 @@ let handler = async (m, { conn, args: [event], text }) => {
     })
     return conn.onDelete(m)
 }
-handler.help = ['simulate <event> [@mention]']
+handler.help = ['simulate <event> [@62XXXX]']
 handler.tags = ['owner']
 
 handler.command = /^simulate$/i

@@ -14,7 +14,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     user.premium = true
     m.reply(`Berhasil menambahkan *${user.name}* menjadi pengguna premium selama ${txt} hari.\n\nMasa premium akan habis dalam: ${conn.msToDate(user.premiumTime - now)}`)
 }
-handler.help = ['addprem [@user] <amount of days>']
+handler.help = ['addprem [@62XXXX] <hari>']
 handler.tags = ['owner']
 handler.command = /^(add|tambah|\+)p(rem)?$/i
 
