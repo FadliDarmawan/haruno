@@ -466,9 +466,10 @@ ketik *.on delete* untuk mematikan pesan ini
         'count': '0'
       }, null]]]]
       this.sendJSON(nodePayload, tag)
-      this.reply(jid, `Kamu dibanned karena menelpon nomor bot, Kontak owner untuk me-unban.\n\nOwner:\nwa.me/${owner[0]}\nwa.me/${owner[2]}\n${watermark}`, null)
-      user.banned = true
-      await this.blockUser(jid, 'add')
+      this.reply(jid, `Kamu dibanned karena menelpon nomor bot, Kontak owner untuk me-unban.\n\nOwner:\nwa.me/${owner[0]}\nwa.me/${owner[1]}\n\n${watermark}`, null).then(async() => {
+        user.banned = true
+        await this.blockUser(jid, 'add')
+      })
     }
   },
   async GroupUpdate({ jid, desc, descId, descTime, descOwner, announce }) {
@@ -485,8 +486,8 @@ ketik *.on delete* untuk mematikan pesan ini
 
 global.dfail = (type, m, conn) => {
   let msg = {
-    rowner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!*_.',
-    owner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!_*.',
+    rowner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!*_',
+    owner: 'This command only can used by _*Owner!*_\nPerintah ini hanya dapat digunakan oleh _*Owner!*_',
     premium: 'This command only can used by _*Premium Users.*_\nPerintah ini hanya dapat digunakan oleh _*User Premium.*_',
     group: 'This command only can used in Group.\nPerintah ini hanya dapat digunakan di Group.',
     private: 'This command only can used in Private Chat.\nPerintah ini hanya dapat digunakan di Chat Pribadi.',
