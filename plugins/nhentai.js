@@ -68,6 +68,7 @@ let handler = async (m, { conn, args }) => {
 		}
 	}
 }
-
-handler.command = /^get?(nhentai|hentai|doujin|nh)$/i
+handler.tags = ['downloader']
+handler.help = ['nhentai <kode>']
+handler.command = /^nh|nh(entai)|doujin$/i
 module.exports = handler

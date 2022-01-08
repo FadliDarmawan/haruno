@@ -37,6 +37,6 @@ await conn.reply(m.chat, 'Uploading...', m, { contextInfo: {
   await conn.sendFile(m.chat, hakta.result, '[Haruno Bot]' + ' ' + `${args[0]}` + '.pdf', '', m, false, { asDocument: true, thumbnail: thumbnail})
 }
 handler.tags = ['downoader']
-handler.command = /^(nh|nhentai|doujin)$/i
-handler.help = ['nhentai <kode>']
+handler.command = /^(nhd)$/i
+handler.help = ['nhd <kode>']
 module.exports = handler
