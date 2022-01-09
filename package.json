@@ -1,6 +1,6 @@
 {
   "name": "harunobot",
-  "version": "2.3",
+  "version": "2.3.9",
   "description": "WhatsApp Bot Ringan",
   "main": "index.js",
   "scripts": {
