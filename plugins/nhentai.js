@@ -8,7 +8,7 @@ let handler = async(m, { conn, usedPrefix, command, args }) => {
 	if(!args[0]) throw `Masukkan kode nya!\n\nContoh: ${usedPrefix + command} 257326`
 	let count = 0
 	let ResultPdf = []
-	let doujin = await nhentai.getDoujin
+	let doujin = await nhentai.getDoujin(args[0])
 	let title = doujin.title.default
 	let native = doijin.title.native
 	let details = doujin.details
@@ -59,7 +59,7 @@ https://telegra.ph/Cara-membuka-Internet-Positif-menggunakan-Chrome-12-23
 	}
 }
 
-handler.command = /^nh(entai)|nh|doujin$/i
+handler.command = /^nhentai|nh|doujin$/i
 handler.help = ['nhentai <kode>']
 handler.tags = ['downloader']
 module.exports = handler

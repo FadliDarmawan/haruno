@@ -6,7 +6,7 @@ let handler = async(m, { conn, text, usedPrefix, command }) => {
     let caption = doujin.map((v, i) => `🔍 Search Doujin!\n\nNo ${i + 1}\nKode: ${v.id}\nTitle: ${v.title}\nLanguage: ${v.language}\nUntuk mendownload: ${usedPrefix + command} ${v.id}\n==============\n`).join('\n')
     m.reply(caption)
 }
-handler.command = /^nh(s|search|cari)$/i
+handler.command = /^nhs|nhsearch|nhcari$/i
 handler.tags = ['internet']
 handler.help = ['nhsearch <query>']
 module.exports = handler
