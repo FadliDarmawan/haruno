@@ -10,7 +10,7 @@ let handler = async(m, { conn, usedPrefix, command, args }) => {
 	let ResultPdf = []
 	let doujin = await nhentai.getDoujin(args[0])
 	let title = doujin.title.default
-	let native = doijin.title.native
+	let native = doujin.title.native
 	let details = doujin.details
 	let array_page = doujin.pages
 	let cover = doujin.cover
