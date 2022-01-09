@@ -16,16 +16,21 @@ let handler = async(m, { conn, usedPrefix, command, args }) => {
 	let cover = doujin.cover
 	let language = doujin.language
 	let favorites = doujin.favourites
+	let parodies = details.parodies.map(v => v.name)
+	let groups = details.groups.map(v => v.name)
+	let artists = details.artists.map(v => v.name)
+	let tag = details.tags.map(v => v.name)
+	let categories = details.categories.map(v => v.name)
 	let capton = `
 Doujin Downloader
 ${title} ${native}
 Language: ${language}
-Parody: ${details.parodies}
-Group: ${details.groups}
-Artist: ${details.artists}
-Tag: ${details.tags}
-Category: ${details.categories}
-Favorited: ${doujin.favorites}
+Parody: ${parodies}
+Group: ${groups}
+Artist: ${artists}
+Tag: ${tag}
+Category: ${categories}
+Favorited: ${favorites}
 
 Cara membuka Internet Positif menggunakan Chrome tanpa VPN
 https://telegra.ph/Cara-membuka-Internet-Positif-menggunakan-Chrome-12-23
