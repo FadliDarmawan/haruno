@@ -468,7 +468,7 @@ ketik *.on delete* untuk mematikan pesan ini
       this.sendJSON(nodePayload, tag)
       this.reply(jid, `Kamu dibanned karena menelpon nomor bot, Kontak owner untuk me-unban.\n\nOwner:\nwa.me/${owner[0]}\nwa.me/${owner[1]}\n\n${watermark}`, null).then(async() => {
         user.banned = true
-        await this.blockUser(jid, 'add')
+        // await this.blockUser(jid, 'add') // silahkan di un-command jika ingin auto block, tapi katanya agak rawan ban
       })
     }
   },

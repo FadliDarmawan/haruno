@@ -4,9 +4,10 @@ let fetch = require('node-fetch')
 let handler = async (m, { conn, usedPrefix }) => {
   let pp = './src/avatar_contact.png'
   let who = m.sender
-  let discriminator = who.substring(9, 13)
+  let pp = await(await fetch('https://telegra.ph/file/39bbded9693c9338069fd.jpg')).buffer()
+  let kai = await(await fetch('https://telegra.ph/file/4d2bca79fa5a4f2dd3d81.jpg')).buffer()
   try {
-    pp = await conn.getProfilePicture(who)
+    pp = await ( await fetch(await this.getProfilePicture(who))).buffer()
   } catch (e) {
   } finally {
     let user = global.db.data.users[m.sender]
@@ -17,18 +18,30 @@ let handler = async (m, { conn, usedPrefix }) => {
     let usersLevel = sortedLevel.map(enumGetKey)
     let { min, xp, max } = levelling.xpRange(user.level, global.multiplier)
     if (!levelling.canLevelUp(user.level, user.exp, global.multiplier)) {
-      let rank = await(await fetch(thumbfoto)).buffer()
-        .then(async data => {
-          await conn.sendButtonImg(m.chat, data, `@${who.split`@`[0]} Level *${user.level} (${user.exp - min}/${xp})*\nKurang *${max - user.exp}* lagi!`.trim(), watermark, 'Auto Level Up', `${usedPrefix}on autolevelup`, m, { thumbnail: data, height: 282, width: 934, contextInfo: { mentionedJid: [who]} })
-        })
+      let text = `@${who.split`@`[0]} Level *${user.level} (${user.exp - min}/${xp})*\nKurang *${max - user.exp}* lagi!`.trim()
+      await conn.reply(m.chat, text, m, { thumbnail: kai, contextInfo: {
+        mentionedJid: [who],
+        externalAdReply: {
+          mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+          title: 'Kurang dikit lagi!',
+          body: 'Haruno Bot',
+          thumbnail: pp
+        }
+      }})
     }
     let before = user.level * 1
     while (levelling.canLevelUp(user.level, user.exp, global.multiplier)) user.level++
     if (before !== user.level) {
-      let rank = await(await fetch(thumbfoto)).buffer()
-        .then(async data => {
-          await conn.sendButtonImg(m.chat, data, `@${who.split`@`[0]} _*Level Up!*_\n_${before}_ -> _${user.level}_`.trim(), watermark, 'Auto Level Up', `${usedPrefix}on autolevelup`, m, { thumbnail: data, height: 282, width: 934, contextInfo: { mentionedJid: [who]} })
-        })
+      let text = `@${who.split`@`[0]} _*Level Up!*_\n_${before}_ -> _${user.level}_`.trim()
+      await conn.reply(m.chat, text, m, { thumbnail: kai, contextInfo: {
+        mentionedJid: [who],
+        externalAdReply: {
+          mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+          title: 'Levelup!',
+          body: 'Haruno Bot',
+          thumbnail: pp
+        }
+      }})
     }
   }
 }
@@ -39,8 +52,8 @@ handler.tags = ['xp']
 handler.command = /^levelup$/i
 
 module.exports = handler
-
 function sort(property, ascending = true) {
+
   if (property) return (...args) => args[ascending & 1][property] - args[!ascending & 1][property]
   else return (...args) => args[ascending & 1] - args[!ascending & 1]
 }

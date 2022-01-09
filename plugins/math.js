@@ -21,7 +21,7 @@ contoh: ${usedPrefix}math hard
     await conn.reply(m.chat, `apa hasil dari *${math.str}*?\n\nwaktu: ${(math.time / 1000).toFixed(2)} detik\nbonus jawaban benar: ${math.bonus} XP, Bonus +${math.daily} Daily Reward`, m),
     math, 4,
     setTimeout(async () => {
-      if (conn.math[id]) await conn.sendButton(m.chat, `waktu habis!\njawabannya *${math.result}*`, wm, 'lagi', `.math ${args[0]}`, conn.math[id][0])
+      if (conn.math[id]) await conn.sendButton(m.chat, `waktu habis!\njawabannya *${math.result}*`, watermark, 'lagi', `.math ${args[0]}`, conn.math[id][0])
       delete conn.math[id]
     }, math.time)
   ]

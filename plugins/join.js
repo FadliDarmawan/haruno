@@ -7,12 +7,6 @@ let handler = async (m, { conn, args, usedPrefix, isPrems, isOwner, command }) =
     let user = db.data.users[m.sender]
     if (!code) throw 'Link Salah'
     if (!(isPrems || isOwner)) {
-        let hako = await conn.query({
-            json: ["query", "invite", code],
-            expect200: true
-          })
-          if (!hako) throw hako        
-        if(db.data.chats[hako.id].trial) await conn.send3Button(m.chat, `Group tersebut sudah pernah melakukan trial 1 hari. Silahkan menyewa bot untuk memasukkan bot ke dalam group.`, watermark, 'Sewa', '.sewa', 'Owner', '.owner', 'Group Official', '.harunoff', m)
         if (user.joincount === 1 ) throw `Kamu sudah melebihi token/limit memasukkan bot ke dalam group!`
         user.joincount += 1
         let res = await conn.acceptInvite(code)

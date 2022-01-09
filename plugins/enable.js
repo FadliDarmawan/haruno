@@ -24,6 +24,9 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'nsfw',
     'antibadword'
   ]
+  let us = [
+    'autolevelup'
+  ]
   let ow = [
     'anon',
     'anticall',
@@ -42,6 +45,12 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'restrict',
   ]
   switch (type) {
+    // users
+    case 'autolevelup':
+    case 'levelup':
+      isUser = true
+      user.autolevelup = isEnable
+      break
     // group
     case 'w':
     case 'welcome':
@@ -313,6 +322,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     default:
       if (!/[01]/.test(command)) throw `
 ┌「 Daftar opsi 」${isOwner ? '\n' + ow.map(v => '├ ' + v).join`\n` : ''}${m.isGroup ? '\n' + grup.map(v => '├ ' + v).join`\n` : ''}
+${us.map(v => '├ ' + v).join`\n`}
 ${ch.map(v => '├ ' + v).join`\n`}
 └────
 contoh:
