@@ -30,8 +30,9 @@ Favorited: ${doujin.favorites}
 Cara membuka Internet Positif menggunakan Chrome tanpa VPN
 https://telegra.ph/Cara-membuka-Internet-Positif-menggunakan-Chrome-12-23
 `.trim()
-	await conn.send2ButtonLoc(m.chat, await(await fetch(cover)).buffer(), capton, watermark, 'Download PDF', `.${usedPrefix + command} ${args[0]} -d`, 'Read online', `.${usedPrefix + command} ${args[0]} -o`, m)
-	if(args[1] === '-d') {
+	if(!args[1]) {
+	await conn.send2ButtonImg(m.chat, await(await fetch(cover)).buffer(), capton, watermark, 'Download PDF', `.${usedPrefix + command} ${args[0]} -d`, 'Read online', `.${usedPrefix + command} ${args[0]} -o`, m)
+	} else if(args[1] === '-d') {
 		m.reply('Sedang mengambil data.\nHarap tunggu sekitar 1~5 menit...')
 		for (let index = 0; index < array_page.length; index++) {
 			if (!fs.existsSync('./nhentai')) fs.mkdirSync('./nhentai')
@@ -59,7 +60,7 @@ https://telegra.ph/Cara-membuka-Internet-Positif-menggunakan-Chrome-12-23
 	}
 }
 
-handler.command = /^nhentai|nh|doujin$/i
+handler.command = /^nhentai|doujin$/i
 handler.help = ['nhentai <kode>']
 handler.tags = ['downloader']
 module.exports = handler
