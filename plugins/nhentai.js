@@ -15,12 +15,11 @@ let handler = async(m, { conn, usedPrefix, command, args }) => {
 	let array_page = doujin.pages
 	let cover = doujin.cover
 	let language = doujin.language
-	let favorites = doujin.favourites
-	let parodies = details.parodies.map(v => v.name)
-	let groups = details.groups.map(v => v.name)
-	let artists = details.artists.map(v => v.name)
-	let tag = details.tags.map(v => v.name)
-	let categories = details.categories.map(v => v.name)
+	let parodies = details.parodies.map(v => v.name).join(', ')
+	let groups = details.groups.map(v => v.name).join(', ')
+	let artists = details.artists.map(v => v.name).join(', ')
+	let tag = details.tags.map(v => v.name).join(', ')
+	let categories = details.categories.map(v => v.name).join(', ')
 	let capton = `
 Doujin Downloader
 ${title} ${native}
@@ -30,7 +29,7 @@ Group: ${groups}
 Artist: ${artists}
 Tag: ${tag}
 Category: ${categories}
-Favorited: ${favorites}
+Favorited: ${doujin.favourites}
 
 Cara membuka Internet Positif menggunakan Chrome tanpa VPN
 https://telegra.ph/Cara-membuka-Internet-Positif-menggunakan-Chrome-12-23
