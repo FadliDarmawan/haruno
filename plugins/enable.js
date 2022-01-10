@@ -6,6 +6,9 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let type = (args[0] || '').toLowerCase()
   let isAll = false
   let isUser = false
+  let us = [
+    'autolevelup'
+  ]
   let grup = [
     'antilink',
     'desc',
@@ -23,9 +26,6 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'viewonce',
     'nsfw',
     'antibadword'
-  ]
-  let us = [
-    'autolevelup'
   ]
   let ow = [
     'anon',

@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ariffb25/stikerinbot.git"
+    "url": "git+https://github.com/FadliDarmawan/haruno.git"
   },
   "keywords": [
     "whatsapp-bot"
@@ -17,9 +17,9 @@
   "author": "Fadli",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ariffb25/stikerinbot/issues"
+    "url": "https://github.com/FadliDarmawan/haruno/issues"
   },
-  "homepage": "https://github.com/ariffb25/stikerinbot",
+  "homepage": "https://github.com/FadliDarmawan/haruno",
   "dependencies": {
     "@adiwajshing/baileys": "^3.5.3",
     "awesome-phonenumber": "^2.54.0",
@@ -28,6 +28,7 @@
     "cfonts": "^2.9.3",
     "chalk": "^4.1.1",
     "cheerio": "^1.0.0-rc.10",
+    "colors": "1.4.0",
     "emoji-api": "^1.0.2",
     "express": "^4.17.1",
     "file-type": "^16.5.1",
