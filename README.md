@@ -3,8 +3,6 @@
 </p>
 <h1 align="left">Haruno Bot</h1>
 
-Note: Untuk sementara repo ini belum mendapatkan update dari versi Haruno terbaru. Silahkan tunggu hingga repo ini menerima beberapa update.
-
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/FadliDarmawan/haruno)
 
 [![Run on Repl.it](https://repl.it/badge/github/FadliDarmawan/haruno)](https://repl.it/github/FadliDarmawan/haruno)
@@ -16,7 +14,7 @@ Haruno bot adalah bot whatsapp hasil pe-nggarapan ulang dari ariffb25/stikerinbo
 Haruno bot juga dapat di jalankan di RPP/VPS/Windows, Heroku, Replit.
 
 # Termux
-NOTE: Untuk termux silahkan hilangkan fitur fitur yang menggunakan canvas dan wsf, kemungkinan mongoDB juga tidak bisa dipakai.
+NOTE: untuk pengguna termux yang ingin menggunakan fitur nhentai(dari module nhentai-node-api) harap aktifkan dns (dns.google) agar bisa mengakses fitur (kena internet positif)
 ```
 apt install ffmpeg
 apt install imagemagick
