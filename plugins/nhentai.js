@@ -22,7 +22,7 @@ let handler = async(m, { conn, usedPrefix, command, args }) => {
 	let categories = details.categories.map(v => v.name).join(', ')
 	let capton = `
 Doujin Downloader
-${title} ${native}
+${title}
 Language: ${language}
 Parody: ${parodies}
 Group: ${groups}
@@ -30,12 +30,9 @@ Artist: ${artists}
 Tag: ${tag}
 Category: ${categories}
 Favorited: ${doujin.favourites}
-
-Cara membuka Internet Positif menggunakan Chrome tanpa VPN
-https://telegra.ph/Cara-membuka-Internet-Positif-menggunakan-Chrome-12-23
 `.trim()
 	if(!args[1]) {
-	await conn.send2ButtonImg(m.chat, await(await fetch(cover)).buffer(), capton, watermark, 'Download PDF', `.${usedPrefix + command} ${args[0]} -d`, 'Read online', `.${usedPrefix + command} ${args[0]} -o`, m)
+	await conn.send2ButtonImg(m.chat, await(await fetch(cover)).buffer(), capton, watermark, 'Download PDF', `${usedPrefix + command} ${args[0]} -d`, 'Read online', `${usedPrefix + command} ${args[0]} -o`, m)
 	} else if(args[1] === '-d') {
 		m.reply('Sedang mengambil data.\nHarap tunggu sekitar 1~5 menit...')
 		for (let index = 0; index < array_page.length; index++) {
