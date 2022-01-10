@@ -33,7 +33,7 @@ node . (option)
 * Unduh & Instal ImageMagick [`Klik Disini`](https://imagemagick.org/script/download.php)
 ```
 git clone https://github.com/FadliDarmawan/haruno
-cd natsukawa
+cd haruno
 npm i
 node . (option)
 ```
