@@ -5,7 +5,8 @@ let handler = async(m, { conn, usedPrefix, args, command }) => {
     let [_, code] = args[0].match(ytIdRegex) || []
     if (!code) throw `URL salah! Fitur ini khusus untuk menndownload youtube shorts.\n\nContoh: ${usedPrefix + command} https://youtube.com/shorts/MHZe4akQVHI?feature=share`
     xa.Youtube(code)
-    .then(data => {
+    .then(data => { 
+        console.log(data)
         conn.sendFile(m.chat, data.medias[2].url, 'yts.mp4', watermark, m)
     })
 }
