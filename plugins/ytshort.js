@@ -6,7 +6,7 @@ let handler = async(m, { conn, usedPrefix, args, command }) => {
     if (!code) throw `URL salah! Fitur ini khusus untuk menndownload youtube shorts.\n\nContoh: ${usedPrefix + command} https://youtube.com/shorts/MHZe4akQVHI?feature=share`
     xa.Youtube(code)
     .then(data => { 
-        console.log(data)
+        console.log(args[0])
         conn.sendFile(m.chat, data.medias[2].url, 'yts.mp4', watermark, m)
     })
 }
