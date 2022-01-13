@@ -1,10 +1,17 @@
 let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 let handler = async(m, { conn, usedPrefix, args, command }) => {
-    if(!args[0]) throw `Harap masukkan username Instagram yang ingin di download highlight`
+    if(!args[0]) throw `Harap masukkan username Instagram yang ingin di download highlight.\n\nContoh: ${usedPrefix + command} nyancat.re`
     let res = await fetch(global.API('neoxr', '/api/igh', {q: args[0]}, 'apikey'))
     let hako = await res.json()
-    let teks = hako.data.map((v, i) => `{“title”: ${v.title}, “description”: "Pilih untuk mendownload.", “rowId”: ${usedPrefix}ighed ${args[0]} ${v.id}}`).join(', ')
+    let rows = []
+    hako.data.forEach((v, i)=> {
+        rows.push({
+          title: v.title,
+          description: `Silahkan pilih highlight yang ingin di download.`,
+          rowId: `${usedPrefix}ighed ${args[0]} ${v.id}`
+        })
+      })
     let name = conn.getName(m.sender)
     conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
         "listMessage": {
@@ -15,8 +22,8 @@ let handler = async(m, { conn, usedPrefix, args, command }) => {
           "listType": "SINGLE_SELECT",
           "sections": [
             {
-              "rows": [`${teks}`],
-            "title": "Informasi Bot"
+              "rows": rows,
+            "title": "Highlights Downloader"
         }
     ], "contextInfo": {
         "stanzaId": m.key.id,
