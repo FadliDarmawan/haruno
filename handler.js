@@ -175,12 +175,10 @@ module.exports = {
       let blockList = conn.blocklist.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid)
       if (blockList.includes(m.sender)) return // Pengguna yang diblokir tidak bisa menggunakan bot
       m.exp += Math.ceil(Math.random() * 10)
-      let hakoen = await fetch('https://raw.githubusercontent.com/FadliDarmawan/haruno-server/main/files/global.json')
-      let hako = await hakoen.json()
       let usedPrefix
       let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
 
-      let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || hako.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+      let isROwner = [global.conn.user.jid, ...global.owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       let isOwner = isROwner || m.fromMe
       let isPrems = isROwner || db.data.users[m.sender].premium
       if (!isPrems && !m.isGroup && global.db.data.settings.groupOnly) return
