@@ -9,7 +9,7 @@ let handler = async(m, { conn, usedPrefix, args, command }) => {
         rows.push({
           title: v.title,
           description: `Silahkan pilih highlight yang ingin di download.`,
-          rowId: `${usedPrefix}ighed ${args[0]} ${v.id}`
+          rowId: `${usedPrefix}highlight ${args[0]} ${v.id}`
         })
       })
     let name = conn.getName(m.sender)

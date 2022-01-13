@@ -6,5 +6,5 @@ let handler = async(m, { conn, args }) => {
     let img = await(await fetch(url)).buffer() 
     await conn.sendFile(m.chat, img,  'url',  watermark, m)
 }
-handler.command = /^ighed$/i
+handler.command = /^highlight$/i
 module.exports = handler
