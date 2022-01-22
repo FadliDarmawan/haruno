@@ -31,6 +31,7 @@ let handler = async(m, { conn, usedPrefix, text, command }) => {
       }
   }
     conn.relayWAMessage(conn.prepareMessageFromContent(m.chat, {
+        quoted: ftoko,
         "listMessage": {
           "title": `${ucapan()}, ${name}`.trim(),
           "description": `Silahkan pilih list opsi untuk mendownload doujin.`,
@@ -42,7 +43,11 @@ let handler = async(m, { conn, usedPrefix, text, command }) => {
               "rows": rows,
             "title": "Doujin Searcn"
         }
-    ], quoted: ftoko
+    ], "contextInfo": {
+        "stanzaId": m.key.id,
+        "participant": m.sender,
+        "quotedMessage": ftoko
+      }
     }
   }, {}), { waitForAck: true })
 }
