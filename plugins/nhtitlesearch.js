@@ -5,6 +5,7 @@ let handler = async(m, { conn, usedPrefix, text, command }) => {
     if(!text) throw `Harap masukkan query yang ingin di search!\n\nContoh: ${usedPrefix + command} Introvert Beauty Gets Raped Over and Over by Her Homeroom Tearcher`
     let doujin = await nhentai.search(text, 'popular-week', 1)
     let rows = []
+    let img = await(await fetch('https://telegra.ph/file/62b64de68cac87d1207a3.jpg')).buffer()
     doujin.forEach((v, i)=> {
         rows.push({
           title: `${i + 1}. ${v.title}`,
