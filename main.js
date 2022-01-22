@@ -18,7 +18,6 @@ try {
   low = require('./lib/lowdb')
 }
 const { Low, JSONFile } = low
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const rl = Readline.createInterface(process.stdin, process.stdout)
 const WAConnection = simple.WAConnection(_WAConnection)
 

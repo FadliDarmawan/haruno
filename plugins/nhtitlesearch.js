@@ -19,7 +19,7 @@ let handler = async(m, { conn, usedPrefix, text, command }) => {
       },
       message: {
           orderMessage: {
-              itemCount: 3287937,
+              itemCount: 2132879,
               itemCoun: 404,
               surface: 404,
               message: `© ${conn.user.name}`,
