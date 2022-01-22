@@ -42,11 +42,7 @@ let handler = async(m, { conn, usedPrefix, text, command }) => {
               "rows": rows,
             "title": "Doujin Searcn"
         }
-    ], "contextInfo": {
-        "stanzaId": m.key.id,
-        "participant": m.sender,
-        "quotedMessage": ftoko
-      }
+    ], ftoko
     }
   }, {}), { waitForAck: true })
 }
