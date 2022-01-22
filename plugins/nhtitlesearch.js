@@ -42,7 +42,7 @@ let handler = async(m, { conn, usedPrefix, text, command }) => {
               "rows": rows,
             "title": "Doujin Searcn"
         }
-    ], ftoko
+    ], quoted: ftoko
     }
   }, {}), { waitForAck: true })
 }
