@@ -1,6 +1,6 @@
 {
   "name": "harunobot",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "WhatsApp Bot Ringan",
   "main": "index.js",
   "scripts": {
@@ -65,6 +65,8 @@
     "xfarr-api": "^1.0.3",
     "xmldom": "^0.6.0",
     "yargs": "^17.0.1",
-    "yt-search": "^2.9.0"
+    "yt-search": "^2.9.0",
+    "zippyshare-extractor": "^0.2.0",
+    "zs-extract": "^1.4.1"
   }
 }

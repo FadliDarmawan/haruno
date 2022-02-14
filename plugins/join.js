@@ -2,7 +2,7 @@ let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})/i
 let fetch = require('node-fetch')
 
 let handler = async (m, { conn, args, usedPrefix, isPrems, isOwner, command }) => {
-    if (!args[0]) throw `Harap masukkan link group yang ingin dimasukkan bot nya.\n\nContoh: *${usedPrefix + command} https://chat.whatsapp.com/TIANANMEN1989`
+    if (!args[0]) throw `Harap masukkan link group yang ingin dimasukkan bot nya.\n\nContoh: *${usedPrefix + command} https://chat.whatsapp.com/Dqdjz7aSWJj0IyORAsdYom*`
     let [_, code] = args[0].match(linkRegex) || []
     let user = db.data.users[m.sender]
     if (!code) throw 'Link Salah'
@@ -10,7 +10,6 @@ let handler = async (m, { conn, args, usedPrefix, isPrems, isOwner, command }) =
         if (user.joincount === 1 ) throw `Kamu sudah melebihi token/limit memasukkan bot ke dalam group!`
         user.joincount += 1
         let res = await conn.acceptInvite(code)
-        db.data.chats[res.gid].trial = true
         m.reply('Joining group...').then(async() => {
             var jumlahHari = 86400000 * 1
             var now = new Date() * 1
