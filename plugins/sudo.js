@@ -1,6 +1,6 @@
 const { newMessagesDB } = require("@adiwajshing/baileys")
 
-let handler = async (m, { conn, text }) => {
+let handler = async (m, { conn, text, isGroup, isAdmin }) => {
   if (!text) throw false
   let who
   if (m.isGroup) who = m.mentionedJid[0]

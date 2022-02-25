@@ -19,18 +19,24 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
       usedServer = server
       break
     } catch (e) {
-      m.reply(`Server ${server} error!${servers.length >= i + 1 ? '' : '\nmencoba server lain...'}`)
+      m.reply(`Server ${server} error!${servers.length >= i + 1 ? '' : '\nTrying another server...'}`)
     }
   }
-  if (yt === false) throw 'semua server gagal'
-  if (yt2 === false) throw 'semua server gagal'
+  if (yt === false) throw 'No songs found. Try another keyword or as possible including song title and artist name!'
+  if (yt2 === false) throw 'No songs found. Try another keyword or as possible including song title and artist name!'
   let { dl_link, thumb, title, filesize, filesizeF } = yt
-  await conn.send2ButtonLoc(m.chat, await (await fetch(thumb)).buffer(), `
-*Judul:* ${title}
-*Ukuran File Audio:* ${filesizeF}
-*Ukuran File Video:* ${yt2.filesizeF}
-*Server y2mate:* ${usedServer}
-`.trim(), watermark, 'Audio', `.yta ${vid.url}`, 'Video', `.yt ${vid.url}`)
+  let th = await(await fetch(image)).buffer()
+  let thb = await(await fetch(thumb)).buffer()
+  await conn.reply(m.chat, `- Requested by @${m.sender.split`@`[0]}`, m, { thumbnail: th, contextInfo: { 
+    mentionedJid: [m.sender],
+    externalAdReply: {
+      mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+      title: 'Now Playing',
+      body: title,
+      thumbnail: thb
+    }
+  }})
+  await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m, true)
 }
 handler.help = ['play'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
