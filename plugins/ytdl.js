@@ -1,7 +1,7 @@
 var xa = require('xfarr-api')
 let fetch = require('node-fetch')
 let handler = async(m, { conn, usedPrefix, args, command }) => {
-    if (!args) throw `YoutubeのURLを入力してください! 例：${usedPrefix + command} https://youtu.be/vRPCAAUBMms [360/720]`
+    if (!args[0]) throw `YoutubeのURLを入力してください! 例：${usedPrefix + command} https://youtu.be/vRPCAAUBMms [360/720]`
     if (args[1] === '480') {
         m.reply(wait)
         let data = await xa.Youtube(args[0])
