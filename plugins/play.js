@@ -31,12 +31,12 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
     mentionedJid: [m.sender],
     externalAdReply: {
       mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
-      title: 'Now Playing',
+      title: 'Now playing',
       body: title,
       thumbnail: thb
     }
   }})
-  await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m, true)
+  await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m)
 }
 handler.help = ['play'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']

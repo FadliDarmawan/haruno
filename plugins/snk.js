@@ -20,14 +20,18 @@ Peraturan Haruno Bot
 5. Users diharap untuk tidak menyalah gunakan fitur fitur bot.
 
 Syarat Ketentuan Haruno Bot
-1. Bot akan keluar dari group apabila sudah waktunya keluar.
-2. Harunobot dapan mem-ban users secara sepihak terlepas dari users salah atau tidak.
-3. Harunobot *tidak akan bertanggungjawab atas apapun yang users lakukan terhadap fitur bot.*
-4. Harunobot akan memberlakukan hukuman: block atau ban terhadap users yang melanggar peraturan.
-5. Harunobot bertanggung jawab atas kesalahan fatal dalam programing maupun owner.
+1. Harunobot dapan mem-ban users secara sepihak terlepas dari users salah atau tidak.
+2. Harunobot *tidak akan bertanggungjawab atas apapun yang users lakukan terhadap fitur bot.*
+3. Harunobot akan memberlakukan hukuman: block atau ban terhadap users yang melanggar peraturan.
+4. Harunobot bertanggung jawab atas kesalahan fatal dalam programing maupun owner.
+
+Request fitur, kritik saran, atau laporan bug silahkan chat ke owner.
 
 -Haruno
 -Fadli
+-Zaki
+-Rafli
+-Riyu
 
 Peraturan: 1 Oktober 2021
 `.trim()
