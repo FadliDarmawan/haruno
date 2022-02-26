@@ -37,9 +37,9 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
        thumbnail: thb
      }
    }})
-  if (o === 'vn') {
+  if (o === ' vn') {
     await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m, true)
-  } else if (!o || o === 'audio') {
+  } else if (!o || o === ' audio') {
     await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m)
   }
 }
