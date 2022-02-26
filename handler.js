@@ -134,7 +134,7 @@ module.exports = {
           if (!'self' in settings) settings.self = false
           if (!'backup' in settings) settings.backup = true
           if (!isNumber(settings.backupDB)) settings.backupDB = 0
-          if (!'trial' in settings) settings.trial = false
+          if (!'nhentai' in settings) settings.nhentai = false
         } else global.db.data.settings[this.user.jid] = {
           anon: true,
           anticall: true,
@@ -149,7 +149,7 @@ module.exports = {
           backupDB: 0,
           statusUpdate: false,
           status: 0,
-          trial: false,
+          nhentai: true,
         }
       } catch (e) {
         console.error(e)

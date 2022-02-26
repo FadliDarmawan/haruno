@@ -43,6 +43,7 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
     'pc',
     'public',
     'restrict',
+    'nhentai'
   ]
   switch (type) {
     // users
@@ -281,7 +282,13 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         dfail('owner', m, conn)
         throw false
       }
-      set.antitroli = isEnable
+    case 'nhentai':
+      isAll = true
+      if (!isOwner) {
+        dfail('owner', m, conn)
+        throw false
+      }
+      set.nhentai = isEnable
       break
     case 'jadibot':
       isAll = true
