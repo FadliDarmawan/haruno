@@ -6,7 +6,7 @@ let fs = require('fs')
 
 let handler = async(m, { conn, usedPrefix, command, args }) => {
 	if(!args[0]) throw `Masukkan kode nya!\n\nContoh: ${usedPrefix + command} 257326`
-	if (!db.data.settings[this.user.jid].antitroli) throw `Fitur ini tidak aktif. https://hiken.xyz/v/${args[0]}`
+	if (!db.data.settings.nhentai) throw `Fitur ini tidak aktif. https://hiken.xyz/v/${args[0]}`
 	let count = 0
 	let ResultPdf = []
 	let doujin = await nhentai.getDoujin(args[0])
