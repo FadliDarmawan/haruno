@@ -2,9 +2,10 @@ const { servers, yta, ytv } = require('../lib/y2mate')
 let yts = require('yt-search')
 let fetch = require('node-fetch')
 let handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) throw `Harap masukkan query!\n\nContoh: ${usedPrefix + command} yanagi nagi one's hope`
+  let [t, o] = text.split`,`
+  if (!t) throw `Harap masukkan query!\n\nContoh: ${usedPrefix + command} yanagi nagi one's hope`
   let chat = global.db.data.chats[m.chat]
-  let results = await yts(text)
+  let results = await yts(t)
   let vid = results.all.find(video => video.seconds < 3600)
   if (!vid) throw 'Konten Tidak ditemukan'
   let isVideo = /2$/.test(command)
@@ -30,13 +31,17 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
   await conn.reply(m.chat, `- Requested by @${m.sender.split`@`[0]}`, m, { thumbnail: th, contextInfo: { 
     mentionedJid: [m.sender],
     externalAdReply: {
-      mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
-      title: 'Now playing',
-      body: title,
-      thumbnail: thb
-    }
-  }})
-  await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m)
+       mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+       title: 'Now playing',
+       body: title,
+       thumbnail: thb
+     }
+   }})
+  if (o === 'vn') {
+    await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m, true)
+  } else if (!o || o === 'audio') {
+    await conn.sendFile(m.chat, dl_link, `${title}` + '.mp3', null, m)
+  }
 }
 handler.help = ['play'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
