@@ -4,7 +4,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let res = await fetch(global.API('zeks', '/api/pinimg', {
     q: text
   }, 'apikey'))
-  if (!res.ok) throw eror
+  if (!res.ok) throw res
   let json = await res.json()
   if (!json.status) throw json
   let pint = json.data[Math.floor(Math.random() * json.data.length)];
