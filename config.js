@@ -1,5 +1,5 @@
 let fs = require('fs')
-global.owner = ['628112958665', '6288215569001','628998512588', '6283175998566', '6285693602003', '6283153189868'] // Letakan nomor kamu disini
+global.owner = ['628112958665', '6288215569001','628998512588', '6283175998566', '6285693602003'] // Letakan nomor kamu disini
 global.APIs = { // API Prefix
   // nama: 'https://website'
   jonaz: 'https://jonaz-api-v2.herokuapp.com',
@@ -9,7 +9,7 @@ global.APIs = { // API Prefix
   xteam: 'https://api.xteam.xyz',
   zahir: 'https://zahirr-web.herokuapp.com',
   zekais: 'http://zekais-api.herokuapp.com',
-  zeks: 'https://api.zeks.xyz',
+  zeks: 'https://zeks.me',
   vhtear: 'https://api.vhtear.com',
   lolhum: 'https://api.lolhuman.xyz',
   bx: 'https://bx-hunter.herokuapp.com',
@@ -21,7 +21,7 @@ global.APIKeys = { // APIKey nya disini
   'https://pencarikode.xyz': 'APIKEY',
   'https://api.xteam.xyz': 'HIRO',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
-  'https://api.zeks.xyz': 'FVe0JFCdME58YSKmhoDWdRtyuJt',
+  'https://zeks.me': 'FVe0JFCdME58YSKmhoDWdRtyuJt',
   'https://api.lolhuman.xyz': '929b48b9aa5a91abed8526cd',
   'https://api.vhtear.com': 'sayahafiz',
   'http://zekais-api.herokuapp.com': 'grqgD6pU',
