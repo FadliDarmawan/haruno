@@ -8,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   let json = await res.json()
   if (!json.status) throw json
   let pint = json.data[Math.floor(Math.random() * json.data.length)];
-  await conn.sendButtonImg(m.chat, await (await fetch(pint)).buffer(), text, watermark, 'Cari lagi', `.pinterest ${text}`)
+  await conn.sendButtonImg(m.chat, await (await fetch(pint)).buffer(), text, watermark, 'Cari lagi', `.pinterest ${text}`, m)
 }
 handler.help = ['pinterest <pencarian>']
 handler.tags = ['internet']
