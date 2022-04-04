@@ -16,7 +16,7 @@ let thumbnail = await(await fetch(json.result.image[0])).buffer()
 let poi = await(await fetch(thumbfoto)).buffer()
 await conn.reply(m.chat, ayaka, m, { contextInfo: {
   externalAdReply: {
-    mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+    sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
     title: 'Doujin Downloader',
     body: `Code: ${args[0]}`,
     thumbnail: thumbnail
@@ -25,7 +25,7 @@ await conn.reply(m.chat, ayaka, m, { contextInfo: {
 })
 await conn.reply(m.chat, 'Uploading...', m, { contextInfo: {
   externalAdReply: {
-    mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+    sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
     title: 'Doujin Downloader',
     body: `Code: ${args[0]}`,
     thumbnail: thumbnail

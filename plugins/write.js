@@ -5,6 +5,8 @@ let handler = async(m, { conn, usedPrefix, args, command }) => {
 ├ document
 ├ text
 └────
+
+Gunakan text untuk format text, dan document untuk format document di whatsapp.
 `.trim()
     if (!args[0]) throw teks
     if (args[0] === 'document') {

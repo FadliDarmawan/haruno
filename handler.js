@@ -44,6 +44,7 @@ module.exports = {
           if (!('banned' in user)) user.banned = false
           if (!('level' in user)) user.level = 0
           if (!('premium' in user)) user.premium = false
+          if (!('firstchat' in user)) user.firstchat = false
           if (!isNumber(user.premiumTime)) user.premiumTime = 0
           if (!('role' in user)) user.role = ''
           if (!isNumber(user.joincount)) user.joincount = 0
@@ -67,6 +68,7 @@ module.exports = {
           level: 0,
           premium: false,
           premiumTime: 0,
+          firstchat: false,
           role: '',
           joincount: 0,
           call: 0,
@@ -414,7 +416,7 @@ module.exports = {
                 this.reply(jid, text, 0, { thumbnail: kai, contextInfo: {
                 mentionedJid: [user],
                 externalAdReply: {
-                  mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+                  sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
                   title: action === 'add' ? wel : lea,
                   body: 'Haruno Bot',
                   thumbnail: pp

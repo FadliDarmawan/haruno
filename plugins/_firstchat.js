@@ -7,22 +7,23 @@ handler.all = async function (m) {
     if (m.chat.endsWith('broadcast')) return
     if (m.fromMe) return
     if (m.isGroup) return
+    if (!user.firstchat) return
     if (db.data.settings.groupOnly) return
     let user = global.db.data.users[m.sender]
     let name = conn.getName(m.sender)
-    if (new Date - user.pc < 86400000) return // setiap 24 jam sekali
-    await conn.send2ButtonLoc(m.chat, await(await fetch(thumbfoto)).buffer(), `
+    await conn.send2ButtonImg(m.chat, await(await fetch('https://telegra.ph/file/b32e52b09508f1737a760.jpg')).buffer(), `
 *Hi ${name}, ${ucapan()}*
-Saya adalah Haruno Bot salah satu bot WhatsApp.
+Perkenalkan aku adalah Haruno bot!
 
-*Harap untuk tidak menelpon, meminta save, atau spam dalam penggunaan bot*
-Silahkan baca rules dan mematuhi rules demi kenyamanan kita bersama.
-Terimakasih
+Kamu bisa menggunakan Haruno untuk membuat sticker, mendownload video youtube, facebook, tiktok, instagram, atau hanya sekedar bersenang senang! Fitur selengkapnya tentang Haruno bisa di lihat di *.menu*
 
-*Bot bukan manusia, chat selain yang terdaftar di .menu tidak akan direspon!*
-Jika ada kendala silahkan hubungi owner.
-`.trim(), watermark, 'Menu', '.?', 'Rules', '.rules')
-    user.pc = new Date * 1
+Kami tidak akan melakukan spam broadcast ke users.
+
+Jangan lupa patuhi rules, dan harap tidak menelpon, vc, spam, mengirimkan bug atau virtex ke nomor bot.
+Jika ada bug atau hal yang ingin ditanyakan silahkan menghubungi owner.
+Terimakasih!
+`.trim(), watermark, 'Menu', '.?', 'Owner', '.owner')
+    user.firstchat = false
 }
 
 module.exports = handler
@@ -30,16 +31,16 @@ function ucapan() {
     const time = moment.tz('Asia/Jakarta').format('HH')
     res = "Selamat dinihari"
     if (time >= 4) { 
-        res = "Selamat pagi"
+        res = "Ohayou!"
     }
     if (time > 10) {
-        res = "Selamat siang"
+        res = "Konnichiwa!"
     }
     if (time >= 15) {
-        res = "Selamat sore"
+        res = "Konnichiwa!"
     }
     if (time >= 18) {
-        res = "Selamat malam"
+        res = "Konbanwa!"
     }
     return res
 }

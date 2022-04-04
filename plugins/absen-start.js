@@ -4,9 +4,9 @@ let handler = async (m, { conn, usedPrefix, text, isAdmin, isOwner }) => {
     }
     conn.absen = conn.absen ? conn.absen : {}
     let id = m.chat
-    if (id in conn.absen) return await conn.sendButton(m.chat, `Masih ada absen di chat ini!`, watermark, 'Hapus', `${usedPrefix}-absen`, conn.absen[id][0])
+    if (id in conn.absen) return await conn.sendButton(m.chat, `Masih ada absen di chat ini. Ingin hapus absen?`, watermark, 'Hapus absen', `${usedPrefix}-absen`, conn.absen[id][0])
     conn.absen[id] = [
-        await conn.sendButton(m.chat, `Absen dimulai`, watermark, 'Absen', `${usedPrefix}absen`, m),
+        await conn.sendButton(m.chat, `Absen dimulai.`, watermark, 'Absen', `${usedPrefix}absen`, m),
         [],
         text
     ]

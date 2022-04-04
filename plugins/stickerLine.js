@@ -21,7 +21,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         await conn.sendMessage(m.chat, stiker, MessageType.sticker)
         await delay(1500)
     }
-    m.reply('_*Selesai*_')
+    m.reply('Selesai.')
 
 }
 handler.help = ['stikerline <url>']

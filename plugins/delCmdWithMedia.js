@@ -5,7 +5,7 @@ module.exports = Object.assign(async function handler(m, { text }) {
     let sticker = global.db.data.sticker
     if (sticker[hash] && sticker[hash].locked) throw 'Kamu tidak memiliki izin untuk menghapus perintah stiker ini'
     delete sticker[hash]
-    m.reply(`Berhasil!`)
+    m.reply(`Berhasil.`)
 }, {
     help: ['cmd'].map(v => 'del' + v + ' <teks>'),
     tags: ['database'],

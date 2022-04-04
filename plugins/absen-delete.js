@@ -4,9 +4,9 @@ let handler = async (m, { conn, usedPrefix, isAdmin, isOwner }) => {
     }
     let id = m.chat
     conn.absen = conn.absen ? conn.absen : {}
-    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `Tidak ada absen berlangsung!`, watermark, 'Mulai', `${usedPrefix}+absen`, m)
+    if (!(id in conn.absen)) return await conn.sendButton(m.chat, `Tidak ada absen berlangsung. Ingin memulai absen?`, watermark, 'Mulai absen', `${usedPrefix}+absen`, m)
     delete conn.absen[id]
-    m.reply(`berhasil menghapus sesi absen!`)
+    m.reply(`Berhasil menghapus sesi absen.`)
 }
 handler.help = ['hapusabsen']
 handler.tags = ['absen']

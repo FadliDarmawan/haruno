@@ -19,26 +19,19 @@ let handler = async (m, { conn, participants, groupMetadata, text }) => {
 
         if (text) return m.reply(msToDate(expired - new Date() * 1))
 
-        let caption = `*Informasi Grup*\n
-*ID:* 
-${groupMetadata.id}
+        let caption = `
+Informasi Grup
 
-*Nama:* 
-${groupMetadata.subject}
 
-*Deskripsi:* 
-${groupMetadata.desc}
-
-*Total Anggota:*
-${participants.length} Anggota
-
-*Pembuat Grup:* 
-@${m.chat.split`-`[0]}
-
-*Admin Grup:*
+ID: ${groupMetadata.id}
+Nama: ${groupMetadata.subject}
+Deskripsi: ${groupMetadata.desc}
+Total Anggota: ${participants.length} Anggota
+Pembuat Grup: @${m.chat.split`-`[0]}
+Admin Grup:
 ${listAdmin}
 
-*Pengaturan Bot:*
+Pengaturan Bot:
 ${antiLink ? '✅' : '❌'} Anti Link
 ${global.db.data.chats[m.chat].delete ? '❌' : '✅'} Anti Delete
 ${isBanned ? '✅' : '❌'} Banned
@@ -47,13 +40,13 @@ ${detect ? '✅' : '❌'} Detect
 ${stiker ? '✅' : '❌'} Stiker
 ${welcome ? '✅' : '❌'} Welcome
 
-*Pengaturan Pesan Bot:*
+Pengaturan Pesan Bot:
 Welcome: ${sWelcome}
 Bye: ${sBye}
 Promote: ${sPromote}
 Demote: ${sDemote}
 
-*Tersisa:*
+Tersisa:
 ${msToDate(expired - new Date() * 1)}
 `.trim()
         let mentionedJid = groupAdmins.concat([`${m.chat.split`-`[0]}@s.whatsapp.net`])

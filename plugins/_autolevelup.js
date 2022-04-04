@@ -26,7 +26,7 @@ handler.before = async function (m) {
                 this.reply(m.chat, text, m, { thumbnail: kai, contextInfo: {
                         mentionedJid: [who],
                         externalAdReply: {
-                          mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+                          sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
                           title: 'Levelup!',
                           body: 'Haruno Bot',
                           thumbnail: pp

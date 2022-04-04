@@ -177,14 +177,14 @@ global.reload = (_event, filename) => {
     let dir = path.join(pluginFolder, filename)
     if (dir in require.cache) {
       delete require.cache[dir]
-      if (fs.existsSync(dir)) conn.logger.info(`kembali - memerlukan plugin '${filename}'`)
+      if (fs.existsSync(dir)) conn.logger.info(`Mengupdate plugin '${filename}'`)
       else {
-        conn.logger.warn(`plugin yang dihapus '${filename}'`)
+        conn.logger.warn(`Menghapus plugin '${filename}'`)
         return delete global.plugins[filename]
       }
-    } else conn.logger.info(`membutuhkan plugin baru '${filename}'`)
+    } else conn.logger.info(`Membuat plugin baru '${filename}'`)
     let err = syntaxerror(fs.readFileSync(dir), filename)
-    if (err) conn.logger.error(`kesalahan sintaks saat memuat '${filename}'\n${err}`)
+    if (err) conn.logger.error(`Syntax Error '${filename}'\n${err}`)
     else try {
       global.plugins[filename] = require(dir)
     } catch (e) {

@@ -4,7 +4,7 @@ let handler = async (m, { conn, args }) => {
     })
     let sortedP = users.map(toNumber('premiumTime')).sort(sort('premiumTime'))
     let len = args[0] && args[0].length > 0 ? Math.min(100, Math.max(parseInt(args[0]), 10)) : Math.min(10, sortedP.length)
-    let { key } = await m.reply(`┌「 Premium 」
+    let { key } = await m.reply(`┌〔 Premium list 〕
   ${sortedP.slice(0, len).map(({ jid, name, premiumTime, registered }, i) => `├ ${i + 1}. ( ${conn.msToDate(premiumTime - new Date() * 1)} ) ${registered ? name : conn.getName(jid)}`).join`\n`}
   └────`.trim())
     setTimeout(() => {

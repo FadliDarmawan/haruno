@@ -6,7 +6,7 @@ let fs = require('fs')
 
 let handler = async(m, { conn, usedPrefix, command, args }) => {
 	if(!args[0]) throw `Masukkan kode nya!\n\nContoh: ${usedPrefix + command} 257326`
-	if (!db.data.settings.nhentai) throw `Fitur ini tidak aktif. https://hiken.xyz/v/${args[0]}`
+	if (!db.data.settings[conn.user.jid].nhentai) throw `Fitur ini tidak aktif. https://hiken.xyz/v/${args[0]}`
 	let count = 0
 	let ResultPdf = []
 	let doujin = await nhentai.getDoujin(args[0])
@@ -35,7 +35,7 @@ Favorited: ${doujin.favourites}
 	if(!args[1]) {
 	await conn.send2ButtonImg(m.chat, await(await fetch(cover)).buffer(), capton, watermark, 'Download PDF', `${usedPrefix + command} ${args[0]} -d`, 'Read online', `${usedPrefix + command} ${args[0]} -o`, m)
 	} else if(args[1] === '-d') {
-		m.reply('Sedang mengambil data.\nHarap tunggu sekitar 1~5 menit...')
+		m.reply('Sedang mengunduh data.\nHarap tunggu sekitar 1~5 menit...')
 		for (let index = 0; index < array_page.length; index++) {
 			if (!fs.existsSync('./nhentai')) fs.mkdirSync('./nhentai')
 			let image_name = './nhentai/' + title + index + '.jpg'

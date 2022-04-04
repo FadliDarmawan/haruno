@@ -12,17 +12,14 @@ let handler = async (m, { conn, text }) => {
 Group Link Inspector
 
 ${res.id}
-*Judul:* ${res.subject}
-*Dibuat* oleh @${res.id.split('-')[0]} pada *${formatDate(res.creation * 1000)}*${res.subjectOwner ? `
-*Judul diubah* oleh @${res.subjectOwner.split`@`[0]} pada *${formatDate(res.subjectTime * 1000)}*`: ''}${res.descOwner ? `
-*Deskripsi diubah* oleh @${res.descOwner.split`@`[0]} pada *${formatDate(res.descTime * 1000)}*` : ''}
-*Jumlah Member:* ${res.size}
-*Member yang diketahui join*: ${res.participants ? '\n' + res.participants.map((user, i) => ++i + '. @' + user.id.split`@`[0]).join('\n').trim() : 'Tidak ada'}
-${res.desc ? `*Deskripsi:*
-${res.desc}` : '*Tidak ada Deskripsi*'}
-
-*JSON Version*
-\`\`\`${JSON.stringify(res, null, 1)}\`\`\`
+Judul: ${res.subject}
+Dibuat oleh @${res.id.split('-')[0]} pada ${formatDate(res.creation * 1000)}${res.subjectOwner ? `
+Judul diubah oleh @${res.subjectOwner.split`@`[0]} pada ${formatDate(res.subjectTime * 1000)}`: ''}${res.descOwner ? `
+Deskripsi diubah oleh @${res.descOwner.split`@`[0]} pada ${formatDate(res.descTime * 1000)}` : ''}
+Jumlah Member: ${res.size}
+Member yang diketahui join: ${res.participants ? '\n' + res.participants.map((user, i) => ++i + '. @' + user.id.split`@`[0]).join('\n').trim() : 'Tidak ada'}
+${res.desc ? `Deskripsi:
+${res.desc}` : 'Tidak ada Deskripsi'}
 `.trim()
   let pp = await conn.getProfilePicture(res.id).catch(console.error)
   if (pp) conn.sendFile(m.chat, pp, 'pp.jpg', null, m)

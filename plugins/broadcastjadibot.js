@@ -8,9 +8,9 @@ let handler = async (m, { conn, usedPrefix, text }) => {
     await delay(1500)
     await conn.copyNForward(id, content, true)
   }
-  conn.reply(m.chat, `_Berhasil mengirim broadcast ke ${users.length} nomor yang jadi bot_
+  conn.reply(m.chat, `Berhasil mengirim broadcast ke ${users.length} nomor yang jadi bot.
 ${users.map(v => 'wa.me/' + v.replace(/[^0-9]/g, '') + `?text=${encodeURIComponent(usedPrefix)}menu`).join('\n')}
-\nestimasi selesai ${users.length * 1.5} detik`.trim(), m)
+\nEstimasi selesai ${users.length * 1.5} detik.`.trim(), m)
 }
 handler.help = ['broadcastjadibot', 'bcbot'].map(v => v + ' <teks>')
 handler.tags = ['host']

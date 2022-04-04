@@ -15,14 +15,13 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         }
         if (user.jid in global.db.data.users) isInDatabase = true
         let str = ` 
-*Nama:* ${conn.getName(user.jid)}
-*Nomor:* ${splitM(user.jid)}
-*Mention:* ${toM(user.jid)}
-*Api:* wa.me/${splitM(user.jid)}
-*Jid:* ${user.jid}
-*Whatsapp Bussines:* ${user.isBusiness ? '✅' : '❌'}
-*Di Database:* ${isInDatabase ? '✅' : '❌'}
-*Grup Yang Sama Dengan BOT:* ${sameGroup.length} *Grup*
+Nama: ${conn.getName(user.jid)}
+Nomor: ${splitM(user.jid)}
+Mention: ${toM(user.jid)}
+Link: wa.me/${splitM(user.jid)}
+Id: ${user.jid}
+Whatsapp Bussines: ${user.isBusiness ? '✅' : '❌'}
+Mutual grup: ${sameGroup.length} Grup
 `.trim()
         m.reply(str, m.chat, {
             contextInfo: {

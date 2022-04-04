@@ -8,7 +8,7 @@ handler.all = async function (m) {
             includeStarred: false
         }).catch(console.log)
         this.sendButton(global.owner[0] + '@s.whatsapp.net', `
-Pelaku pengirim troli @${m.sender.split`@`[0]}
+Pengirim troli: @${m.sender.split`@`[0]}
 ID: ${m.isGroup ? m.chat : m.sender}
 Nama: ${m.isGroup ? this.getName(m.chat) : this.getName(m.sender)}
 `.trim(), 'Disable antitroli', '.0 antitroli', null, { contextInfo: { mentionedJid: [m.sender] } })

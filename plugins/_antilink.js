@@ -9,7 +9,7 @@ handler.before = async function (m, { isAdmin, isBotAdmin }) {
   if (chat.antilink && isGroupLink && !isAdmin && m.isGroup) {
     if (isBotAdmin) var thisGroup = `https://chat.whatsapp.com/${await this.groupInviteCode(m.chat)}`
     if (m.text.includes(thisGroup)) return
-    await this.sendButton(m.chat, `*link grup terdeteksi!*${isBotAdmin ? '' : `\n\nbot bukan admin`}`, watermark, 'matikan fitur ini', '.0 antilink', m)
+    await this.sendButton(m.chat, `*link grup terdeteksi!*${isBotAdmin ? '' : `\n\nbot bukan admin`}`, watermark, 'Disable antilink', '.0 antilink', m)
     if (db.data.settings[this.user.jid].restrict) {
       if (isBotAdmin) this.groupRemove(m.chat, [m.sender])
     }

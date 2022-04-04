@@ -1,14 +1,14 @@
 let handler = async (m, { conn, args, usedPrefix }) => {
   conn.math = conn.math ? conn.math : {}
   if (args.length < 1) return await conn.send2Button(m.chat, `
-┌─「 Mode 」
+┌─〔 Mode 〕
 ├ ${Object.keys(modes).join('\n├ ')}
 └────
 contoh: ${usedPrefix}math hard
 `.trim(), watermark, 'Easy', '.math easy', 'Medium', '.math medium', m)
   let mode = args[0].toLowerCase()
   if (!(mode in modes)) return await conn.send2Button(m.chat, `
-┌─「 Mode 」
+┌─〔 Mode 〕
 ├ ${Object.keys(modes).join('\n├ ')}
 └────
 contoh: ${usedPrefix}math hard

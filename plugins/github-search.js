@@ -9,13 +9,16 @@ let handler = async (m, { text, command, usedPrefix }) => {
     let str = json.items.map((repo, index) => {
         return `
 ${1 + index}. *${repo.full_name}*${repo.fork ? ' (fork)' : ''}
-_${repo.html_url}_
-_Dibuat pada *${formatDate(repo.created_at)}*_
-_Terakhir update pada *${formatDate(repo.updated_at)}*_
-👁  ${repo.watchers}   🍴  ${repo.forks}   ⭐  ${repo.stargazers_count}
-${repo.open_issues} Issue${repo.description ? `
-*Deskripsi:*\n${repo.description}` : ''}
-*Clone:* \`\`\`$ git clone ${repo.clone_url}\`\`\`
+${repo.html_url}
+Dibuat pada: ${formatDate(repo.created_at)}
+Terakhir update pada: ${formatDate(repo.updated_at)}
+Watchers: ${repo.watchers}
+Forks: ${repo.forks}
+Stargazers: ${repo.stargazers_count}
+Issues: ${repo.open_issues}
+${repo.description ? `
+Deskripsi:\n${repo.description}` : ''}
+Clone: \`\`\`$ git clone ${repo.clone_url}\`\`\`
 `.trim()
     }).join('\n\n')
     m.reply(str)

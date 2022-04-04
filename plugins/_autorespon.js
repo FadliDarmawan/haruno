@@ -1,5 +1,7 @@
 let fs = require('fs')
 let fetch = require('node-fetch')
+let { sticker } = require('../lib/sticker')
+let { MessageType } = require('@adiwajshing/baileys')
 let handler = m => m
 
 handler.all = async function (m, { isBlocked }) {
@@ -8,20 +10,17 @@ handler.all = async function (m, { isBlocked }) {
     if (m.isBaileys) return
     if (m.chat.endsWith('broadcast')) return
     let setting = db.data.settings[this.user.jid]
-    let { isBanned } = db.data.chats[m.chat]
-    let { banned } = db.data.users[m.sender]
     let name = conn.user.name
 
     // ketika ditag
     try {
         if (m.mentionedJid.includes(this.user.jid) && m.isGroup) {
-            await this.send2Button(m.chat,
-                isBanned ? `${name} lagi tidur` : banned ? 'kamu dibanned' : `${name} disini`,
-                watermark,
-                isBanned ? 'Unban' : banned ? 'Pemilik Bot' : 'Menu',
-                isBanned ? '.unban' : banned ? '.owner' : '.?',
-                m.isGroup ? 'Ban' : isBanned ? 'Unban' : 'Donasi',
-                m.isGroup ? '.ban' : isBanned ? '.unban' : '.donasi', m)
+            let image = ['', 'https://telegra.ph/file/a4032ee83c44bc712b085.png', 'https://telegra.ph/file/58e79875fa91a992726d7.png', 'https://telegra.ph/file/b7b7c9bcc8b97e2171f97.png', 'https://telegra.ph/file/e808c24abb86c7500f4b1.png', 'https://telegra.ph/file/0f455c0cbbd6aeeff283f.png', 'https://telegra.ph/file/a595a3bedd97355650a8a.png', 'https://telegra.ph/file/bfbc81cd603d893952def.png', 'https://telegra.ph/file/44f2d562660f5849677a6.png', 'https://telegra.ph/file/4fd06cd5b884e3a80ba7b.png', 'https://telegra.ph/file/e16c377c3655d6fd79954.png', 'https://telegra.ph/file/70440fb145823d4aaa80d.png', 'https://telegra.ph/file/762e538b6a3a9345661d9.png']
+            let selectedimage = image[Math.floor(Math.random() * image.length)]
+            stiker = await sticker(false, selectedimage, global.packname, globa.author)
+            await this.sendMessage(m.chat, stiker, MessageType.sticker, {
+                quoted: m
+            })
         }
     } catch (e) {
         return
@@ -29,7 +28,8 @@ handler.all = async function (m, { isBlocked }) {
 
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
-        await this.send3ButtonLoc(m.chat, await(await fetch(thumbfoto)).buffer(), `Undang ${conn.user.name} ke Group
+        let pp = await(await fetch(image)).buffer()
+        await this.reply(m.chat, `Undang ${conn.user.name} ke Group
 
 *Trial Free*
 Ketik *.join <link gc>* dan bot akan masuk ke group. setelah 12 jam trial bot akan keluar.
@@ -51,7 +51,14 @@ Users premium dapat memasukkan bot ke dalam group sebanyak 3 kali, bot akan otom
 Silahkan kontak/hubungi owner jika mau mulai menyewa/berlangganan/ada yang mau di tanyakan.
 Pembayaran bisa melalui: Gopay, Dana, OVO, Pulsa (XL)
 
-`, watermark, 'Owner', '.creator', 'Sewa', '.sewa', 'Join', '.join', m)
+`, m, { contextInfo: {
+    externalAdReply: {
+        sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
+            title: 'Undang ke group',
+            body: 'Haruno Bot',
+            thumbnail: pp
+            }
+        }})
     }
 
     // salam

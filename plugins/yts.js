@@ -5,22 +5,22 @@ let handler = async (m, { text, usedPrefix, command }) => {
   let teks = results.all.map(v => {
     switch (v.type) {
       case 'video': return `
-*${v.title}* (${v.url})
+Judul: ${v.title}
+Link: ${v.url}
 Durasi: ${v.timestamp}
-Diupload ${v.ago}
-${v.views} Penonton
+Diupload: ${v.ago}
+Penonton: ${v.views}
       `.trim()
       case 'channel': return `
-*${v.name}* (${v.url})
-_${v.subCountLabel} (${v.subCount}) Subscriber_
-${v.videoCount} video
+Nama: ${v.name}
+Link: ${v.url}
+Subscriber: ${v.subCountLabel} (${v.subCount})
+Video: ${v.videoCount}
 `.trim()
     }
-  }).filter(v => v).join('\n========================\n')
+  }).filter(v => v).join('\n────────────────────\n')
   m.reply(teks)
 }
 handler.help = ['', 'earch'].map(v => 'yts' + v + ' <pencarian>')
 handler.tags = ['internet']
 handler.command = /^yts(earch)?$/i
-
-module.exports = handler

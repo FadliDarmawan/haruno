@@ -35,7 +35,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
   if (!text) throw `Harap masukkan query!\n\nContoh: ${usedPrefix + command} nodejs`
   wikipedia(`${text}`).then(res => {
     m.reply(res.result.isi)
-  }).catch(() => { m.reply(`${text} tidak ditemukan!`) })
+  }).catch(() => { m.reply(`${text} tidak ditemukan.`) })
 }
 handler.help = ['wikipedia <pencarian>']
 handler.tags = ['internet']

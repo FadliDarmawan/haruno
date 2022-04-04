@@ -21,7 +21,7 @@ Joincount: *${user.joincount}*
     } finally {
       await conn.reply(m.chat, caption, m, { contextInfo: {
         externalAdReply: {
-          mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+          sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
           title: user.name,
           body: 'Haruno Bot',
           thumbnail: pp

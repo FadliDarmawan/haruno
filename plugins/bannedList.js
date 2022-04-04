@@ -21,5 +21,6 @@ let handler = async (m, { conn, isOwner }) => {
 handler.help = ['bannedlist']
 handler.tags = ['info']
 handler.command = /^listban(ned)?|ban(ned)?list|daftarban(ned)?$/i
+handler.owner = true
 
 module.exports = handler

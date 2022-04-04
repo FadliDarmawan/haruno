@@ -21,7 +21,7 @@ malik
 1 - 1594
 muslim
 1 - 5362`
-    if (!args[1] || isNaN(args[1])) throw `hadis yang ke berapa?\n\ncontoh:\n${usedPrefix + command} muslim 1`
+    if (!args[1] || isNaN(args[1])) throw `Hadis yang ke berapa?\n\ncontoh: ${usedPrefix + command} muslim 1`
     try {
         let res = await fetch(`https://islamic-api-indonesia.herokuapp.com/api/data/json/hadith/${args[0]}`)
         if (!res.ok) throw eror

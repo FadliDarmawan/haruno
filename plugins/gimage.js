@@ -4,10 +4,10 @@ let gis = promisify(_gis)
 let fetch = require('node-fetch')
 
 let handler = async (m, { conn, text, command, usedPrefix }) => {
-  if (!text) throw `Masukkan query sebagai parameter!\n\nContoh: ${usedPrefix + command} tiananmen square 1989`
+  if (!text) throw `Masukkan query sebagai parameter!\n\nContoh: ${usedPrefix + command} loli neko kawaii`
   let results = await gis(text) || []
   let { url, width, height } = pickRandom(results) || {}
-  if (!url) throw `${text} tidak ditemukan!`
+  if (!url) throw `${text} tidak ditemukan.`
   conn.sendFile(m.chat, url, 'gimage', '', m, 0, { thumbnail: await (await fetch(url)).buffer() })
 }
 handler.help = ['gimage <pencarian>', 'image <pencarian>']

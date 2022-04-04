@@ -6,8 +6,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let res = await fetch(API('https://islamic-api-indonesia.herokuapp.com', '/api/data/quran', { surah: args[0], ayat: args[1] }))
     if (!res.ok) throw eror
     let json = await res.json()
-    if (json.status != 'OK.') return m.reply(json.result.message)
-    m.reply(conn.format(json))
     let mes = `
 ${json.result.data.text.arab}
     

@@ -21,7 +21,7 @@ let handler = async (m, { conn, usedPrefix }) => {
       await conn.reply(m.chat, text, m, { thumbnail: kai, contextInfo: {
         mentionedJid: [who],
         externalAdReply: {
-          mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+          sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
           title: 'Kurang dikit lagi!',
           body: 'Haruno Bot',
           thumbnail: pp
@@ -35,7 +35,7 @@ let handler = async (m, { conn, usedPrefix }) => {
       await conn.reply(m.chat, text, m, { thumbnail: kai, contextInfo: {
         mentionedJid: [who],
         externalAdReply: {
-          mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+          sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
           title: 'Levelup!',
           body: 'Haruno Bot',
           thumbnail: pp

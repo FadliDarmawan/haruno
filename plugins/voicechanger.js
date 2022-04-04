@@ -1,6 +1,5 @@
-
-const fs = require('fs')
 const { exec } = require('child_process')
+const fs = require('fs')
 
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     try {
@@ -24,7 +23,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
             let ran = getRandom('.mp3')
             exec(`ffmpeg -i ${media} ${set} ${ran}`, (err, stderr, stdout) => {
                 fs.unlinkSync(media)
-                if (err) throw `_*Error!*_`
+                if (err) throw `sss`
                 let buff = fs.readFileSync(ran)
                 conn.sendFile(m.chat, buff, ran, null, m, /vn/.test(args[0]), { quoted: m, mimetype: 'audio/mp4' })
                 fs.unlinkSync(ran)

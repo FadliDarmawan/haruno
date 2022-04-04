@@ -31,7 +31,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
   await conn.reply(m.chat, `- Requested by @${m.sender.split`@`[0]}`, m, { thumbnail: th, contextInfo: { 
     mentionedJid: [m.sender],
     externalAdReply: {
-       mediaUrl: 'https://youtu.be/-tKVN2mAKRI',
+       sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
        title: 'Now playing',
        body: title,
        thumbnail: thb

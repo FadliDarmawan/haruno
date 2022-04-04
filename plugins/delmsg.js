@@ -4,7 +4,7 @@ let handler = async (m, { command, usedPrefix, text }) => {
     let msgs = global.db.data.msgs
     if (!text in msgs) throw `'${text}' tidak terdaftar!`
     delete msgs[text]
-    m.reply(`berhasil menghapus pesan dengan nama '${text}'`)
+    m.reply(`Berhasil menghapus pesan dengan nama '${text}'`)
 }
 handler.help = ['msg'].map(v => 'del' + v + ' <teks>')
 handler.tags = ['database']

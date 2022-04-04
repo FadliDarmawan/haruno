@@ -14,14 +14,14 @@ Halo ${name}, ${ucapan()} selamat datang di menu panduan Haruno Bot. di menu ini
 Penggunaan: ${usedPrefix + command} list panduan
 contoh: ${usedPrefix + command} how
 `.trim()
-    if (!args[0]) await conn.sendButtonLoc(m.chat, await(await fetch(image)).buffer(), tulisan, watermark, 'Menu', '.menu', m)
+    if (!args[0]) await conn.reply(m.chat, tulisan, m)
     let json = JSON.parse(JSON.stringify(global.panduan))
     let { search, deskripsi, judul } = json.find(v => v.search == args[0])
-        return conn.send3ButtonLoc(m.chat, await(await fetch(image)).buffer(), `No. ${index} ${judul}
+        return conn.reply(m.chat, `No. ${index} ${judul}
 ${deskripsi}
 
 Query: ${search}
-`.trim(), watermark, 'Owner', '.owner', 'Menu', '.?', 'Rules', '.rules', m)
+`.trim(), m)
 }
 handler.tags = ['main']
 handler.help = ['panduan']

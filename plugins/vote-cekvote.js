@@ -9,21 +9,19 @@ let handler = async (m, { conn, usedPrefix }) => {
     let [reason, upvote, devote] = conn.vote[id]
     let mentionedJid = [...upvote, ...devote]
     let caption = `
-    〔 VOTE 〕
+〔 Vote 〕
 
-*Alasan:* ${reason}
+Vote: ${reason}
 
-*UPVOTE*
-_Total: ${upvote.length}_
+Upvote
+Total: ${upvote.length}
 ${upvote.map(u => '@' + u.split('@')[0]).join('\n')}
 
-*DEVOTE*
-_Total: ${devote.length}_
+Devote
+Total: ${devote.length}
 ${devote.map(u => '@' + u.split('@')[0]).join('\n')}
-
-_by ariffb_
     `.trim()
-    await conn.send3Button(m.chat, caption, watermark, 'UPVOTE', `${usedPrefix}upvote`, 'DEVOTE', `${usedPrefix}devote`, 'HAPUS VOTE', `${usedPrefix}hapusvote`, m, { contextInfo: { mentionedJid } })
+    await conn.send3Button(m.chat, caption, watermark, 'Upvote', `${usedPrefix}upvote`, 'Devote', `${usedPrefix}devote`, 'Hapus vote', `${usedPrefix}hapusvote`, m, { contextInfo: { mentionedJid } })
 }
 handler.help = ['cekvote']
 handler.tags = ['vote']

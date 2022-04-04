@@ -9,8 +9,8 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
   let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
   m.reply(isLimit ? `Ukuran File: ${filesizeF}\nUkuran file diatas ${limit} MB, download sendiri: ${dl_link}` : global.wait)
   if (!isLimit) conn.sendFile(m.chat, dl_link, title + '.mp3', `
-*Judul:* ${title}
-*Ukuran File:* ${filesizeF}
+Judul: ${title}
+Ukuran File: ${filesizeF}
 `.trim(), m, null, {
     asDocument: chat.useDocument, mimetype: 'audio/mp4'
   })

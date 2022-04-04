@@ -13,7 +13,7 @@ global.APIs = { // API Prefix
   vhtear: 'https://api.vhtear.com',
   lolhum: 'https://api.lolhuman.xyz',
   bx: 'https://bx-hunter.herokuapp.com',
-
+  zenz: 'https://zenzapi.xyz'
 }
 global.APIKeys = { // APIKey nya disini
   // 'https://website': 'apikey'
@@ -26,6 +26,7 @@ global.APIKeys = { // APIKey nya disini
   'https://api.vhtear.com': 'sayahafiz',
   'http://zekais-api.herokuapp.com': 'grqgD6pU',
   'https://bx-hunter.herokuapp.com': 'Ikyy69',
+  'https://zenzapi.xyz': '110cd11dc6'
 }
 
 // Sticker WM
@@ -34,10 +35,12 @@ global.author = 'Fadli'
 
 global.wait = '「 ⏱️ 」Harap tunggu...'
 global.eror = '「❗」Server ERROR!'
-global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&text='
+global.internal = 'https://telegra.ph/file/e50f241a4e33aac014ec7.jpg'
+global.eksternal = 'https://telegra.ph/file/c7073a9a5a95faafcc913.jpg'
+global.haruno = 'https://telegra.ph/file/9dfa8c74ff6ab5e8d0a8f.jpg'
 global.watermark = '© Haruno'
 global.thumbfoto = 'https://telegra.ph/file/2249d5c5fa9785d2682aa.jpg' 
-global.image = 'https://telegra.ph/file/39bbded9693c9338069fd.jpg'
+global.image = 'https://teitslegra.ph/file/a2644cbdc76476f66bd17.jpg'
 
 global.multiplier = 59 // Semakin tinggi, semakin sulit naik level
 

@@ -16,5 +16,4 @@ Terakhir Update: ${json.lastUpdate}
 handler.help = ['covid'].map(v => v + ' <negara>')
 handler.tags = ['internet']
 handler.command = /^(corona|covid|covid19)$/i
-//susu
 module.exports = handler

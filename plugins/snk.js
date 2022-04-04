@@ -1,5 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async(m, { conn }) => {
+    let pp = await(await fetch(haruno)).buffer()
     let teks = `
 Kebijakan Privasi, Syarat Ketentuan dan Peraturan Haruno Bot
 
@@ -35,7 +36,14 @@ Request fitur, kritik saran, atau laporan bug silahkan chat ke owner.
 
 Peraturan: 1 Oktober 2021
 `.trim()
-    conn.send2ButtonLoc(m.chat, await(await fetch(image)).buffer(), teks, watermark, 'Menu', '.menu', 'Owner', '.owner', m)
+    conn.reply(m.chat, teks, m, { contextInfo: {
+        externalAdReply: {
+          sourceUrl: 'https://youtu.be/-tKVN2mAKRI',
+          title: 'Rules',
+          body: 'Haruno Bot',
+          thumbnail: pp
+        }
+    }})
 }
 handler.help = ['peraturan']
 handler.command = /^(snk|syarat|peraturan|rules)$/i
