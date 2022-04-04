@@ -40,7 +40,7 @@ global.eksternal = 'https://telegra.ph/file/c7073a9a5a95faafcc913.jpg'
 global.haruno = 'https://telegra.ph/file/9dfa8c74ff6ab5e8d0a8f.jpg'
 global.watermark = '© Haruno'
 global.thumbfoto = 'https://telegra.ph/file/2249d5c5fa9785d2682aa.jpg' 
-global.image = 'https://teitslegra.ph/file/a2644cbdc76476f66bd17.jpg'
+global.image = 'https://telegra.ph/file/a2644cbdc76476f66bd17.jpg'
 
 global.multiplier = 59 // Semakin tinggi, semakin sulit naik level
 
