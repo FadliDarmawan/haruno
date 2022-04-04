@@ -12,10 +12,10 @@ handler.before = function (m, { isOwner, isBotAdmin }) {
     // this is image source for the sticker. you wanna add the image or delete something? change the let imgsource.
     let imagesource = ['https://telegra.ph/file/000a3dd59ba44fbd5dcc5.png', 'https://telegra.ph/file/5e6c349e909260d599f85.png']
     let selectedimage = imagesource[Math.floor(Math.random() * imagesource.length)]
+    stiker = await sticker( false, selectedimage, packname, author)
 
     
     if (chat.badword && !chat.isBanned && isBadword) {
-        stiker = await sticker( false, selectedimage, packname, author)
         await this.sendMessage(m.chat, sticker, MessageType.sticker, {
             quoted: m
         })
