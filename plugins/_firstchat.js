@@ -4,12 +4,12 @@ let handler = m => m
 
 handler.all = async function (m) {
 
+    let user = global.db.data.users[m.sender]
     if (m.chat.endsWith('broadcast')) return
     if (m.fromMe) return
     if (m.isGroup) return
     if (!user.firstchat) return
     if (db.data.settings.groupOnly) return
-    let user = global.db.data.users[m.sender]
     let name = conn.getName(m.sender)
     await conn.send2ButtonImg(m.chat, await(await fetch('https://telegra.ph/file/b32e52b09508f1737a760.jpg')).buffer(), `
 *Hi ${name}, ${ucapan()}*

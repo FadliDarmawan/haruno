@@ -24,3 +24,4 @@ Video: ${v.videoCount}
 handler.help = ['', 'earch'].map(v => 'yts' + v + ' <pencarian>')
 handler.tags = ['internet']
 handler.command = /^yts(earch)?$/i
+module.exports = handler
